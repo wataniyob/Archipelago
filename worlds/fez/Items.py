@@ -84,7 +84,7 @@ trap_items: List[ItemDict] = [
 ]
 
 filler_items: List[ItemDict] = [
-    {'name': "Keep it up",
+    {'name': "Emotional Support",
      'count': 1,
      'classification': ItemClassification.filler}
 ]
