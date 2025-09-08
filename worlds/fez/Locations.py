@@ -1,5 +1,7 @@
-from typing import Dict, List
+# TODO: Name each bit, cube and collectible uniquely
 
+from typing import Set
+from Archipelago.worlds.fez.Options import FezOptions
 from BaseClasses import Location
 
 
@@ -7,71 +9,42 @@ class FezLocation(Location):
     game: str = "Fez"
 
 
-# TODO: Name each bit, cube and collectible uniquely
-# TODO: Place non-location specific antis in Menu (like QR code cube)
-# TODO: Split by room rather than region ahead of entrance rando
-
-natural_region_locations = [
-    "Bit",  # 37
-    "Golden Cube",  # 5
-    "Anti-Cube",  # 12
-    "Heart Cube",  # 2
-    "Key",  # 3
-    "Treasure Map",  # 4
-    "Writing Cube"  # 1
+artifact_locations = [
+    "The Writing Cube",
+    "The Counting Cube",
+    "The Tome Artifact",
+    "The Skull Artifact"
 ]
 
-industrial_district_locations = [
-    "Bit",  # 16
-    "Golden Cube",  # 4
-    "Treasure Map",  # 1
+map_locations = [
+    "Red Map"
+    "Purple Map"
+    "Tower Map"
+    "QR Code Map"
+    "Burned Map"
+    "Cemetery Map 1"
+    "Cemetery Map 2"
+    "Cemetery Map 3"
+    "Cemetery Map 4"
 ]
 
-sewers_locations = [
-    "Bit",  # 11
-    "Golden Cube",  # 2
-    "Anti-Cube",  # 4
-    "Key",  # 2
-]
+location_names: Set[str] = set()
+location_names.union(artifact_locations)
+location_names.union(map_locations)
+location_names.union([f"Cube Bit {i}" for i in range(1, 65)])       # 64 Cube Bits
+location_names.union([f"Golden Cube {i}" for i in range(1, 25)])    # 24 Golden Cubes
+location_names.union([f"Anti-Cube {i}" for i in range(1, 32)])      # 32 Anti-Cubes
+location_names.union([f"Heart Cube {i}" for i in range(1, 4)])      # 3 Heart Cubes
+location_names.union([f"Key {i}" for i in range(1, 9)])             # 8 Keys
+location_names.union([f"Owl {i}" for i in range(1, 5)])             # 4 Owls
 
-cemetery_loactions = [
-    "Bit",  # 26
-    "Golden Cube",  # 2
-    "Anti-Cube",  # 2
-    "Treasure Map",  # 1
-    "Skull Artifact"  # 1
-]
-
-scientific_region_locations = [
-    "Bit",  # 11
-    "Golden Cube",  # 3
-    "Anti-Cube",  # 11
-    "Heart Cube"  # 1
-    "Treasure Map",  # 2
-    "Counting Cube",  # 1
-    "Tome Artifact"  # 1
-]
-
-misc_regions_locations = [
-    "Bit",  # 27
-    "Anti-Cube",  # 4
-    "Key",  # 3
-    "Treasure Map",  # 1
-]
-
-regions_to_locations: Dict[str, List[str]] = {
-    "Menu": [],
-    "Natural Region": natural_region_locations,
-    "Industrial District": industrial_district_locations,
-    "Sewers": sewers_locations,
-    "Cemetery": cemetery_loactions,
-    "Scientific Region": scientific_region_locations,
-    "Misc Regions": misc_regions_locations
+location_name_groups = {
+    "Cube Bit":     {location for location in location_names if "Cube Bit" in location},
+    "Golden Cube":  {location for location in location_names if "Golden Cube" in location},
+    "Anti-Cube":    {location for location in location_names if "Anti-Cube" in location},
+    "Heart Cube":   {location for location in location_names if "Heart Cube" in location},
+    "Key":          {location for location in location_names if "Key" in location},
+    "Owl":          {location for location in location_names if "Owl" in location},
+    "Artifact":     set(artifact_locations),
+    "Map":          set(map_locations)
 }
-
-all_locations = (natural_region_locations
-                 + industrial_district_locations
-                 + sewers_locations
-                 + cemetery_loactions
-                 + scientific_region_locations
-                 + misc_regions_locations)

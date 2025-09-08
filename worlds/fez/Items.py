@@ -88,3 +88,13 @@ filler_items: List[ItemDict] = [
      'count': 1,
      'classification': ItemClassification.filler}
 ]
+
+all_items = progression_items + skippable_items + trap_items + filler_items
+
+item_names = {item['name'] for item in all_items}
+item_name_groups = {
+    "Progression":  {item['name'] for item in progression_items},
+    "Skippable":    {item['name'] for item in skippable_items},
+    "Trap":         {item['name'] for item in trap_items},
+    "Filer":        {item['name'] for item in filler_items},
+}
