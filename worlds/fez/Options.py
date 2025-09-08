@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from Options import Choice, DefaultOnToggle, DeathLinkMixin, PerGameCommonOptions, StartInventoryPool, Toggle
+from Options import Choice, DefaultOnToggle, DeathLinkMixin, PerGameCommonOptions, Toggle
 
 
 class Goal(Choice):
@@ -43,7 +43,7 @@ class DisableVisualPain(Toggle):
 
 
 @dataclass
-class FezOptions(DeathLinkMixin, PerGameCommonOptions):
+class FezOptions(DeathLinkMixin, PerGameCommonOptions): # pyright: ignore[reportGeneralTypeIssues]
     goal = Goal
     shuffle_keys = ShuffleKeys
     shuffle_owls = ShuffleOwls
