@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from Options import Choice, DefaultOnToggle, DeathLinkMixin, PerGameCommonOptions, Toggle
+from Options import Choice, DeathLinkMixin, PerGameCommonOptions, Toggle
 
 
 class Goal(Choice):
@@ -14,22 +14,6 @@ class Goal(Choice):
     option_32_cubes = 0
     option_64_cubes = 1
     default = 0
-
-
-class ShuffleKeys(DefaultOnToggle):
-    """Shuffle keys into the item pool."""
-    display_name = "Shuffle keys"
-
-
-class ShuffleOwls(DefaultOnToggle):
-    """Shuffle owls into the item pool (for the owl anti-cube)."""
-    display_name = "Shuffle owls"
-
-
-class ShuffleClockTower(Toggle):
-    """Shuffle the clock tower anti-cubes (you are given them at the start if false)"""
-    display_name = "Shuffle clock tower"
-
 
 class DisableVisualPain(Toggle):
     """Disables effects that are make eyes not happy like (quantum room and lightning)"""
@@ -45,8 +29,5 @@ class DisableVisualPain(Toggle):
 @dataclass
 class FezOptions(DeathLinkMixin, PerGameCommonOptions): # pyright: ignore[reportGeneralTypeIssues]
     goal = Goal
-    shuffle_keys = ShuffleKeys
-    shuffle_owls = ShuffleOwls
-    shuffle_clock_tower = ShuffleClockTower
     disable_visual_pain = DisableVisualPain
     # entrance_randomizer = EntranceRandomizer
