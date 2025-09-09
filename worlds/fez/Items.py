@@ -3,8 +3,6 @@ from typing import List
 
 from BaseClasses import Item
 
-base_id = 0xFE500
-
 class FezItem(Item):
     game: str = "Fez"
 
@@ -41,17 +39,16 @@ skippable_items: List[FezItemData] = [
 ]
 
 trap_items: List[FezItemData] = [
-    FezItemData("Rotation Trap", 5, ItemClassification.trap),
-    FezItemData("Sleep Trap", 5, ItemClassification.trap)
+    FezItemData("Rotation Trap", 1, ItemClassification.trap),
+    FezItemData("Sleep Trap", 1, ItemClassification.trap)
 ]
 
 filler_items: List[FezItemData] = [
     FezItemData("Emotional Support", 1, ItemClassification.filler)
 ]
 
-all_fez_item_data = progression_items + skippable_items + trap_items + filler_items
+main_items = progression_items + skippable_items
 
-item_names = {item.name for item in all_fez_item_data}
 item_name_groups = {
     "Progression":  {item.name for item in progression_items},
     "Skippable":    {item.name for item in skippable_items},
