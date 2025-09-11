@@ -27,7 +27,7 @@ class DisableVisualPain(Toggle):
 
 
 @dataclass
-class FezOptions(DeathLinkMixin, PerGameCommonOptions): # pyright: ignore[reportGeneralTypeIssues]
-    goal = Goal
-    disable_visual_pain = DisableVisualPain
-    # entrance_randomizer = EntranceRandomizer
+class FezOptions(DeathLinkMixin, PerGameCommonOptions):
+    goal: Goal
+    disable_visual_pain: DisableVisualPain
+    # entrance_randomizer: EntranceRandomizer

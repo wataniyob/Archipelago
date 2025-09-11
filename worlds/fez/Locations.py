@@ -1,7 +1,6 @@
 # TODO: Name each bit, cube and collectible uniquely
 
 from typing import Set
-from Archipelago.worlds.fez.Options import FezOptions
 from BaseClasses import Location
 
 
