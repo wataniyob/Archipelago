@@ -2,7 +2,7 @@ from typing import Any, Dict
 from .Options import FezOptions
 from .Items import FezItem, main_items, item_name_groups, trap_items, filler_items
 from .Locations import location_names, location_name_groups
-from .Rules import FezRules
+from .Rules import set_all_rules
 from worlds.AutoWorld import WebWorld, World
 from BaseClasses import Item, Tutorial
 
@@ -32,7 +32,7 @@ class FezWorld(World):
     game = "Fez"
     web = FezWeb()
     options_dataclass = FezOptions
-    options: FezOptions # pyright: ignore[reportIncompatibleVariableOverride]
+    options: FezOptions
     topology_present = True  # show path to required location checks in spoiler
 
     # First item and location ID
@@ -65,7 +65,7 @@ class FezWorld(World):
             self.multiworld.itempool.append(self.create_item(name))
 
     def set_rules(self) -> None:
-        FezRules(self).set_all_rules()
+        set_all_rules(self)
 
         # Uncomment to visualise world layout
         # from Utils import visualize_regions

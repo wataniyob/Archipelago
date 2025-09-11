@@ -1,19 +1,11 @@
-from typing import Dict, Callable
-from BaseClasses import CollectionState
-from . import FezWorld
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from . import FezWorld
+else:
+    FezWorld = object
 
 
-class FezRules:
-    player: int
-    world: FezWorld
-    location_rules: Dict[str, Callable[[CollectionState], bool]]
-    region_rules: Dict[str, Callable[[CollectionState], bool]]
-
-    def __init__(self, world: FezWorld) -> None:
-        self.player = world.player
-        self.world = world
-        # TODO: Populate location and region rules
-
-    def set_all_rules(self) -> None:
-        multiworld = self.world.multiworld
-        # TODO: Fill out
+def set_all_rules(fez_world: FezWorld) -> None:
+    multiworld = fez_world.world.multiworld
+    # TODO: Fill out
