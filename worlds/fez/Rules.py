@@ -7,5 +7,5 @@ else:
 
 
 def set_all_rules(fez_world: FezWorld) -> None:
-    multiworld = fez_world.world.multiworld
+    multiworld = fez_world.multiworld
     # TODO: Fill out
