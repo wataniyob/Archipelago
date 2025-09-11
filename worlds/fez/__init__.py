@@ -49,8 +49,12 @@ class FezWorld(World):
         return self.random.choice(filler_items).name
 
     def create_item(self, name: str) -> Item:
+        print(f"--------------------------------- Item name: {name}")
         item_id = self.item_name_to_id[name]
-        item_data = self.all_item_data[item_id]
+        print(f"--------------------------------- Item ID: {item_id}")
+        # TODO: Figure out why all_item_data gets indexed out of range
+        item_data = self.all_item_data[item_id - self.base_id]
+        print(f"--------------------------------- Item data name: {item_data.name}")
         return FezItem(name, item_data.classification, item_id, self.player)
 
     def create_items(self) -> None:
