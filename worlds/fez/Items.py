@@ -1,7 +1,5 @@
-from BaseClasses import ItemClassification
+from BaseClasses import Item, ItemClassification
 from typing import List
-
-from BaseClasses import Item
 
 class FezItem(Item):
     game: str = "Fez"
