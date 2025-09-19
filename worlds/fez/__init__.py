@@ -1,10 +1,11 @@
 from typing import Any, Dict
 from .Options import FezOptions
-from .Items import FezItem, all_items, item_name_groups, trap_items, filler_items
-from .Locations import all_location_data, location_name_groups
+from .Items import FezItem, all_item_data, item_name_groups, filler_items, main_items
+from .Locations import FezLocation, all_location_data, location_name_groups
+from .Regions import all_region_data, region_name_to_location_name
 from .Rules import set_all_rules
 from worlds.AutoWorld import WebWorld, World
-from BaseClasses import Item, Tutorial
+from BaseClasses import Item, Region, Tutorial
 
 
 class FezWeb(WebWorld):
@@ -32,23 +33,28 @@ class FezWorld(World):
     game = "Fez"
     web = FezWeb()
     options_dataclass = FezOptions
-    options: FezOptions
+    options: FezOptions # pyright: ignore[reportIncompatibleVariableOverride]
     topology_present = True  # show path to required location checks in spoiler
 
     # First item and location ID
-    _base_id = 0xFE500
+    base_id = 0xFE500
 
-    item_name_to_id = {item.name: id for id, item in enumerate(all_item_data, _base_id)}
-    item_names = item_name_to_id.keys()
+    item_name_to_id = {item.name: id for id, item in enumerate(all_item_data, base_id)}
+    item_names = set(item_name_to_id)
     item_name_groups = item_name_groups
 
-    location_name_to_id = {name: id for id, name in enumerate(all_location_data, _base_id)}
-    location_names = location_name_to_id.keys()
+    location_name_to_id = {data.name: id for id, data in enumerate(all_location_data, base_id)}
+    location_names = set(location_name_to_id)
     location_name_groups = location_name_groups
 
     def create_regions(self) -> None:
-        # TODO: Add regions to self.multiworld
-        pass
+        for data in all_region_data:
+            region = Region(data.name, self.player, self.multiworld)
+            location_names = region_name_to_location_name[data.name]
+            locations_in_region = {name: self.location_name_to_id.get(name) for name in location_names if name in location_names}
+            region.add_locations(locations_in_region, FezLocation)
+            region.add_exits(data.exits)
+            self.multiworld.regions.append(region)
 
     def create_items(self) -> None:
         for item in main_items:
@@ -64,10 +70,6 @@ class FezWorld(World):
     def set_rules(self) -> None:
         set_all_rules(self)
 
-    def connect_entrances(self) -> None:
-        # TODO: Add connections to self.multiworld
-        pass
-
     def fill_slot_data(self) -> Dict[str, Any]:
         return self.options.as_dict(
             "death_link",
@@ -77,19 +79,8 @@ class FezWorld(World):
 
     def create_item(self, name: str) -> Item:
         item_id = self.item_name_to_id[name]
-        item_data = self.all_item_data[item_id - self._base_id]
+        item_data = all_item_data[item_id - self.base_id]
         return FezItem(name, item_data.classification, item_id, self.player)
 
     def get_filler_item_name(self) -> str:
         return self.random.choice(filler_items).name
-
-    def get_location(self, location_name: str) -> Location:
-        location_data = self.all_location_data[location_name]
-        region = self.multiworld.regions[location_data.region]
-        return FezLocation(self.player, location_data.name, region)
-
-    def get_locations(self) -> Iterable[Location]:
-        all_locations = []
-        for location in all_location_data:
-            all_locations.append(self.get_location(location.name))
-        return all_locations
