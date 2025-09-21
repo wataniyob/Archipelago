@@ -36,6 +36,8 @@ class FezWorld(World):
     options: FezOptions # pyright: ignore[reportIncompatibleVariableOverride]
     topology_present = True  # show path to required location checks in spoiler
 
+    origin_region_name = "Gomez House 2D"
+
     # First item and location ID
     base_id = 0xFE500
 

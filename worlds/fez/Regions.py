@@ -2,18 +2,11 @@ from typing import Dict, Set
 from .Locations import all_location_data
 
 
-region_name_to_location_name: Dict[str, Set[str]] = {}
-for data in all_location_data:
-    region_name_to_location_name[data.region_name].union(data.name)
-
-
 class FezRegionData:
     def __init__(self, name: str, exits: Set[str]):
         self.name = name
         self.exits = exits
 
-
-# TODO: Add region information
 all_region_data: Set[FezRegionData] = {
     FezRegionData("Abandoned A", {"Villageville 3D"}),
     FezRegionData("Abandoned B", {"Villageville 3D"}),
@@ -32,8 +25,8 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("CMY", {"Waterfall", "CMY B", "CMY Fork"}),
     FezRegionData("Code Machine", {"Visitor"}),
     FezRegionData("Crypt", {"Mausoleum", "Tree of Death"}),
-    FezRegionData("Drum", {""}),  # TODO: Figure out where this connects to
-    FezRegionData("Elders", {""}),  # TODO: Figure out where this connects to
+    FezRegionData("Drum", {""}),  # TODO: Think of what to do with this. It's the drum for a cutscene I think.
+    FezRegionData("Elders", {"Gomez House"}),
     FezRegionData("Extractor A", {"Pivot 2"}),
     FezRegionData("Five Towers Cave", {"Five Towers"}),
     FezRegionData("Five Towers", {"Arch", "Five Towers Cave", "Bell Tower"}),
@@ -53,7 +46,7 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Graveyard Treasure A", {"Graveyard A"}),
     FezRegionData("Graveyard A", {"Graveyard Lesser Gate", "Graveyard Treasure A", "Mausoleum"}),
     FezRegionData("Graveyard Gate", {"Graveyard", "Graveyard Cabin", "Skull", "Owl", "Mausoleum"}),
-    FezRegionData("Hex Rebuild", {""}),  # TODO: Figure out where this connects to
+    FezRegionData("Hex Rebuild", {"Gomez House End 32"}),
     FezRegionData("Industrial Abandoned A", {"Industrial Hub"}),
     FezRegionData("Industrial City", {"Memory Core", "Nuzu School", "Nuzu Boileroom", "Nuzu Abandoned A", "Showers", "Nuzu Dorm"}),
     FezRegionData("Industrial Hub", {"Industrial Superspin", "Rails", "Pivot 1", "Pivot Watertower", "Industrial Abandoned A", "Nuzu Abandoned B", "Well"}),
@@ -79,7 +72,7 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Nuzu Dormitory", {"Industrial City"}),
     FezRegionData("Nuzu School", {"Industrial City"}),
     FezRegionData("Observatory", {"Zu City Ruins", "Telescope", "Visitor", "Throne"}),
-    FezRegionData("Octohedron", {""}),  # TODO: Figure out where this connects to
+    FezRegionData("Octohedron", {""}),  # TODO: Think of what to do with this. It's for a cutscene I think.
     FezRegionData("Oldschool Ruins", {"Zu City Ruins"}),
     FezRegionData("Oldschool", {"Zu City"}),
     FezRegionData("Orrery B", {"Orrery"}),
@@ -128,7 +121,7 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Tree", {"Cabin Interior B", "Tree Roots", "Tree Sky", "Tree Crumble"}),
     FezRegionData("Triple Pivot Cave", {"Spinning Plates", "Rails"}),
     FezRegionData("Two Walls", {"Wall Hole", "Fractal", "Nature Hub"}),
-    FezRegionData("Villageville 2D", {"Gomez House 2D", "School 2D", "Kitchen 2D", "Parlor 2D", "Geezer House 2D"}),
+    FezRegionData("Villageville 2D", {"Gomez House 2D", "School 2D", "Kitchen 2D", "Parlor 2D", "Geezer House 2D", "Elders"}),
     FezRegionData("Villageville 3D End 32", {"Gomez House End 32"}),
     FezRegionData("Villageville 3D End 64", {"Gomez House End 64"}),
     FezRegionData("Villageville 3D", {"Gomez House", "Boileroom", "School", "Abandoned A", "Parlor", "Generator", "Big Tower", "Kitchen", "Abandoned B", "Abandoned C", "Geezer House"}),
@@ -144,8 +137,8 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Water Tower", {"Lighthouse", "Pivot Watertower", "Watertower Secret"}),
     FezRegionData("Water Wheel B", {"Water Wheel"}),
     FezRegionData("Water Wheel", {"Water Wheel B", "Waterfall"}),
-    FezRegionData("Waterfall Alt", {"Fox", "Nature Hub", "Water Wheel", "Mine A", "CMY", "Zu Code Loop", "Zu Zuish"}),  # TODO: Confirm Fox is connected here
-    FezRegionData("Waterfall", {"Fox", "Nature Hub", "Water Wheel", "Mine A", "CMY", "Zu Code Loop", "Zu Zuish"}),  # TODO: Confirm Fox is connected here
+    FezRegionData("Waterfall Alt", {"Fox", "Nature Hub", "Water Wheel", "Mine A", "CMY", "Zu Code Loop", "Zu Zuish"}),
+    FezRegionData("Waterfall", {"Fox", "Nature Hub", "Water Wheel", "Mine A", "CMY", "Zu Code Loop", "Zu Zuish"}),
     FezRegionData("Watertower Secret", {"Water Tower"}),
     FezRegionData("Weightswitch Temple", {"Zu Switch", "Arch"}),
     FezRegionData("Well 2", {"Sewer Start", "Rails", "Industrial Hub"}),
@@ -161,7 +154,6 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Zu House Empty B", {"Zu City"}),
     FezRegionData("Zu House Empty", {"Zu City"}),
     FezRegionData("Zu House QR", {"Zu City Ruins"}),
-    FezRegionData("Zu House Ruin Gate", {""}),  # TODO: Figure out where this connects to
     FezRegionData("Zu House Ruin Visitors", {"Zu City Ruins"}),
     FezRegionData("Zu House Scaffolding", {"Zu City"}),
     FezRegionData("Zu Library", {"Library Interior", "Clock", "Zu City Ruins"}),
@@ -171,4 +163,10 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Zu Throne Ruins", {"Zu City Ruins"}),
     FezRegionData("Zu Unfold", {"Throne"}),
     FezRegionData("Zu Zuish", {"Waterfall"})
+    # DRUM, OCTOHEDRON and ZU_HOUSE_RUIN_GATE are all not playable and are excluded despite having fezlvl data
 }
+
+region_name_to_location_name: Dict[str, Set[str]] = {}
+for data in all_location_data:
+    # TODO: Figure out the key error here for Tree
+    region_name_to_location_name[data.region_name].union(data.name)
