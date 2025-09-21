@@ -51,7 +51,7 @@ chest_locations: Set[FezLocationData] = {
     FezLocationData("Fox Chest", "Fox"),
     FezLocationData("Globe Interior Chest", "Globe Interior"),
     FezLocationData("Industrial Superspin Chest", "Industrial Superspin"),
-    FezLocationData("Lighthouse A Chest", "Lighthouse A"),
+    FezLocationData("Lighthouse House A Chest", "Lighthouse House A"),
     FezLocationData("Mausoleum Chest", "Mausoleum"),
     FezLocationData("Mine Bomb Pillar Chest", "Mine Bomb Pillar"),
     FezLocationData("Orrery B Chest", "Orrery B"),

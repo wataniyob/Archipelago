@@ -25,7 +25,6 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("CMY", {"Waterfall", "CMY B", "CMY Fork"}),
     FezRegionData("Code Machine", {"Visitor"}),
     FezRegionData("Crypt", {"Mausoleum", "Tree of Death"}),
-    FezRegionData("Drum", {""}),  # TODO: Think of what to do with this. It's the drum for a cutscene I think.
     FezRegionData("Elders", {"Gomez House"}),
     FezRegionData("Extractor A", {"Pivot 2"}),
     FezRegionData("Five Towers Cave", {"Five Towers"}),
@@ -34,8 +33,8 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Fractal", {"Two Walls", "Zu 4 Side"}),
     FezRegionData("Geezer House 2D", {"Villageville 2D"}),
     FezRegionData("Gezzer House", {"Villageville 3D"}),
-    FezRegionData("Globe Internal", {"Globe"}),
-    FezRegionData("Globe", {"Library Interior", "Globe Internal"}),
+    FezRegionData("Globe Interior", {"Globe"}),
+    FezRegionData("Globe", {"Library Interior", "Globe Interior"}),
     FezRegionData("Gomez House 2D", {"Villageville 2D"}),
     FezRegionData("Gomez House End 32", {"Villageville 3D End 32"}),
     FezRegionData("Gomez House End 64", {"Villageville 3D End 64"}),
@@ -72,7 +71,6 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Nuzu Dormitory", {"Industrial City"}),
     FezRegionData("Nuzu School", {"Industrial City"}),
     FezRegionData("Observatory", {"Zu City Ruins", "Telescope", "Visitor", "Throne"}),
-    FezRegionData("Octohedron", {""}),  # TODO: Think of what to do with this. It's for a cutscene I think.
     FezRegionData("Oldschool Ruins", {"Zu City Ruins"}),
     FezRegionData("Oldschool", {"Zu City"}),
     FezRegionData("Orrery B", {"Orrery"}),
@@ -166,7 +164,6 @@ all_region_data: Set[FezRegionData] = {
     # DRUM, OCTOHEDRON and ZU_HOUSE_RUIN_GATE are all not playable and are excluded despite having fezlvl data
 }
 
-region_name_to_location_name: Dict[str, Set[str]] = {}
+region_name_to_location_name: Dict[str, Set[str]] = {data.name: set() for data in all_region_data}
 for data in all_location_data:
-    # TODO: Figure out the key error here for Tree
     region_name_to_location_name[data.region_name].union(data.name)
