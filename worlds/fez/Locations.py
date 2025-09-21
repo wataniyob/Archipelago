@@ -12,70 +12,84 @@ class FezLocationData:
 
 
 cube_bit_locations: Set[FezLocationData] = {
-    FezLocationData("Cube Bit 1",           "TODO")
+    FezLocationData("Abandoned A Cube Bit", "Abandoned A"),
+    FezLocationData("Abandoned B Cube Bit", "Abandoned B"),
+    FezLocationData("Ancient Walls Cube Bit 1", "Ancient Walls"),
+    FezLocationData("Ancient Walls Cube Bit 2", "Ancient Walls"),
+    FezLocationData("Ancient Walls Cube Bit 3", "Ancient Walls"),
+    FezLocationData("Arch Cube Bit 1", "Arch"),
+    FezLocationData("Arch Cube Bit 2", "Arch"),
+    FezLocationData("Arch Cube Bit 3", "Arch"),
+    # TODO
+    FezLocationData("Villageville Cube Bit 1", "Villageville 3D"),
+    FezLocationData("Villageville Cube Bit 2", "Villageville 3D"),
+    FezLocationData("Villageville Cube Bit 3", "Villageville 3D"),
+    FezLocationData("Villageville Cube Bit 4", "Villageville 3D"),
     # TODO: Add all 64 cube bit locations
 }
 
 golden_cube_locations: Set[FezLocationData] = {
-    FezLocationData("Golden Cube 1",        "TODO")
-    # TODO: Add all 24 golden cube locations
+    FezLocationData("Clock Cube", "Clock")
+    # TODO: Add all 24 golden cube locations (some already included in chest_locations)
 }
 
 anti_cube_locations: Set[FezLocationData] = {
-    FezLocationData("Anti-Cube 1",          "TODO")
+    FezLocationData("Big Owl Anti-Cube", "Big Owl")
     # TODO: Add all 32 anti-cube locations
 }
 
 heart_cube_locations: Set[FezLocationData] = {
-    FezLocationData("Heart Cube 1",         "TODO")
-    # TODO: Add all 3 heart cube locations
+    FezLocationData("Black Monolith Heart Cube", "Ritual"),
+    FezLocationData("Telescope Heart Cube", "Telescope"),
+    FezLocationData("Security Question Heart Cube", "Zu Zuish")
 }
 
-key_locations: Set[FezLocationData] = {
-    FezLocationData("Key 1",                "TODO")
-    # TODO: Add all 8 key locations
+chest_locations: Set[FezLocationData] = {
+    FezLocationData("Arch Chest 1", "Arch"),
+    FezLocationData("Arch Chest 2", "Arch"),
+    FezLocationData("Five Towers Cave Chest", "Five Towers Cave"),
+    FezLocationData("Fox Chest", "Fox"),
+    FezLocationData("Globe Interior Chest", "Globe Interior"),
+    FezLocationData("Industrial Superspin Chest", "Industrial Superspin"),
+    FezLocationData("Lighthouse A Chest", "Lighthouse A"),
+    FezLocationData("Mausoleum Chest", "Mausoleum"),
+    FezLocationData("Mine Bomb Pillar Chest", "Mine Bomb Pillar"),
+    FezLocationData("Orrery B Chest", "Orrery B"),
+    FezLocationData("Parlor Chest", "Parlor"),
+    FezLocationData("Pivot Watertower Chest", "Pivot Watertower"),
+    FezLocationData("Sewer Pivot Chest", "Sewer Pivot"),
+    FezLocationData("Sewer Treasure 1 Chest", "Sewer Treasure 1"),
+    FezLocationData("Sewer Treasure 2 Chest", "Sewer Treasure 2"),
+    FezLocationData("Tree Crumble Chest", "Tree Crumble"),
+    FezLocationData("Tree of Death Chest", "Tree of Death"),
+    FezLocationData("Tree Sky Chest", "Tree Sky"),
+    FezLocationData("Villageville Chest", "Villageville 3D"),
+    FezLocationData("Wall Hole Chest", "Wall Hole"),
+    FezLocationData("Water Wheel B Chest", "Water Wheel B"),
+    FezLocationData("Windmill Cave Chest", "Windmill Cave"),
+    FezLocationData("Zu City Ruins Chest", "Zu City Ruins"),
+    FezLocationData("Zu House Empty B Chest", "Zu House Empty B")
 }
 
 owl_locations: Set[FezLocationData] = {
-    FezLocationData("Owl 1",                "TODO")
-    # TODO: Add all 4 owl locations
-}
-
-artifact_locations: Set[FezLocationData] = {
-    FezLocationData("The Writing Cube",     "TODO"),
-    FezLocationData("The Counting Cube",    "TODO"),
-    FezLocationData("The Tome Artifact",    "TODO"),
-    FezLocationData("The Skull Artifact",   "TODO"),
-}
-
-map_locations: Set[FezLocationData] = {
-    FezLocationData("Red Map",              "TODO"),
-    FezLocationData("Purple Map",           "TODO"),
-    FezLocationData("Tower Map",            "TODO"),
-    FezLocationData("QR Code Map",          "TODO"),
-    FezLocationData("Burned Map",           "TODO"),
-    FezLocationData("Cemetery Map 1",       "TODO"),
-    FezLocationData("Cemetery Map 2",       "TODO"),
-    FezLocationData("Cemetery Map 3",       "TODO"),
-    FezLocationData("Cemetery Map 4",       "TODO"),
+    FezLocationData("Waterfall Owl", "Waterfall"),
+    FezLocationData("Visitor Owl", "Visitor"),
+    FezLocationData("Pivot 1 Owl", "Pivot 1"),
+    FezLocationData("Tree Owl", "Tree")
 }
 
 all_location_data = cube_bit_locations \
                 .union(golden_cube_locations) \
                 .union(anti_cube_locations) \
                 .union(heart_cube_locations) \
-                .union(key_locations) \
-                .union(owl_locations) \
-                .union(artifact_locations) \
-                .union(map_locations)
+                .union(chest_locations) \
+                .union(owl_locations)
 
 location_name_groups = {
     "Cube Bit":     {data.name for data in cube_bit_locations},
     "Golden Cube":  {data.name for data in golden_cube_locations},
     "Anti-Cube":    {data.name for data in anti_cube_locations},
     "Heart Cube":   {data.name for data in heart_cube_locations},
-    "Key":          {data.name for data in key_locations},
-    "Owl":          {data.name for data in owl_locations},
-    "Artifact":     {data.name for data in artifact_locations},
-    "Map":          {data.name for data in map_locations},
+    "Chest":        {data.name for data in chest_locations},
+    "Owl":          {data.name for data in owl_locations}
 }
