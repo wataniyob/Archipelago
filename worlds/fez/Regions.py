@@ -135,7 +135,6 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Water Tower", {"Lighthouse", "Pivot Watertower", "Watertower Secret"}),
     FezRegionData("Water Wheel B", {"Water Wheel"}),
     FezRegionData("Water Wheel", {"Water Wheel B", "Waterfall"}),
-    FezRegionData("Waterfall Alt", {"Fox", "Nature Hub", "Water Wheel", "Mine A", "CMY", "Zu Code Loop", "Zu Zuish"}),
     FezRegionData("Waterfall", {"Fox", "Nature Hub", "Water Wheel", "Mine A", "CMY", "Zu Code Loop", "Zu Zuish"}),
     FezRegionData("Watertower Secret", {"Water Tower"}),
     FezRegionData("Weightswitch Temple", {"Zu Switch", "Arch"}),
@@ -161,7 +160,7 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Zu Throne Ruins", {"Zu City Ruins"}),
     FezRegionData("Zu Unfold", {"Throne"}),
     FezRegionData("Zu Zuish", {"Waterfall"})
-    # DRUM, OCTOHEDRON and ZU_HOUSE_RUIN_GATE are all not playable and are excluded despite having fezlvl data
+    # DRUM, OCTOHEDRON, WATERFALL_ALT and ZU_HOUSE_RUIN_GATE are all not playable and are excluded despite having fezlvl data
 }
 
 region_name_to_location_name: Dict[str, Set[str]] = {data.name: set() for data in all_region_data}
