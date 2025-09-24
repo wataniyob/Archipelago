@@ -163,6 +163,22 @@ golden_cube_locations: Set[FezLocationData] = {
 
 anti_cube_locations: Set[FezLocationData] = {
     # TODO: Find and label missing anti-cubes since there should be 32 (2 already included in chest_locations)
+    FezLocationData("Achievement Anti-Cube", "MENU"),
+    FezLocationData("Clock Tower Minute Anti-Cube", "Clock"),
+    FezLocationData("Clock Tower Hour Anti-Cube", "Clock"),
+    FezLocationData("Clock Tower Day Anti-Cube", "Clock"),
+    FezLocationData("Clock Tower Week Anti-Cube", "Clock"),
+    FezLocationData("Lighthouse Tune Fork Anti-Cube", ""),
+    FezLocationData("Sewer Tune Fork Anti-Cube", ""),
+    FezLocationData("Sewer Boiler Tune Fork Anti-Cube", ""),
+    FezLocationData("Sync Room Tune Fork Anti-Cube", ""),
+    FezLocationData("Lighthouse Floor Anti-Cube", ""),
+    FezLocationData("Tree Cabin Floor Anti-Cube", ""),
+    FezLocationData("Tree Sky Anti-Cube", ""),
+    FezLocationData("Zu Passageway Anti-Cube", ""),
+    FezLocationData("Throne Anti-Cube", ""),  # Add all three possible regions and confirm no problem
+    FezLocationData("Bell Tower Anti-Cube", ""),
+    # TODO: Add and also rename above to match region name
     FezLocationData("Big Owl Anti-Cube", "Big Owl"),
     FezLocationData("CMY B Anti-Cube", "CMY B"),
     FezLocationData("Lava Skull Anti-Cube", "Lava Skull"),
