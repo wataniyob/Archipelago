@@ -12,7 +12,7 @@ class FezLocationData:
 
 
 cube_bit_locations: Set[FezLocationData] = {
-    # TODO: Figure out which of these are wrong since there should only be 64 cube bits
+    # TODO: Figure out which of these are wrong since there should only be 128 cube bits (currently have 131)
     FezLocationData("Abandoned A Cube Bit", "Abandoned A"),
     FezLocationData("Abandoned B Cube Bit", "Abandoned B"),
     FezLocationData("Ancient Walls Cube Bit 1", "Ancient Walls"),
@@ -147,7 +147,7 @@ cube_bit_locations: Set[FezLocationData] = {
 }
 
 golden_cube_locations: Set[FezLocationData] = {
-    # TODO: Figure out where missing cubes are since there should be 24 (3 already included in chest_locations)
+    # TODO: Figure out where missing cubes are since there should be 16 (11 here, 3 already included in chest_locations)
     FezLocationData("Clock Cube", "Clock"),
     FezLocationData("Graveyard Treasure A Cube", "Graveyard Treasure A"),
     FezLocationData("Observatory Cube", "Observatory"),
