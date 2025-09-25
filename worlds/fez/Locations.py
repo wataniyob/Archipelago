@@ -80,8 +80,8 @@ cube_bit_locations: Set[FezLocationData] = {
     FezLocationData("Mine Wrap Cube 3", "Mine Wrap"),
     FezLocationData("Nature Hub Cube Bit 1", "Nature Hub"),
     FezLocationData("Nature Hub Cube Bit 2", "Nature Hub"),
-    FezLocationData("Nuzu Abandoned A Cube Bit", "Nuzu Abandoned A"),
-    FezLocationData("Nuzu Abandoned B Cube Bit", "Nuzu Abandoned B"),
+    FezLocationData("Nu Zu Abandoned A Cube Bit", "Nu Zu Abandoned A"),
+    FezLocationData("Nu Zu Abandoned B Cube Bit", "Nu Zu Abandoned B"),
     FezLocationData("Oldschool Cube Bit", "Oldschool"),
     FezLocationData("Oldschool Ruins Cube Bit", "Oldschool Ruins"),
     FezLocationData("Owl Cube Bit", "Owl"),
@@ -147,9 +147,11 @@ cube_bit_locations: Set[FezLocationData] = {
 }
 
 golden_cube_locations: Set[FezLocationData] = {
-    # TODO: Figure out where missing cubes are since there should be 16 (11 here, 3 already included in chest_locations)
     FezLocationData("Clock Cube", "Clock"),
+    FezLocationData("Graveyard Lesser Gate Cube", "Graveyard Lesser Gate"),
     FezLocationData("Graveyard Treasure A Cube", "Graveyard Treasure A"),
+    FezLocationData("Five Towers Cube", "Five Towers"),
+    FezLocationData("Mine Wrap Cube", "Mine Wrap"),
     FezLocationData("Observatory Cube", "Observatory"),
     FezLocationData("Pivot 3 Cube", "Pivot 3"),
     FezLocationData("Sewer Lesser Gate B Cube", "Sewer Lesser Gate B"),
@@ -162,29 +164,38 @@ golden_cube_locations: Set[FezLocationData] = {
 }
 
 anti_cube_locations: Set[FezLocationData] = {
-    # TODO: Find and label missing anti-cubes since there should be 32 (2 already included in chest_locations)
-    FezLocationData("Achievement Anti-Cube", "MENU"),
+    FezLocationData("Achievement Anti-Cube", "Villageville 3D"),  # TODO: Replace with Menu and make Menu always accessible
     FezLocationData("Clock Tower Minute Anti-Cube", "Clock"),
     FezLocationData("Clock Tower Hour Anti-Cube", "Clock"),
     FezLocationData("Clock Tower Day Anti-Cube", "Clock"),
     FezLocationData("Clock Tower Week Anti-Cube", "Clock"),
-    FezLocationData("Lighthouse Tune Fork Anti-Cube", ""),
-    FezLocationData("Sewer Tune Fork Anti-Cube", ""),
-    FezLocationData("Sewer Boiler Tune Fork Anti-Cube", ""),
-    FezLocationData("Sync Room Tune Fork Anti-Cube", ""),
-    FezLocationData("Lighthouse Floor Anti-Cube", ""),
-    FezLocationData("Tree Cabin Floor Anti-Cube", ""),
-    FezLocationData("Tree Sky Anti-Cube", ""),
-    FezLocationData("Zu Passageway Anti-Cube", ""),
-    FezLocationData("Throne Anti-Cube", ""),  # Add all three possible regions and confirm no problem
-    FezLocationData("Bell Tower Anti-Cube", ""),
-    # TODO: Add and also rename above to match region name
-    FezLocationData("Big Owl Anti-Cube", "Big Owl"),
-    FezLocationData("CMY B Anti-Cube", "CMY B"),
-    FezLocationData("Lava Skull Anti-Cube", "Lava Skull"),
+    FezLocationData("CMY Tune Fork Anti-Cube", "CMY Fork"),
+    FezLocationData("Lava Tune Fork Anti-Cube", "Lava Fork"),
+    FezLocationData("Sewer Tune Fork Anti-Cube", "Sewer Fork"),
+    FezLocationData("Zu Tune Fork Anti-Cube", "Zu Fork"),
+    FezLocationData("Lighthouse Floor Anti-Cube", "Lighthouse"),
+    FezLocationData("Tree Cabin Floor Anti-Cube", "Tree"),
+    FezLocationData("Tree Sky Floor Anti-Cube", "Tree Sky"),
+    FezLocationData("Zu Bridge Anti-Cube", "Zu Bridge"),
+    FezLocationData("Throne Anti-Cube", "Sewer QR"),  # TODO: Confirm no problem if adding three available locations
+    FezLocationData("Throne Anti-Cube", "Zu House Empty"),
+    FezLocationData("Throne Anti-Cube", "Zu Throne Ruins"),
+    FezLocationData("Bell Tower Anti-Cube", "Bell Tower"),
     FezLocationData("Quantum Anti-Cube", "Quantum"),
-    FezLocationData("Skull B Anti-Cube", "Skull B"),
+    FezLocationData("Zu Code Loop Anti-Cube", "Zu Code Loop"),
+    FezLocationData("CMY B Anti-Cube", "CMY B"),
     FezLocationData("Zu Heads Anti-Cube", "Zu Heads"),
+    FezLocationData("Zu 4 Side Anti-Cube", "Zu 4 Side"),
+    FezLocationData("Lava Skull Anti-Cube", "Lava Skull"),
+    FezLocationData("Big Owl Anti-Cube", "Big Owl"),
+    FezLocationData("Skull B Anti-Cube", "Skull B"),
+    FezLocationData("Telescope Anti-Cube", "Telescope"),
+    FezLocationData("Zu House QR Anti-Cube", "Zu House QR"),
+    FezLocationData("Zu Unfold Anti-Cube", "Zu Unfold"),
+    FezLocationData("Code Machine Anti-Cube", "Code Machine"),
+    FezLocationData("Parlor Anti-Cube", "Parlor"),
+    FezLocationData("Boileroom Anti-Cube", "Boileroom"),
+    FezLocationData("Nu Zu School Anti-Cube", "Nu Zu School"),
 }
 
 heart_cube_locations: Set[FezLocationData] = {
