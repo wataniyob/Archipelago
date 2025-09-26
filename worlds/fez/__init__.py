@@ -49,11 +49,23 @@ class FezWorld(World):
     location_names = set(location_name_to_id)
     location_name_groups = location_name_groups
 
+    def generate_early(self) -> None:
+        # Remove clock antis if not shuffling
+        if not self.options.shuffle_clock_antis:
+            self.options.exclude_locations.value.union(
+                "Clock Tower Minute Anti-Cube",
+                "Clock Tower Hour Anti-Cube",
+                "Clock Tower Day Anti-Cube",
+                "Clock Tower Week Anti-Cube",
+            )
+
     def create_regions(self) -> None:
+        # Add all regions
         for data in all_region_data:
             region = Region(data.name, self.player, self.multiworld)
             self.multiworld.regions.append(region)
 
+        # Configure all regions
         for data in all_region_data:
             region = self.multiworld.get_region(data.name, self.player)
             location_names = region_name_to_location_name[data.name]
@@ -61,16 +73,29 @@ class FezWorld(World):
             region.add_locations(locations_in_region, FezLocation)
             region.add_exits(data.exits)
 
+    def add_filler_items(self, fill_size: int) -> None:
+        # Add traps
+        trap_count = fill_size * self.options.trap_percentage // 100
+        for _ in range(trap_count):
+            filler_item = self.create_item(self.get_trap_item_name())
+            self.multiworld.itempool.append(filler_item)
+
+        # Add filler
+        for _ in range(fill_size - trap_count):
+            filler_item = self.create_item(self.get_filler_item_name())
+            self.multiworld.itempool.append(filler_item)
+
+
     def create_items(self) -> None:
+        # Add main items
         for item in main_items:
             for _ in range(item.count):
                 new_item = self.create_item(item.name)
                 self.multiworld.itempool.append(new_item)
 
+        # Add filler
         fill_size = len(self.location_name_to_id) - sum(item.count for item in main_items)
-        for _ in range(fill_size):
-            name = self.random.choice(["Rotation Trap", "Sleep Trap", "Emotional Support"])
-            self.multiworld.itempool.append(self.create_item(name))
+        self.add_filler_items(fill_size)
 
     def set_rules(self) -> None:
         set_all_rules(self)
@@ -89,3 +114,6 @@ class FezWorld(World):
 
     def get_filler_item_name(self) -> str:
         return self.random.choice(filler_items).name
+
+    def get_trap_item_name(self) -> str:
+        return self.random.choices(list(self.options.trap_weights.keys()), list(self.options.trap_weights.values()))[0]
