@@ -85,7 +85,6 @@ class FezWorld(World):
             filler_item = self.create_item(self.get_filler_item_name())
             self.multiworld.itempool.append(filler_item)
 
-
     def create_items(self) -> None:
         # Add main items
         for item in main_items:
