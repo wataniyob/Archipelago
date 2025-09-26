@@ -12,7 +12,6 @@ class FezLocationData:
 
 
 cube_bit_locations: Set[FezLocationData] = {
-    # TODO: Figure out which of these are wrong since there should only be 128 cube bits (currently have 131)
     FezLocationData("Abandoned A Cube Bit", "Abandoned A"),
     FezLocationData("Abandoned B Cube Bit", "Abandoned B"),
     FezLocationData("Ancient Walls Cube Bit 1", "Ancient Walls"),
@@ -35,7 +34,6 @@ cube_bit_locations: Set[FezLocationData] = {
     FezLocationData("Extractor A Cube Bit", "Extractor A"),
     FezLocationData("Five Towers Cube Bit 1", "Five Towers"),
     FezLocationData("Five Towers Cube Bit 2", "Five Towers"),
-    FezLocationData("Five Towers Cube 3", "Five Towers"),
     FezLocationData("Five Towers Cube Bit 3", "Five Towers"),
     FezLocationData("Fox Cube Bit", "Fox"),
     FezLocationData("Fractal Cube Bit 1", "Fractal"),
@@ -56,8 +54,7 @@ cube_bit_locations: Set[FezLocationData] = {
     FezLocationData("Graveyard Cabin Cube Bit 2", "Graveyard Cabin"),
     FezLocationData("Graveyard Ghost Cube Bit 1", "Graveyard Ghost"),
     FezLocationData("Graveyard Ghost Cube Bit 2", "Graveyard Ghost"),
-    FezLocationData("Graveyard Lesser Gate Cube Bit 1", "Graveyard Lesser Gate"),
-    FezLocationData("Graveyard Lesser Gate Cube 2", "Graveyard Lesser Gate"),
+    FezLocationData("Graveyard Lesser Gate Cube Bit", "Graveyard Lesser Gate"),
     FezLocationData("Graveyard Treasure A Cube Bit 1", "Graveyard Treasure A"),
     FezLocationData("Graveyard Treasure A Cube Bit 2", "Graveyard Treasure A"),
     FezLocationData("Industrial Superspin Cube Bit 1", "Industrial Superspin"),
@@ -77,7 +74,6 @@ cube_bit_locations: Set[FezLocationData] = {
     FezLocationData("Mine Bomb Pillar Cube Bit", "Mine Bomb Pillar"),
     FezLocationData("Mine Wrap Cube Bit 1", "Mine Wrap"),
     FezLocationData("Mine Wrap Cube Bit 2", "Mine Wrap"),
-    FezLocationData("Mine Wrap Cube 3", "Mine Wrap"),
     FezLocationData("Nature Hub Cube Bit 1", "Nature Hub"),
     FezLocationData("Nature Hub Cube Bit 2", "Nature Hub"),
     FezLocationData("Nu Zu Abandoned A Cube Bit", "Nu Zu Abandoned A"),
