@@ -160,7 +160,7 @@ golden_cube_locations: Set[FezLocationData] = {
 }
 
 anti_cube_locations: Set[FezLocationData] = {
-    FezLocationData("Achievement Anti-Cube", "Villageville 3D"),  # TODO: Replace with Menu and make Menu always accessible
+    FezLocationData("Achievement Anti-Cube", "Gomez House"),
     FezLocationData("Clock Tower Minute Anti-Cube", "Clock"),
     FezLocationData("Clock Tower Hour Anti-Cube", "Clock"),
     FezLocationData("Clock Tower Day Anti-Cube", "Clock"),
@@ -173,9 +173,6 @@ anti_cube_locations: Set[FezLocationData] = {
     FezLocationData("Tree Cabin Floor Anti-Cube", "Tree"),
     FezLocationData("Tree Sky Floor Anti-Cube", "Tree Sky"),
     FezLocationData("Zu Bridge Anti-Cube", "Zu Bridge"),
-    FezLocationData("Throne Anti-Cube", "Sewer QR"),  # TODO: Confirm no problem if adding three available locations
-    FezLocationData("Throne Anti-Cube", "Zu House Empty"),
-    FezLocationData("Throne Anti-Cube", "Zu Throne Ruins"),
     FezLocationData("Bell Tower Anti-Cube", "Bell Tower"),
     FezLocationData("Quantum Anti-Cube", "Quantum"),
     FezLocationData("Zu Code Loop Anti-Cube", "Zu Code Loop"),
@@ -192,6 +189,9 @@ anti_cube_locations: Set[FezLocationData] = {
     FezLocationData("Parlor Anti-Cube", "Parlor"),
     FezLocationData("Boileroom Anti-Cube", "Boileroom"),
     FezLocationData("Nu Zu School Anti-Cube", "Nu Zu School"),
+
+    # Available in 3 locations, so one-way connection to mock region
+    FezLocationData("Throne Anti-Cube", "_ThroneAntiCube"),
 }
 
 heart_cube_locations: Set[FezLocationData] = {

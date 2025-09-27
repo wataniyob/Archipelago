@@ -44,7 +44,7 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Graveyard Lesser Gate", {"Graveyard A"}),
     FezRegionData("Graveyard Treasure A", {"Graveyard A"}),
     FezRegionData("Graveyard A", {"Graveyard Lesser Gate", "Graveyard Treasure A", "Mausoleum"}),
-    FezRegionData("Graveyard Gate", {"Graveyard Cabin", "Skull", "Owl", "Mausoleum"}),  # TODO: Figure out what GRAVEYARD is
+    FezRegionData("Graveyard Gate", {"Graveyard Cabin", "Skull", "Owl", "Mausoleum"}),
     FezRegionData("Hex Rebuild", {"Gomez House End 32"}),
     FezRegionData("Industrial Abandoned A", {"Industrial Hub"}),
     FezRegionData("Industrial City", {"Memory Core", "Nu Zu School", "Nu Zu Boileroom", "Nu Zu Abandoned A", "Showers", "Nu Zu Dormitory"}),
@@ -97,7 +97,7 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Sewer Lesser Gate B", {"Sewer Pillars"}),
     FezRegionData("Sewer Pillars", {"Sewer Fork", "Sewer Treasure 2", "Sewer Lesser Gate B", "Sewer Geyser"}),
     FezRegionData("Sewer Pivot", {"Sewer Hub"}),
-    FezRegionData("Sewer QR", {"Sewer Hub"}),
+    FezRegionData("Sewer QR", {"Sewer Hub", "_ThroneAntiCube"}),
     FezRegionData("Sewer Start", {"Well 2", "Sewer Hub"}),
     FezRegionData("Sewer to Lava", {"Sewer Hub", "Lava", "Nu Zu Abandoned B"}),
     FezRegionData("Sewer Treasure 1", {"Sewer Hub"}),
@@ -115,14 +115,14 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Tree Crumble", {"Tree"}),
     FezRegionData("Tree of Death", {"Crypt"}),
     FezRegionData("Tree Roots", {"Nature Hub", "Tree", "Mausoleum"}),
-    FezRegionData("Tree Sky", {"Tree", "Throne"}),  # TODO: Figure out what CABIN_NATURE is
+    FezRegionData("Tree Sky", {"Tree", "Throne"}),
     FezRegionData("Tree", {"Cabin Interior B", "Tree Roots", "Tree Sky", "Tree Crumble"}),
     FezRegionData("Triple Pivot Cave", {"Spinning Plates", "Rails"}),
     FezRegionData("Two Walls", {"Wall Hole", "Fractal", "Nature Hub"}),
     FezRegionData("Villageville 2D", {"Gomez House 2D", "School 2D", "Kitchen 2D", "Parlor 2D", "Geezer House 2D", "Elders"}),
     FezRegionData("Villageville 3D End 32", {"Gomez House End 32"}),
     FezRegionData("Villageville 3D End 64", {"Gomez House End 64"}),
-    FezRegionData("Villageville 3D", {"Gomez House", "Boileroom", "School", "Abandoned A", "Parlor", "Big Tower", "Kitchen", "Abandoned B", "Abandoned C", "Geezer House"}),  # TODO: Figure out what GENERATOR is
+    FezRegionData("Villageville 3D", {"Gomez House", "Boileroom", "School", "Abandoned A", "Parlor", "Big Tower", "Kitchen", "Abandoned B", "Abandoned C", "Geezer House"}),
     FezRegionData("Visitor", {"Orrery", "Observatory", "Code Machine", "Purple Lodge Ruin"}),
     FezRegionData("Wall Hole", {"Ancient Walls", "Two Walls"}),
     FezRegionData("Wall Interior A", {"Wall Village"}),
@@ -149,7 +149,7 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Zu Fork", {"Lighthouse"}),
     FezRegionData("Zu Heads", {"Zu 4 Side"}),
     FezRegionData("Zu House Empty B", {"Zu City"}),
-    FezRegionData("Zu House Empty", {"Zu City"}),
+    FezRegionData("Zu House Empty", {"Zu City", "_ThroneAntiCube"}),
     FezRegionData("Zu House QR", {"Zu City Ruins"}),
     FezRegionData("Zu House Ruin Visitors", {"Zu City Ruins"}),
     FezRegionData("Zu House Scaffolding", {"Zu City"}),
@@ -157,12 +157,15 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Zu Switch B", {"Zu Switch"}),
     FezRegionData("Zu Switch", {"Weightswitch Temple", "Zu Switch B"}),
     FezRegionData("Zu Tetris", {"Ancient Walls"}),
-    FezRegionData("Zu Throne Ruins", {"Zu City Ruins"}),
+    FezRegionData("Zu Throne Ruins", {"Zu City Ruins", "_ThroneAntiCube"}),
     FezRegionData("Zu Unfold", {"Throne"}),
-    FezRegionData("Zu Zuish", {"Waterfall"})
+    FezRegionData("Zu Zuish", {"Waterfall"}),
     # DRUM, OCTOHEDRON, WATERFALL_ALT and ZU_HOUSE_RUIN_GATE are all not playable and are excluded despite having fezlvl data
+
+    # Mock region to store "Throne Anti-Cube" connected to starting region to avoid dead end
+    FezRegionData("_ThroneAntiCube", {"Gomez House"})
 }
 
 region_name_to_location_name: Dict[str, Set[str]] = {data.name: set() for data in all_region_data}
 for data in all_location_data:
-    region_name_to_location_name[data.region_name].union(data.name)
+    region_name_to_location_name[data.region_name].add(data.name)

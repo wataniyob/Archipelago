@@ -13,12 +13,17 @@ class FezItemData():
 
 
 progression_items: List[FezItemData] = [
-    FezItemData("Golden Cube",          32, ItemClassification.progression),
-    FezItemData("Anti-Cube",            32, ItemClassification.progression),
-    FezItemData("Key",                  8,  ItemClassification.progression),
-    FezItemData("Owl",                  4,  ItemClassification.progression_deprioritized),
-    FezItemData("Boileroom Unlocked",   1,  ItemClassification.progression)
-    # TODO: Add other unique key names and delete "Key"
+    FezItemData("Golden Cube",                  32, ItemClassification.progression),
+    FezItemData("Anti-Cube",                    32, ItemClassification.progression),
+    FezItemData("Owl",                          4,  ItemClassification.progression_deprioritized),
+    FezItemData("Boileroom Unlocked",           1,  ItemClassification.progression),
+    FezItemData("Lighthouse Door Unlocked",     1,  ItemClassification.progression),
+    FezItemData("Tree Door Unlocked",           1,  ItemClassification.progression),
+    FezItemData("Well Door Unlocked",           1,  ItemClassification.progression),
+    FezItemData("Windmill Door Unlocked",       1,  ItemClassification.progression),
+    FezItemData("Mausoleum Door Unlocked",      1,  ItemClassification.progression),
+    FezItemData("Sewer Hub Door Unlocked",      1,  ItemClassification.progression),
+    FezItemData("Sewer Pillars Door Unlocked",  1,  ItemClassification.progression)
 ]
 
 skippable_items: List[FezItemData] = [

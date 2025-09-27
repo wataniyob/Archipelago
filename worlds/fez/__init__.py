@@ -49,6 +49,8 @@ class FezWorld(World):
     location_names = set(location_name_to_id)
     location_name_groups = location_name_groups
 
+# start of ordered Main.py calls
+
     def generate_early(self) -> None:
         # Remove clock antis if not shuffling
         if not self.options.shuffle_clock_antis:
@@ -69,21 +71,11 @@ class FezWorld(World):
         for data in all_region_data:
             region = self.multiworld.get_region(data.name, self.player)
             location_names = region_name_to_location_name[data.name]
-            locations_in_region = {name: self.location_name_to_id.get(name) for name in location_names if name in location_names}
+            locations_in_region = {name: self.location_name_to_id.get(name)
+                                   for name in location_names
+                                   if name in location_names}
             region.add_locations(locations_in_region, FezLocation)
             region.add_exits(data.exits)
-
-    def add_filler_items(self, fill_size: int) -> None:
-        # Add traps
-        trap_count = fill_size * self.options.trap_percentage // 100
-        for _ in range(trap_count):
-            filler_item = self.create_item(self.get_trap_item_name())
-            self.multiworld.itempool.append(filler_item)
-
-        # Add filler
-        for _ in range(fill_size - trap_count):
-            filler_item = self.create_item(self.get_filler_item_name())
-            self.multiworld.itempool.append(filler_item)
 
     def create_items(self) -> None:
         # Add main items
@@ -106,6 +98,8 @@ class FezWorld(World):
             "disable_visual_pain"
         )
 
+# end of ordered Main.py calls
+
     def create_item(self, name: str) -> Item:
         item_id = self.item_name_to_id[name]
         item_data = all_item_data[item_id - self.base_id]
@@ -116,3 +110,15 @@ class FezWorld(World):
 
     def get_trap_item_name(self) -> str:
         return self.random.choices(list(self.options.trap_weights.keys()), list(self.options.trap_weights.values()))[0]
+
+    def add_filler_items(self, fill_size: int) -> None:
+        # Add traps
+        trap_count = fill_size * self.options.trap_percentage // 100
+        for _ in range(trap_count):
+            filler_item = self.create_item(self.get_trap_item_name())
+            self.multiworld.itempool.append(filler_item)
+
+        # Add filler
+        for _ in range(fill_size - trap_count):
+            filler_item = self.create_item(self.get_filler_item_name())
+            self.multiworld.itempool.append(filler_item)
