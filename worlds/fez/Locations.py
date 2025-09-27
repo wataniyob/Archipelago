@@ -144,9 +144,9 @@ cube_bit_locations: Set[FezLocationData] = {
 
 golden_cube_locations: Set[FezLocationData] = {
     FezLocationData("Clock Cube", "Clock"),
+    FezLocationData("Five Towers Cube", "Five Towers"),
     FezLocationData("Graveyard Lesser Gate Cube", "Graveyard Lesser Gate"),
     FezLocationData("Graveyard Treasure A Cube", "Graveyard Treasure A"),
-    FezLocationData("Five Towers Cube", "Five Towers"),
     FezLocationData("Mine Wrap Cube", "Mine Wrap"),
     FezLocationData("Observatory Cube", "Observatory"),
     FezLocationData("Pivot 3 Cube", "Pivot 3"),
