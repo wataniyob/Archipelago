@@ -22,8 +22,16 @@ def set_all_rules(world: FezWorld) -> None:
     # TODO: Add the other 7
 
     # Link doors (requires having been to both ends before being able to use)
+    set_link_door_rule("Bell Tower", "Five Towers")
+    set_link_door_rule("Industrial Hub", "Well 2")
+    set_link_door_rule("Mausoleum", "Tree Roots")
     set_link_door_rule("Memory Core", "Pivot Watertower")
-    # TODO: Add the others
+    set_link_door_rule("Nature Hub", "Two Walls")
+    set_link_door_rule("Nu Zu Abandoned B", "Sewer to Lava")
+    set_link_door_rule("Observatory", "Throne")
+    set_link_door_rule("Purple Lodge Ruin", "Visitor")
+    set_link_door_rule("Sewer Fork", "Sewer Hub")
+    set_link_door_rule("Zu City Ruins", "Zu Library")
 
     # Cube count doors (requires having a specific number of either golden or anti cubes)
     set_rule(get_entrance("Villageville 3D",    "Big Tower"),       lambda state: state.has_from_list(["Golden Cube", "Anti-Cube"], world.player, 1))
