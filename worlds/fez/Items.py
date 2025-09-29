@@ -27,15 +27,15 @@ progression_items: List[FezItemData] = [
 ]
 
 skippable_items: List[FezItemData] = [
-    FezItemData("Red Map",              1,  ItemClassification.deprioritized),
-    FezItemData("Purple Map",           1,  ItemClassification.deprioritized),
-    FezItemData("Tower Map",            1,  ItemClassification.deprioritized),
+    FezItemData("Arch Map",             1,  ItemClassification.deprioritized),
+    FezItemData("Crypt Map A",          1,  ItemClassification.deprioritized),
+    FezItemData("Crypt Map B",          1,  ItemClassification.deprioritized),
+    FezItemData("Crypt Map C",          1,  ItemClassification.deprioritized),
+    FezItemData("Crypt Map D",          1,  ItemClassification.deprioritized),
     FezItemData("QR Code Map",          1,  ItemClassification.deprioritized),
-    FezItemData("Burned Map",           1,  ItemClassification.deprioritized),
-    FezItemData("Cemetery Map 1",       1,  ItemClassification.deprioritized),
-    FezItemData("Cemetery Map 2",       1,  ItemClassification.deprioritized),
-    FezItemData("Cemetery Map 3",       1,  ItemClassification.deprioritized),
-    FezItemData("Cemetery Map 4",       1,  ItemClassification.deprioritized),
+    FezItemData("Pivot Map",            1,  ItemClassification.deprioritized),
+    FezItemData("Ritual Map",           1,  ItemClassification.deprioritized),
+    FezItemData("Tree Sky Map",         1,  ItemClassification.deprioritized),
     FezItemData("The Writing Cube",     1,  ItemClassification.deprioritized),
     FezItemData("The Counting Cube",    1,  ItemClassification.deprioritized),
     FezItemData("The Tome Artifact",    1,  ItemClassification.deprioritized),
