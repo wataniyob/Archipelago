@@ -175,6 +175,7 @@ anti_cube_locations: Set[FezLocationData] = {
     FezLocationData("Zu Bridge Anti-Cube", "Zu Bridge"),
     FezLocationData("Bell Tower Anti-Cube", "Bell Tower"),
     FezLocationData("Quantum Anti-Cube", "Quantum"),
+    FezLocationData("Watertower Owl Anti-Cube", "Watertower Secret"),
     FezLocationData("Zu Code Loop Anti-Cube", "Zu Code Loop"),
     FezLocationData("CMY B Anti-Cube", "CMY B"),
     FezLocationData("Zu Heads Anti-Cube", "Zu Heads"),
