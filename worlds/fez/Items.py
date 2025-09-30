@@ -45,12 +45,13 @@ skippable_items: List[FezItemData] = [
 ]
 
 trap_items: List[FezItemData] = [
-    FezItemData("Rotation Trap",        1,  ItemClassification.trap),
-    FezItemData("Sleep Trap",           1,  ItemClassification.trap)
+    FezItemData("Rotation Trap",    1,  ItemClassification.trap),
+    FezItemData("Sleep Trap",       1,  ItemClassification.trap),
+    FezItemData("Gravity Trap",     1,  ItemClassification.trap),
 ]
 
 filler_items: List[FezItemData] = [
-    FezItemData("Emotional Support",    1,  ItemClassification.filler)
+    FezItemData("Emotional Support",    1,  ItemClassification.filler),
 ]
 
 main_items = progression_items + skippable_items
