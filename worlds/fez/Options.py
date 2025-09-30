@@ -1,4 +1,3 @@
-from collections import Counter
 from dataclasses import dataclass
 
 from Options import Choice, DeathLinkMixin, OptionCounter, PerGameCommonOptions, Range, Toggle
@@ -18,7 +17,11 @@ class Goal(Choice):
     default = 0
 
 class DisableVisualPain(Toggle):
-    """Disables effects that are make eyes not happy like (quantum room and lightning)"""
+    """Disables effects that are make eyes not happy like (quantum room and lightning)
+
+    NOTE: For the lightning levels, the invisible triles remain invisible due to a bug that crashes the game if rendering them.
+          Hopefully this will be fixed for a future release.
+    """
     display_name = "Disable Visual Pain"
 
 class ShuffleClockAntis(Toggle):
