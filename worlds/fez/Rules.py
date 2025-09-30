@@ -18,15 +18,14 @@ def set_all_rules(world: FezWorld) -> None:
         set_rule(get_entrance(region2, region1), rule)
 
     # Key doors (requires a specific key to open, unique behaviour to AP)
-    # TODO: Fix whatever is making this fail generation
-    # set_rule(get_entrance("Villageville 3D", "Boileroom"),      lambda state: state.has("Boileroom Door Unlocked", world.player))
-    # set_rule(get_entrance("Lighthouse", "Lighthouse House A"),  lambda state: state.has("Lighthouse Door Unlocked", world.player))
-    # set_rule(get_entrance("Tree", "Tree Crumble"),              lambda state: state.has("Tree Door Unlocked", world.player))
-    # set_rule(get_entrance("Rails", "Well 2"),                   lambda state: state.has("Well Door Unlocked", world.player))
-    # set_rule(get_entrance("Pivot 1", "Windmill Interior"),      lambda state: state.has("Windmill Door Unlocked", world.player))
-    # set_rule(get_entrance("Mausoleum", "Crypt"),                lambda state: state.has("Mausoleum Door Unlocked", world.player))
-    # set_rule(get_entrance("Sewer Hub", "Sewer QR"),             lambda state: state.has("Sewer Hub Door Unlocked", world.player))
-    # set_rule(get_entrance("Sewer Pillars", "Sewer Fork"),       lambda state: state.has("Sewer Pillars Door Unlocked", world.player))
+    set_rule(get_entrance("Villageville 3D", "Boileroom"),      lambda state: state.has("Boileroom Door Unlocked", world.player))
+    set_rule(get_entrance("Lighthouse", "Lighthouse House A"),  lambda state: state.has("Lighthouse Door Unlocked", world.player))
+    set_rule(get_entrance("Tree", "Tree Crumble"),              lambda state: state.has("Tree Door Unlocked", world.player))
+    set_rule(get_entrance("Rails", "Well 2"),                   lambda state: state.has("Well Door Unlocked", world.player))
+    set_rule(get_entrance("Pivot 1", "Windmill Interior"),      lambda state: state.has("Windmill Door Unlocked", world.player))
+    set_rule(get_entrance("Mausoleum", "Crypt"),                lambda state: state.has("Mausoleum Door Unlocked", world.player))
+    set_rule(get_entrance("Sewer Hub", "Sewer QR"),             lambda state: state.has("Sewer Hub Door Unlocked", world.player))
+    set_rule(get_entrance("Sewer Pillars", "Sewer Fork"),       lambda state: state.has("Sewer Pillars Door Unlocked", world.player))
 
     # Link doors (requires having been to both ends before being able to use)
     set_link_door_rule("Bell Tower", "Five Towers")
