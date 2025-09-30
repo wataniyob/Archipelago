@@ -25,7 +25,7 @@ class DisableVisualPain(Toggle):
     display_name = "Disable Visual Pain"
 
 class ShuffleClockAntis(Toggle):
-    """Whether to shuffle the anti-cubes from the clock tower (avoids having to change system time)."""
+    """Whether to add the anti-cubes from the clock tower to the location pool ('true' means you'll likely need to change system time or wait upto a month)."""
     display_name = "Shuffle Clock Antis"
 
 class TrapPercentage(Range):
