@@ -236,12 +236,17 @@ owl_locations: List[FezLocationData] = [
     FezLocationData("Tree Owl", "Tree")
 ]
 
+misc_locations: List[FezLocationData] = [
+    FezLocationData("Boileroom Map", "Boileroom"),
+]
+
 all_location_data = cube_bit_locations \
                     + golden_cube_locations \
                     + anti_cube_locations \
                     + heart_cube_locations \
                     + chest_locations \
-                    + owl_locations
+                    + owl_locations \
+                    + misc_locations
 
 location_name_groups = {
     "Cube Bit":     {data.name for data in cube_bit_locations},
