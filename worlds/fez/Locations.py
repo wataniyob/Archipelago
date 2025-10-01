@@ -1,4 +1,4 @@
-from typing import Set
+from typing import List
 from BaseClasses import Location
 
 
@@ -11,7 +11,7 @@ class FezLocationData:
         self.region_name = region_name
 
 
-cube_bit_locations: Set[FezLocationData] = {
+cube_bit_locations: List[FezLocationData] = [
     FezLocationData("Abandoned A Cube Bit", "Abandoned A"),
     FezLocationData("Abandoned B Cube Bit", "Abandoned B"),
     FezLocationData("Ancient Walls Cube Bit 1", "Ancient Walls"),
@@ -140,9 +140,9 @@ cube_bit_locations: Set[FezLocationData] = {
     FezLocationData("Zu House Scaffolding Cube Bit", "Zu House Scaffolding"),
     FezLocationData("Zu Library Cube Bit", "Zu Library"),
     FezLocationData("Zu Throne Ruins Cube Bit", "Zu Throne Ruins"),
-}
+]
 
-golden_cube_locations: Set[FezLocationData] = {
+golden_cube_locations: List[FezLocationData] = [
     FezLocationData("Clock Cube", "Clock"),
     FezLocationData("Five Towers Cube", "Five Towers"),
     FezLocationData("Graveyard Lesser Gate Cube", "Graveyard Lesser Gate"),
@@ -157,9 +157,9 @@ golden_cube_locations: Set[FezLocationData] = {
     FezLocationData("Visitor Cube", "Visitor"),
     FezLocationData("Zu Code Loop Cube", "Zu Code Loop"),
     FezLocationData("Zu Switch B Cube", "Zu Switch B"),
-}
+]
 
-anti_cube_locations: Set[FezLocationData] = {
+anti_cube_locations: List[FezLocationData] = [
     FezLocationData("Achievement Anti-Cube", "Gomez House"),
     FezLocationData("Clock Tower Minute Anti-Cube", "Clock"),
     FezLocationData("Clock Tower Hour Anti-Cube", "Clock"),
@@ -194,15 +194,15 @@ anti_cube_locations: Set[FezLocationData] = {
 
     # Available in 3 locations, so one-way connection to mock region
     FezLocationData("Throne Anti-Cube", "_ThroneAntiCube"),
-}
+]
 
-heart_cube_locations: Set[FezLocationData] = {
+heart_cube_locations: List[FezLocationData] = [
     FezLocationData("Black Monolith Heart Cube", "Ritual"),
     FezLocationData("Telescope Heart Cube", "Telescope"),
     FezLocationData("Security Question Heart Cube", "Zu Zuish")
-}
+]
 
-chest_locations: Set[FezLocationData] = {
+chest_locations: List[FezLocationData] = [
     FezLocationData("Arch Chest 1", "Arch"),
     FezLocationData("Arch Chest 2", "Arch"),
     FezLocationData("Five Towers Cave Chest", "Five Towers Cave"),
@@ -227,21 +227,21 @@ chest_locations: Set[FezLocationData] = {
     FezLocationData("Windmill Cave Chest", "Windmill Cave"),
     FezLocationData("Zu City Ruins Chest", "Zu City Ruins"),
     FezLocationData("Zu House Empty B Chest", "Zu House Empty B")
-}
+]
 
-owl_locations: Set[FezLocationData] = {
+owl_locations: List[FezLocationData] = [
     FezLocationData("Waterfall Owl", "Waterfall"),
     FezLocationData("Visitor Owl", "Visitor"),
     FezLocationData("Pivot 1 Owl", "Pivot 1"),
     FezLocationData("Tree Owl", "Tree")
-}
+]
 
 all_location_data = cube_bit_locations \
-                .union(golden_cube_locations) \
-                .union(anti_cube_locations) \
-                .union(heart_cube_locations) \
-                .union(chest_locations) \
-                .union(owl_locations)
+                    + golden_cube_locations \
+                    + anti_cube_locations \
+                    + heart_cube_locations \
+                    + chest_locations \
+                    + owl_locations
 
 location_name_groups = {
     "Cube Bit":     {data.name for data in cube_bit_locations},
