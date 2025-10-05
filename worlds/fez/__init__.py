@@ -54,12 +54,10 @@ class FezWorld(World):
     def generate_early(self) -> None:
         # Remove clock antis if not shuffling
         if not self.options.shuffle_clock_antis:
-            self.options.exclude_locations.value.union(
-                "Clock Tower Minute Anti-Cube",
-                "Clock Tower Hour Anti-Cube",
-                "Clock Tower Day Anti-Cube",
-                "Clock Tower Week Anti-Cube",
-            )
+            clockLocationData = [location for location in all_location_data if "Clock Tower" in location.name]
+            for location in clockLocationData:
+                self.options.exclude_locations.value.add(location.name)
+                all_location_data.remove(location)
 
     def create_regions(self) -> None:
         # Add all regions
