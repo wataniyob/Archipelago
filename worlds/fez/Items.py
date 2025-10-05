@@ -23,7 +23,11 @@ progression_items: List[FezItemData] = [
     FezItemData("Windmill Door Unlocked",       1,  ItemClassification.progression),
     FezItemData("Mausoleum Door Unlocked",      1,  ItemClassification.progression),
     FezItemData("Sewer Hub Door Unlocked",      1,  ItemClassification.progression),
-    FezItemData("Sewer Pillars Door Unlocked",  1,  ItemClassification.progression)
+    FezItemData("Sewer Pillars Door Unlocked",  1,  ItemClassification.progression),
+    FezItemData("Arch Door Unlocked",           1,  ItemClassification.progression),
+    FezItemData("Bell Tower Door Unlocked",     1,  ItemClassification.progression),
+    FezItemData("Cabin Door Unlocked",          1,  ItemClassification.progression),
+    FezItemData("Throne Door Unlocked",         1,  ItemClassification.progression),
 ]
 
 skippable_items: List[FezItemData] = [

@@ -26,6 +26,11 @@ def set_all_rules(world: FezWorld) -> None:
     set_rule(get_entrance("Mausoleum", "Crypt"),                        lambda state: state.has("Mausoleum Door Unlocked", world.player))
     set_rule(get_entrance("Sewer Hub", "Sewer QR"),                     lambda state: state.has("Sewer Hub Door Unlocked", world.player))
     set_rule(get_entrance("Sewer Pillars", "Sewer Fork"),               lambda state: state.has("Sewer Pillars Door Unlocked", world.player))
+    # Custom locked doors to balance sphere sizes
+    set_rule(get_entrance("Nature Hub", "Arch"),                        lambda state: state.has("Arch Door Unlocked", world.player))
+    set_rule(get_entrance("Nature Hub", "Bell Tower"),                  lambda state: state.has("Bell Tower Door Unlocked", world.player))
+    set_rule(get_entrance("Tree", "Cabin Interior B"),                  lambda state: state.has("Cabin Door Unlocked", world.player))
+    set_rule(get_entrance("Tree Sky", "Throne"),                        lambda state: state.has("Throne Door Unlocked", world.player))
 
     # Link doors (requires having been to both ends before being able to use)
     set_link_door_rule("Bell Tower", "Five Towers")
