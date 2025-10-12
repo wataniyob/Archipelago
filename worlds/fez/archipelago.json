@@ -1,5 +1,6 @@
 {
-    "version": 0.3,
-    "compatible_version": 0.3,
-    "game": "Fez"
+    "game": "Fez",
+    "authors": [ "Nolih" ],
+    "minimum_supported_version": "0.6.3",
+    "world_veersion": "0.4.0"
 }
