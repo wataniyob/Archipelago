@@ -28,6 +28,10 @@ class ShuffleClockAntis(Toggle):
     """Whether to add the anti-cubes from the clock tower to the location pool ('true' means you'll likely need to change system time or wait upto a month)."""
     display_name = "Shuffle Clock Antis"
 
+class KnowledgeLogic(Toggle):
+    """Whether to have knowledge sources required for logic (e.g. Counting Cube needed before Bell Tower Anti-Cube)"""
+    display_name = "Knowledge Logic"
+
 class TrapPercentage(Range):
     """Replaces filler items with traps, at the specified rate."""
     display_name = "Trap Percentage"
@@ -43,7 +47,11 @@ class TrapWeights(OptionCounter):
     display_name = "Trap Weights"
     min = 0
     valid_keys = [trap.name for trap in trap_items]
-    default = {name: 1 for name in valid_keys}
+    default = {
+        "Rotation Trap": 10,
+        "Gravity Trap": 10,
+        "Sleep Trap": 1,
+    }
 
 
 @dataclass
@@ -51,5 +59,6 @@ class FezOptions(DeathLinkMixin, PerGameCommonOptions):
     goal: Goal
     disable_visual_pain: DisableVisualPain
     shuffle_clock_antis: ShuffleClockAntis
+    knowledge_logic: KnowledgeLogic
     trap_percentage: TrapPercentage
     trap_weights: TrapWeights
