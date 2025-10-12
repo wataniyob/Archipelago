@@ -59,6 +59,7 @@ class FezOptions(DeathLinkMixin, PerGameCommonOptions):
     goal: Goal
     disable_visual_pain: DisableVisualPain
     shuffle_clock_antis: ShuffleClockAntis
-    knowledge_logic: KnowledgeLogic
+    # TODO: Uncomment once fixed
+    # knowledge_logic: KnowledgeLogic
     trap_percentage: TrapPercentage
     trap_weights: TrapWeights
