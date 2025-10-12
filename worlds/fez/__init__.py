@@ -3,7 +3,7 @@ from .Options import FezOptions
 from .Items import FezItem, all_item_data, item_name_groups, filler_items, main_items
 from .Locations import FezLocation, all_location_data, location_name_groups
 from .Regions import all_region_data, region_name_to_location_name
-from .Rules import set_all_rules
+from .Rules import set_rules, set_knowledge_rules
 from worlds.AutoWorld import WebWorld, World
 from BaseClasses import Item, Region, Tutorial
 
@@ -87,7 +87,9 @@ class FezWorld(World):
         self.add_filler_items(fill_size)
 
     def set_rules(self) -> None:
-        set_all_rules(self)
+        set_rules(self)
+        if self.options.knowledge_logic:
+            set_knowledge_rules(self)
 
     def fill_slot_data(self) -> Dict[str, Any]:
         return self.options.as_dict(
