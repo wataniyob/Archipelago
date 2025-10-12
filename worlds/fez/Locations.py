@@ -172,7 +172,7 @@ anti_cube_locations: List[FezLocationData] = [
     FezLocationData("Lighthouse Floor Anti-Cube", "_LighthouseLower"),
     FezLocationData("Tree Cabin Floor Anti-Cube", "Tree"),
     FezLocationData("Tree Sky Floor Anti-Cube", "Tree Sky"),
-    FezLocationData("Zu Bridge Anti-Cube", "Zu Bridge"),
+    FezLocationData("Zu Bridge Floor Anti-Cube", "Zu Bridge"),
     FezLocationData("Bell Tower Anti-Cube", "Bell Tower"),
     FezLocationData("Quantum Anti-Cube", "Quantum"),
     FezLocationData("Watertower Owl Anti-Cube", "Watertower Secret"),
