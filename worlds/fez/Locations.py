@@ -179,7 +179,6 @@ anti_cube_locations: List[FezLocationData] = [
     FezLocationData("Zu Code Loop Anti-Cube", "Zu Code Loop"),
     FezLocationData("CMY B Anti-Cube", "CMY B"),
     FezLocationData("Zu Tetris Anti-Cube", "Zu Tetris"),
-    FezLocationData("Zu 4 Side Anti-Cube", "Zu 4 Side"),
     FezLocationData("Lava Skull Anti-Cube", "Lava Skull"),
     FezLocationData("Big Owl Anti-Cube", "Big Owl"),
     FezLocationData("Skull B Anti-Cube", "Skull B"),
