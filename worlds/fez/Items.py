@@ -46,7 +46,6 @@ skippable_items: List[FezItemData] = [
     FezItemData("The Skull Artifact",   1,  ItemClassification.deprioritized),
     FezItemData("Heart Cube",           3,  ItemClassification.deprioritized),
     FezItemData("Sunglasses",           1,  ItemClassification.deprioritized),
-    FezItemData("ssqee w",              1,  ItemClassification.deprioritized),  # Black monolith code
 ]
 
 trap_items: List[FezItemData] = [
