@@ -1,5 +1,5 @@
 from typing import Any, Dict
-from .Options import FezOptions
+from .Options import FezOptions, fez_option_groups, fez_option_presets
 from .Items import FezItem, all_item_data, item_name_groups, filler_items, main_items
 from .Locations import FezLocation, all_location_data, location_name_groups
 from .Regions import all_region_data, region_name_to_location_name
@@ -21,6 +21,9 @@ class FezWeb(WebWorld):
     tutorials = [guide_en]
 
     bug_report_page = "https://github.com/nhyldmar/fez-ap/issues"
+
+    options_presets = fez_option_presets
+    option_groups = fez_option_groups
 
 
 class FezWorld(World):
