@@ -1,6 +1,7 @@
 from dataclasses import dataclass
+from typing import Any, Dict
 
-from Options import Choice, DeathLinkMixin, OptionCounter, PerGameCommonOptions, Range, Toggle
+from Options import Choice, DeathLinkMixin, OptionCounter, OptionGroup, PerGameCommonOptions, Range, Toggle
 from .Items import trap_items
 
 
@@ -48,9 +49,9 @@ class TrapWeights(OptionCounter):
     min = 0
     valid_keys = [trap.name for trap in trap_items]
     default = {
-        "Rotation Trap": 10,
-        "Gravity Trap": 10,
-        "Sleep Trap": 1,
+        "Rotation Trap": 1,
+        "Reload Trap": 1,
+        "Gravity Trap": 1,
     }
 
 
@@ -59,7 +60,40 @@ class FezOptions(DeathLinkMixin, PerGameCommonOptions):
     goal: Goal
     disable_visual_pain: DisableVisualPain
     shuffle_clock_antis: ShuffleClockAntis
-    # TODO: Uncomment once fixed
-    # knowledge_logic: KnowledgeLogic
+    knowledge_logic: KnowledgeLogic
     trap_percentage: TrapPercentage
     trap_weights: TrapWeights
+
+
+fez_option_groups = [
+    OptionGroup("Goal and Logic", [
+        Goal,
+        ShuffleClockAntis,
+        KnowledgeLogic,
+    ]),
+    OptionGroup("Filler Items", [
+        TrapPercentage,
+        TrapWeights
+    ]),
+    OptionGroup("Misc", [
+        DisableVisualPain,
+    ]),
+]
+
+
+fez_option_presets: Dict[str, Dict[str, Any]] = {
+    "Sync": {
+        "goal": Goal.option_32_cubes,
+        "shuffle_clock_antis": False,
+    },
+    "Async": {
+        "goal": Goal.option_64_cubes,
+        "shuffle_clock_antis": False,
+    },
+    "Awful": {
+        "goal": Goal.option_64_cubes,
+        "shuffle_clock_antis": True,
+        "trap_percentage": 100,
+        "death_link": True,
+    },
+}

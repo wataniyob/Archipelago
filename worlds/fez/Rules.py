@@ -69,7 +69,6 @@ def set_rules(world: FezWorld) -> None:
     set_rule(get_location("Big Owl Anti-Cube"), lambda state: state.has("Owl", world.player, 4))
 
 
-# TODO: Fix fill error
 def set_knowledge_rules(world: FezWorld) -> None:
     """Rules for knowledge logic"""
     # Helper functions
@@ -123,7 +122,7 @@ def set_knowledge_rules(world: FezWorld) -> None:
     # Black monolith logic
     set_rule(get_location("Black Monolith Heart Cube"), lambda state: (map_rule("Ritual Map")(state) and
                                                                        first_person_rule(state) and
-                                                                       state.has("Brute Force Code", world.player)))
+                                                                       state.has("ssqee w", world.player)))
 
     # Throne anti-cube logic
     def throne_cube_rule(state) -> bool:
