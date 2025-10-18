@@ -66,7 +66,7 @@ def set_rules(world: FezWorld) -> None:
     set_rule(get_entrance("Water Wheel", "Water Wheel B"), water_level_rule)
 
     # Owl logic
-    set_rule(get_location("Big Owl Anti-Cube"), lambda state: state.has("Owl", world.player, 4))
+    set_rule(get_entrance("Owl", "Big Owl"), lambda state: state.has("Owl", world.player, 4))
 
 
 def set_knowledge_rules(world: FezWorld) -> None:
