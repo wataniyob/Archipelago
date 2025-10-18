@@ -50,7 +50,7 @@ skippable_items: List[FezItemData] = [
 
 trap_items: List[FezItemData] = [
     FezItemData("Rotation Trap",    1,  ItemClassification.trap),
-    FezItemData("Sleep Trap",       1,  ItemClassification.trap),
+    FezItemData("Reload Trap",       1,  ItemClassification.trap),
     FezItemData("Gravity Trap",     1,  ItemClassification.trap),
 ]
 
