@@ -15,7 +15,7 @@ class FezItemData():
 progression_items: List[FezItemData] = [
     FezItemData("Golden Cube",                  32, ItemClassification.progression),
     FezItemData("Anti-Cube",                    32, ItemClassification.progression),
-    FezItemData("Owl",                          4,  ItemClassification.progression_deprioritized),
+    FezItemData("Owl",                          4,  ItemClassification.progression),
     FezItemData("Boileroom Door Unlocked",      1,  ItemClassification.progression),
     FezItemData("Lighthouse Door Unlocked",     1,  ItemClassification.progression),
     FezItemData("Tree Door Unlocked",           1,  ItemClassification.progression),
@@ -40,12 +40,12 @@ skippable_items: List[FezItemData] = [
     FezItemData("Pivot Map",            1,  ItemClassification.deprioritized),
     FezItemData("Ritual Map",           1,  ItemClassification.deprioritized),
     FezItemData("Tree Sky Map",         1,  ItemClassification.deprioritized),
-    FezItemData("The Writing Cube",     1,  ItemClassification.deprioritized),
-    FezItemData("The Counting Cube",    1,  ItemClassification.deprioritized),
-    FezItemData("The Tome Artifact",    1,  ItemClassification.deprioritized),
-    FezItemData("The Skull Artifact",   1,  ItemClassification.deprioritized),
-    FezItemData("Heart Cube",           3,  ItemClassification.deprioritized),
     FezItemData("Sunglasses",           1,  ItemClassification.deprioritized),
+    FezItemData("The Skull Artifact",   1,  ItemClassification.deprioritized),  # Contains code for black monolith
+    FezItemData("The Writing Cube",     1,  ItemClassification.filler),
+    FezItemData("The Counting Cube",    1,  ItemClassification.filler),
+    FezItemData("The Tome Artifact",    1,  ItemClassification.filler),
+    FezItemData("Heart Cube",           3,  ItemClassification.filler),
 ]
 
 trap_items: List[FezItemData] = [

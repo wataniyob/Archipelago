@@ -5,7 +5,7 @@ from .Locations import FezLocation, all_location_data, location_name_groups
 from .Regions import all_region_data, region_name_to_location_name
 from .Rules import set_rules, set_knowledge_rules
 from worlds.AutoWorld import WebWorld, World
-from BaseClasses import Item, Region, Tutorial
+from BaseClasses import Item, ItemClassification, Region, Tutorial
 
 
 class FezWeb(WebWorld):
@@ -79,8 +79,12 @@ class FezWorld(World):
             region.add_exits(data.exits)
 
     def create_items(self) -> None:
-        # Add main items
         for item in main_items:
+            # If knowledge logic is enabled, maps, sunglasses and skull artifact are all progression
+            if self.options.knowledge_logic:
+                if item.classification == ItemClassification.deprioritized:
+                    item.classification = ItemClassification.progression
+            # Add count of item to pool
             for _ in range(item.count):
                 new_item = self.create_item(item.name)
                 self.multiworld.itempool.append(new_item)
