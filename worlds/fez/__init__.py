@@ -91,9 +91,8 @@ class FezWorld(World):
 
     def set_rules(self) -> None:
         set_rules(self)
-        # TODO: Uncomment this once knowledge logic generation is fixed
-        # if self.options.knowledge_logic:
-        #     set_knowledge_rules(self)
+        if self.options.knowledge_logic:
+            set_knowledge_rules(self)
 
     def fill_slot_data(self) -> Dict[str, Any]:
         return self.options.as_dict(
