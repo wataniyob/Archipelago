@@ -109,7 +109,10 @@ def set_knowledge_rules(world: FezWorld) -> None:
     add_rule(get_location("Arch Chest 2"), map_rule("Arch Map"))
     add_rule(get_location("Tree Sky Chest"), map_rule("Tree Sky Map"))
     add_rule(get_location("Pivot Watertower Chest"), map_rule("Pivot Map"))
-    # TODO: Add QR code map
+
+    # Watertower secret logic
+    add_rule(get_location("Watertower Secret Anti-Cube"), lambda state: (map_rule("QR Code Map")(state) or
+                                                                         tetromino_rule(state)))
 
     # Crypt map logic
     add_rule(get_entrance("Crypt", "Tree of Death"), lambda state: (map_rule("Crypt Map A")(state) and
