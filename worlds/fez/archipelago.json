@@ -2,5 +2,5 @@
     "game": "Fez",
     "authors": [ "Nolih" ],
     "minimum_supported_version": "0.6.3",
-    "world_veersion": "0.4.0"
+    "world_veersion": "0.5.0"
 }
