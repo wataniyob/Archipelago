@@ -76,13 +76,12 @@ def set_knowledge_rules(world: FezWorld) -> None:
     get_entrance = lambda start, end: world.multiworld.get_entrance(f"{start} -> {end}", world.player)
 
     # Zu numerals logic
-    number_rule: CollectionRule = lambda state: state.has("The Counting Cube", world.player)
+    number_rule: CollectionRule = lambda state: state.can_reach_region("Oldschool", world.player)
     set_rule(get_location("Bell Tower Anti-Cube"), number_rule)
-    # TODO: Add remaining if any
 
     # Zu alphabet logic
     alphabet_rule: CollectionRule = lambda state: state.can_reach_region("Fox", world.player)
-    # TODO: Add remaining if any
+    set_rule(get_location("Security Question Heart Cube"), alphabet_rule)
 
     # Tetromino logic
     tetromino_rule: CollectionRule = lambda state: (state.can_reach_region("Code Machine", world.player) and
@@ -95,7 +94,7 @@ def set_knowledge_rules(world: FezWorld) -> None:
     set_rule(get_location("Telescope Anti-Cube"), tetromino_rule)
     set_rule(get_entrance("Waterfall", "CMY"), tetromino_rule)
     set_rule(get_entrance("Waterfall", "Water Wheel"), tetromino_rule)
-    # TODO: Add any remaining if there are any
+    set_rule(get_entrance("Sewer to Lava", "Lava"), tetromino_rule)
 
     # First-person logic
     first_person_rule: CollectionRule = lambda state: (state.has("Sunglasses", world.player) and tetromino_rule(state))
