@@ -50,8 +50,9 @@ class TrapWeights(OptionCounter):
     valid_keys = [trap.name for trap in trap_items]
     default = {
         "Rotation Trap": 1,
-        "Reload Trap": 1,
-        "Gravity Trap": 1,
+        # TODO: Uncomment this once both bugs related to these are fixed
+        # "Reload Trap": 1,
+        # "Gravity Trap": 1,
     }
 
 
