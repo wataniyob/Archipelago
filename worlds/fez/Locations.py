@@ -1,0 +1,257 @@
+from typing import List
+from BaseClasses import Location
+
+
+class FezLocation(Location):
+    game: str = "Fez"
+
+class FezLocationData:
+    def __init__(self, name: str, region_name: str):
+        self.name = name
+        self.region_name = region_name
+
+
+cube_bit_locations: List[FezLocationData] = [
+    FezLocationData("Abandoned A Cube Bit", "Abandoned A"),
+    FezLocationData("Abandoned B Cube Bit", "Abandoned B"),
+    FezLocationData("Ancient Walls Cube Bit 1", "Ancient Walls"),
+    FezLocationData("Ancient Walls Cube Bit 2", "Ancient Walls"),
+    FezLocationData("Ancient Walls Cube Bit 3", "Ancient Walls"),
+    FezLocationData("Arch Cube Bit 1", "Arch"),
+    FezLocationData("Arch Cube Bit 2", "Arch"),
+    FezLocationData("Arch Cube Bit 3", "Arch"),
+    FezLocationData("Bell Tower Cube Bit 1", "Bell Tower"),
+    FezLocationData("Bell Tower Cube Bit 2", "Bell Tower"),
+    FezLocationData("Big Owl Cube Bit", "Big Owl"),
+    FezLocationData("Big Tower Cube Bit 1", "Big Tower"),
+    FezLocationData("Big Tower Cube Bit 2", "Big Tower"),
+    FezLocationData("Big Tower Cube Bit 3", "Big Tower"),
+    FezLocationData("Big Tower Cube Bit 4", "Big Tower"),
+    FezLocationData("Big Tower Cube Bit 5", "Big Tower"),
+    FezLocationData("Big Tower Cube Bit 6", "Big Tower"),
+    FezLocationData("Big Tower Cube Bit 7", "Big Tower"),
+    FezLocationData("Big Tower Cube Bit 8", "Big Tower"),
+    FezLocationData("Extractor A Cube Bit", "Extractor A"),
+    FezLocationData("Five Towers Cube Bit 1", "Five Towers"),
+    FezLocationData("Five Towers Cube Bit 2", "Five Towers"),
+    FezLocationData("Five Towers Cube Bit 3", "Five Towers"),
+    FezLocationData("Fox Cube Bit", "Fox"),
+    FezLocationData("Fractal Cube Bit 1", "Fractal"),
+    FezLocationData("Fractal Cube Bit 2", "Fractal"),
+    FezLocationData("Fractal Cube Bit 3", "Fractal"),
+    FezLocationData("Globe Cube Bit", "Globe"),
+    FezLocationData("Graveyard A Cube Bit 1", "Graveyard A"),
+    FezLocationData("Graveyard A Cube Bit 2", "Graveyard A"),
+    FezLocationData("Graveyard A Cube Bit 3", "Graveyard A"),
+    FezLocationData("Graveyard Gate Cube Bit 1", "Graveyard Gate"),
+    FezLocationData("Graveyard Gate Cube Bit 2", "Graveyard Gate"),
+    FezLocationData("Graveyard Gate Cube Bit 3", "Graveyard Gate"),
+    FezLocationData("Graveyard Gate Cube Bit 4", "Graveyard Gate"),
+    FezLocationData("Graveyard Gate Cube Bit 5", "Graveyard Gate"),
+    FezLocationData("Graveyard Gate Cube Bit 6", "Graveyard Gate"),
+    FezLocationData("Graveyard Gate Cube Bit 7", "Graveyard Gate"),
+    FezLocationData("Graveyard Cabin Cube Bit 1", "Graveyard Cabin"),
+    FezLocationData("Graveyard Cabin Cube Bit 2", "Graveyard Cabin"),
+    FezLocationData("Graveyard Ghost Cube Bit 1", "Graveyard Ghost"),
+    FezLocationData("Graveyard Ghost Cube Bit 2", "Graveyard Ghost"),
+    FezLocationData("Graveyard Lesser Gate Cube Bit", "Graveyard Lesser Gate"),
+    FezLocationData("Graveyard Treasure A Cube Bit 1", "Graveyard Treasure A"),
+    FezLocationData("Graveyard Treasure A Cube Bit 2", "Graveyard Treasure A"),
+    FezLocationData("Industrial Superspin Cube Bit 1", "Industrial Superspin"),
+    FezLocationData("Industrial Superspin Cube Bit 2", "Industrial Superspin"),
+    FezLocationData("Industrial Superspin Cube Bit 3", "Industrial Superspin"),
+    FezLocationData("Industrial Abandoned A Cube Bit", "Industrial Abandoned A"),
+    FezLocationData("Kitchen Cube Bit", "Kitchen"),
+    FezLocationData("Lighthouse Cube Bit 1", "_LighthouseUpper"),
+    FezLocationData("Lighthouse Cube Bit 2", "_LighthouseLower"),
+    FezLocationData("Lighthouse House A Cube Bit", "Lighthouse House A"),
+    FezLocationData("Lighthouse Spin Cube Bit", "Lighthouse Spin"),
+    FezLocationData("Mausoleum Cube Bit 1", "Mausoleum"),
+    FezLocationData("Mausoleum Cube Bit 2", "Mausoleum"),
+    FezLocationData("Mausoleum Cube Bit 3", "Mausoleum"),
+    FezLocationData("Mausoleum Cube Bit 4", "Mausoleum"),
+    FezLocationData("Mine A Cube Bit", "Mine A"),
+    FezLocationData("Mine Bomb Pillar Cube Bit", "Mine Bomb Pillar"),
+    FezLocationData("Mine Wrap Cube Bit 1", "Mine Wrap"),
+    FezLocationData("Mine Wrap Cube Bit 2", "Mine Wrap"),
+    FezLocationData("Nature Hub Cube Bit 1", "Nature Hub"),
+    FezLocationData("Nature Hub Cube Bit 2", "Nature Hub"),
+    FezLocationData("Nu Zu Abandoned A Cube Bit", "Nu Zu Abandoned A"),
+    FezLocationData("Nu Zu Abandoned B Cube Bit", "Nu Zu Abandoned B"),
+    FezLocationData("Oldschool Cube Bit", "Oldschool"),
+    FezLocationData("Oldschool Ruins Cube Bit", "Oldschool Ruins"),
+    FezLocationData("Owl Cube Bit", "Owl"),
+    FezLocationData("Pivot 1 Cube Bit 1", "Pivot 1"),
+    FezLocationData("Pivot 1 Cube Bit 2", "Pivot 1"),
+    FezLocationData("Pivot 1 Cube Bit 3", "Pivot 1"),
+    FezLocationData("Pivot 2 Cube Bit 1", "Pivot 2"),
+    FezLocationData("Pivot 2 Cube Bit 2", "Pivot 2"),
+    FezLocationData("Pivot 2 Cube Bit 3", "Pivot 2"),
+    FezLocationData("Pivot Watertower Cube Bit", "Pivot Watertower"),
+    FezLocationData("Purple Lodge Ruin Cube Bit", "Purple Lodge Ruin"),
+    FezLocationData("School Cube Bit", "School"),
+    FezLocationData("Sewer Fork Cube Bit", "Sewer Fork"),
+    FezLocationData("Sewer Geyser Cube Bit", "Sewer Geyser"),
+    FezLocationData("Sewer Hub Cube Bit 1", "Sewer Hub"),
+    FezLocationData("Sewer Hub Cube Bit 2", "Sewer Hub"),
+    FezLocationData("Sewer Pillars Cube Bit 1", "Sewer Pillars"),
+    FezLocationData("Sewer Pillars Cube Bit 2", "Sewer Pillars"),
+    FezLocationData("Sewer Pillars Cube Bit 3", "Sewer Pillars"),
+    FezLocationData("Sewer Pivot Cube Bit", "Sewer Pivot"),
+    FezLocationData("Sewer QR Cube Bit", "Sewer QR"),
+    FezLocationData("Sewer Start Cube Bit", "Sewer Start"),
+    FezLocationData("Sewer to Lava Cube Bit", "Sewer to Lava"),
+    FezLocationData("Showers Cube Bit", "Showers"),
+    FezLocationData("Skull Cube Bit 1", "Skull"),
+    FezLocationData("Skull Cube Bit 2", "Skull"),
+    FezLocationData("Skull Cube Bit 3", "Skull"),
+    FezLocationData("Spinning Plates Cube Bit", "Spinning Plates"),
+    FezLocationData("Stargate Ruins Cube Bit 1", "Stargate Ruins"),
+    FezLocationData("Stargate Ruins Cube Bit 2", "Stargate Ruins"),
+    FezLocationData("Throne Cube Bit", "Throne"),
+    FezLocationData("Tree Crumble Cube Bit", "Tree Crumble"),
+    FezLocationData("Triple Pivot Cave Cube Bit 1", "Triple Pivot Cave"),
+    FezLocationData("Triple Pivot Cave Cube Bit 2", "Triple Pivot Cave"),
+    FezLocationData("Two Walls Cube Bit 1", "Two Walls"),
+    FezLocationData("Two Walls Cube Bit 2", "Two Walls"),
+    FezLocationData("Two Walls Cube Bit 3", "Two Walls"),
+    FezLocationData("Villageville Cube Bit 1", "Villageville 3D"),
+    FezLocationData("Villageville Cube Bit 2", "Villageville 3D"),
+    FezLocationData("Villageville Cube Bit 3", "Villageville 3D"),
+    FezLocationData("Villageville Cube Bit 4", "Villageville 3D"),
+    FezLocationData("Wall Hole Cube Bit 1", "Wall Hole"),
+    FezLocationData("Wall Hole Cube Bit 2", "Wall Hole"),
+    FezLocationData("Wall Interior A Cube Bit", "Wall Interior A"),
+    FezLocationData("Wall Kitchen Cube Bit", "Wall Kitchen"),
+    FezLocationData("Wall School Cube Bit", "Wall School"),
+    FezLocationData("Wall Village Cube Bit", "Wall Village"),
+    FezLocationData("Waterfall Cube Bit", "Waterfall"),
+    FezLocationData("Weightswitch Temple Cube Bit 1", "Weightswitch Temple"),
+    FezLocationData("Weightswitch Temple Cube Bit 2", "Weightswitch Temple"),
+    FezLocationData("Windmill Cave Cube Bit", "Windmill Cave"),
+    FezLocationData("Zu Bridge Cube Bit 1", "Zu Bridge"),
+    FezLocationData("Zu Bridge Cube Bit 2", "Zu Bridge"),
+    FezLocationData("Zu City Cube Bit 1", "Zu City"),
+    FezLocationData("Zu City Cube Bit 2", "Zu City"),
+    FezLocationData("Zu Code Loop Cube Bit 1", "Zu Code Loop"),
+    FezLocationData("Zu Code Loop Cube Bit 2", "Zu Code Loop"),
+    FezLocationData("Zu House Empty Cube Bit", "Zu House Empty"),
+    FezLocationData("Zu House Ruin Visitors Cube Bit", "Zu House Ruin Visitors"),
+    FezLocationData("Zu House Scaffolding Cube Bit", "Zu House Scaffolding"),
+    FezLocationData("Zu Library Cube Bit", "Zu Library"),
+    FezLocationData("Zu Throne Ruins Cube Bit", "Zu Throne Ruins"),
+]
+
+golden_cube_locations: List[FezLocationData] = [
+    FezLocationData("Clock Cube", "Clock"),
+    FezLocationData("Five Towers Cube", "Five Towers"),
+    FezLocationData("Graveyard Lesser Gate Cube", "Graveyard Lesser Gate"),
+    FezLocationData("Graveyard Treasure A Cube", "Graveyard Treasure A"),
+    FezLocationData("Mine Wrap Cube", "Mine Wrap"),
+    FezLocationData("Observatory Cube", "Observatory"),
+    FezLocationData("Pivot 3 Cube", "Pivot 3"),
+    FezLocationData("Sewer Lesser Gate B Cube", "Sewer Lesser Gate B"),
+    FezLocationData("Spinning Plates Cube", "Spinning Plates"),
+    FezLocationData("Superspin Cave Cube", "Superspin Cave"),
+    FezLocationData("Two Walls Cube", "Two Walls"),
+    FezLocationData("Visitor Cube", "Visitor"),
+    FezLocationData("Zu Code Loop Cube", "Zu Code Loop"),
+    FezLocationData("Zu Switch B Cube", "Zu Switch B"),
+]
+
+anti_cube_locations: List[FezLocationData] = [
+    FezLocationData("Achievement Anti-Cube", "Gomez House"),
+    FezLocationData("Clock Tower Minute Anti-Cube", "Clock"),
+    FezLocationData("Clock Tower Hour Anti-Cube", "Clock"),
+    FezLocationData("Clock Tower Day Anti-Cube", "Clock"),
+    FezLocationData("Clock Tower Week Anti-Cube", "Clock"),
+    FezLocationData("CMY Tune Fork Anti-Cube", "CMY Fork"),
+    FezLocationData("Lava Tune Fork Anti-Cube", "Lava Fork"),
+    FezLocationData("Sewer Tune Fork Anti-Cube", "Sewer Fork"),
+    FezLocationData("Zu Tune Fork Anti-Cube", "Zu Fork"),
+    FezLocationData("Lighthouse Floor Anti-Cube", "_LighthouseLower"),
+    FezLocationData("Tree Cabin Floor Anti-Cube", "Tree"),
+    FezLocationData("Tree Sky Floor Anti-Cube", "Tree Sky"),
+    FezLocationData("Zu Bridge Floor Anti-Cube", "Zu Bridge"),
+    FezLocationData("Bell Tower Anti-Cube", "Bell Tower"),
+    FezLocationData("Quantum Anti-Cube", "Quantum"),
+    FezLocationData("Watertower Secret Anti-Cube", "Watertower Secret"),
+    FezLocationData("Zu Code Loop Anti-Cube", "Zu Code Loop"),
+    FezLocationData("CMY B Anti-Cube", "CMY B"),
+    FezLocationData("Zu Tetris Anti-Cube", "Zu Tetris"),
+    FezLocationData("Lava Skull Anti-Cube", "Lava Skull"),
+    FezLocationData("Big Owl Anti-Cube", "Big Owl"),
+    FezLocationData("Skull B Anti-Cube", "Skull B"),
+    FezLocationData("Telescope Anti-Cube", "Telescope"),
+    FezLocationData("Zu House QR Anti-Cube", "Zu House QR"),
+    FezLocationData("Zu Unfold Anti-Cube", "Zu Unfold"),
+    FezLocationData("Code Machine Anti-Cube", "Code Machine"),
+    FezLocationData("Parlor Anti-Cube", "Parlor"),
+    FezLocationData("Boileroom Anti-Cube", "Boileroom"),
+    FezLocationData("Nu Zu School Anti-Cube", "Nu Zu School"),
+    FezLocationData("Zu Heads Anti-Cube", "Zu Heads"),
+
+    # Available in 3 locations, so one-way connection to mock region
+    FezLocationData("Throne Anti-Cube", "_ThroneAntiCube"),
+]
+
+heart_cube_locations: List[FezLocationData] = [
+    FezLocationData("Black Monolith Heart Cube", "Ritual"),
+    FezLocationData("Telescope Heart Cube", "Telescope"),
+    FezLocationData("Security Question Heart Cube", "Zu Zuish")
+]
+
+chest_locations: List[FezLocationData] = [
+    FezLocationData("Arch Chest 1", "Arch"),
+    FezLocationData("Arch Chest 2", "Arch"),
+    FezLocationData("Five Towers Cave Chest", "Five Towers Cave"),
+    FezLocationData("Fox Chest", "Fox"),
+    FezLocationData("Globe Interior Chest", "Globe Interior"),
+    FezLocationData("Industrial Superspin Chest", "Industrial Superspin"),
+    FezLocationData("Lighthouse House A Chest", "Lighthouse House A"),
+    FezLocationData("Mausoleum Chest", "Mausoleum"),
+    FezLocationData("Mine Bomb Pillar Chest", "Mine Bomb Pillar"),
+    FezLocationData("Orrery B Chest", "Orrery B"),
+    FezLocationData("Parlor Chest", "Parlor"),
+    FezLocationData("Pivot Watertower Chest", "Pivot Watertower"),
+    FezLocationData("Sewer Pivot Chest", "Sewer Pivot"),
+    FezLocationData("Sewer Treasure 1 Chest", "Sewer Treasure 1"),
+    FezLocationData("Sewer Treasure 2 Chest", "Sewer Treasure 2"),
+    FezLocationData("Tree Crumble Chest", "Tree Crumble"),
+    FezLocationData("Tree of Death Chest", "Tree of Death"),
+    FezLocationData("Tree Sky Chest", "Tree Sky"),
+    FezLocationData("Villageville Chest", "Villageville 3D"),
+    FezLocationData("Wall Hole Chest", "Wall Hole"),
+    FezLocationData("Water Wheel B Chest", "Water Wheel B"),
+    FezLocationData("Windmill Cave Chest", "Windmill Cave"),
+    FezLocationData("Zu City Ruins Chest", "Zu City Ruins"),
+    FezLocationData("Zu House Empty B Chest", "Zu House Empty B")
+]
+
+owl_locations: List[FezLocationData] = [
+    FezLocationData("Waterfall Owl", "Waterfall"),
+    FezLocationData("Visitor Owl", "Visitor"),
+    FezLocationData("Pivot 1 Owl", "Pivot 1"),
+    FezLocationData("Tree Owl", "Tree")
+]
+
+misc_locations: List[FezLocationData] = [
+    FezLocationData("Boileroom Map", "Boileroom"),
+]
+
+all_location_data = cube_bit_locations \
+                    + golden_cube_locations \
+                    + anti_cube_locations \
+                    + heart_cube_locations \
+                    + chest_locations \
+                    + owl_locations \
+                    + misc_locations
+
+location_name_groups = {
+    "Cube Bit":     {data.name for data in cube_bit_locations},
+    "Golden Cube":  {data.name for data in golden_cube_locations},
+    "Anti-Cube":    {data.name for data in anti_cube_locations},
+    "Heart Cube":   {data.name for data in heart_cube_locations},
+    "Chest":        {data.name for data in chest_locations},
+    "Owl":          {data.name for data in owl_locations}
+}
