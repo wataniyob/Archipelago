@@ -62,6 +62,22 @@ class FezWorld(World):
                 self.options.exclude_locations.value.add(location.name)
                 all_location_data.remove(location)
 
+        # Replace specified number of golden cubes with cube bits
+        if self.options.num_cubes_replace_bits > 0:
+            bit_idx = [idx for idx, item in enumerate(main_items) if "Cube Bit" in item.name][0]
+            cube_idx = [idx for idx, item in enumerate(main_items) if ("Golden Cube" in item.name and item.classification == ItemClassification.progression)][0]
+            main_items[bit_idx].count = self.options.num_cubes_replace_bits*8
+            main_items[cube_idx].count = 32 - self.options.num_cubes_replace_bits
+
+        # Add extra golden cubes
+        if self.options.extra_cubes > 0:
+            extra_cube_idx = [idx for idx, item in enumerate(main_items) if ("Golden Cube" in item.name and item.classification == ItemClassification.deprioritized)][0]
+            # Only add up to the location limit
+            if len(self.location_name_to_id) - sum(item.count for item in main_items) < self.options.extra_cubes:
+                main_items[extra_cube_idx].count = len(self.location_name_to_id) - sum(item.count for item in main_items)
+            else:
+                main_items[extra_cube_idx].count = self.options.extra_cubes
+
     def create_regions(self) -> None:
         # Add all regions
         for data in all_region_data:
@@ -82,7 +98,7 @@ class FezWorld(World):
         for item in main_items:
             # If knowledge logic is enabled, maps, sunglasses and skull artifact are all progression
             if self.options.knowledge_logic:
-                if item.classification == ItemClassification.deprioritized:
+                if (item.classification == ItemClassification.deprioritized and "Golden Cube" not in item.name):
                     item.classification = ItemClassification.progression
             # Add count of item to pool
             for _ in range(item.count):
