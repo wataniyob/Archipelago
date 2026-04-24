@@ -32,7 +32,6 @@ progression_items: List[FezItemData] = [
 ]
 
 skippable_items: List[FezItemData] = [
-    FezItemData("Golden Cube",          0,  ItemClassification.deprioritized),
     FezItemData("Arch Map",             1,  ItemClassification.deprioritized),
     FezItemData("Crypt Map A",          1,  ItemClassification.deprioritized),
     FezItemData("Crypt Map B",          1,  ItemClassification.deprioritized),
