@@ -29,6 +29,10 @@ class ShuffleClockAntis(Toggle):
     """Whether to add the anti-cubes from the clock tower to the location pool ('true' means you'll likely need to change system time or wait upto a month)."""
     display_name = "Shuffle Clock Antis"
 
+class ScrambleTetrominos(Toggle):
+    """Whether to randomly scramble the inputs for the Tetromino codes ('true' means for example that the ▀█▄ tetromino will require you to jump instead of LT)."""
+    display_name = "Scramble Tetrominos Inputs"
+
 class KnowledgeLogic(Toggle):
     """Whether to have knowledge sources required for logic (e.g. Counting Cube needed before Bell Tower Anti-Cube)"""
     display_name = "Knowledge Logic"
@@ -61,6 +65,7 @@ class FezOptions(DeathLinkMixin, PerGameCommonOptions):
     goal: Goal
     disable_visual_pain: DisableVisualPain
     shuffle_clock_antis: ShuffleClockAntis
+    scramble_tetrominos: ScrambleTetrominos
     knowledge_logic: KnowledgeLogic
     trap_percentage: TrapPercentage
     trap_weights: TrapWeights
@@ -77,6 +82,7 @@ fez_option_groups = [
         TrapWeights
     ]),
     OptionGroup("Misc", [
+        ScrambleTetrominos,
         DisableVisualPain,
     ]),
 ]
@@ -94,6 +100,7 @@ fez_option_presets: Dict[str, Dict[str, Any]] = {
     "Awful": {
         "goal": Goal.option_64_cubes,
         "shuffle_clock_antis": True,
+        "scramble_tetrominos": True,
         "trap_percentage": 100,
         "death_link": True,
     },

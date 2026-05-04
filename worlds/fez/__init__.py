@@ -3,7 +3,7 @@ from .Options import FezOptions, fez_option_groups, fez_option_presets
 from .Items import FezItem, all_item_data, item_name_groups, filler_items, main_items
 from .Locations import FezLocation, all_location_data, location_name_groups
 from .Regions import all_region_data, region_name_to_location_name
-from .Rules import set_rules, set_knowledge_rules
+from .Rules import set_rules, set_knowledge_rules, set_tetromino_rules
 from worlds.AutoWorld import WebWorld, World
 from BaseClasses import Item, ItemClassification, Region, Tutorial
 
@@ -97,11 +97,14 @@ class FezWorld(World):
         set_rules(self)
         if self.options.knowledge_logic:
             set_knowledge_rules(self)
+        elif self.options.scramble_tetrominos:
+            set_tetromino_rules(self, False)
 
     def fill_slot_data(self) -> Dict[str, Any]:
         return self.options.as_dict(
             "death_link",
             "goal",
+            "scramble_tetrominos",
             "disable_visual_pain"
         )
 

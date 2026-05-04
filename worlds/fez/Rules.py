@@ -83,25 +83,7 @@ def set_knowledge_rules(world: FezWorld) -> None:
     alphabet_rule: CollectionRule = lambda state: state.can_reach_region("Fox", world.player)
     add_rule(get_location("Security Question Heart Cube"), alphabet_rule)
 
-    # Tetromino logic
-    tetromino_rule: CollectionRule = lambda state: (state.can_reach_region("Code Machine", world.player) and
-                                                    state.can_reach_region("Nu Zu School", world.player) and
-                                                    number_rule(state))
-    add_rule(get_location("Zu Code Loop Anti-Cube"), tetromino_rule)
-    add_rule(get_location("Code Machine Anti-Cube"), tetromino_rule)
-    add_rule(get_location("Boileroom Anti-Cube"), tetromino_rule)
-    add_rule(get_location("Nu Zu School Anti-Cube"), tetromino_rule)
-    add_rule(get_location("Telescope Anti-Cube"), tetromino_rule)
-    add_rule(get_entrance("Waterfall", "CMY"), tetromino_rule)
-    add_rule(get_entrance("Waterfall", "Water Wheel"), tetromino_rule)
-    add_rule(get_entrance("Sewer to Lava", "Lava"), tetromino_rule)
-
-    # First-person logic
-    first_person_rule: CollectionRule = lambda state: (state.has("Sunglasses", world.player) and tetromino_rule(state))
-    add_rule(get_location("Lighthouse Floor Anti-Cube"), first_person_rule)
-    add_rule(get_location("Tree Cabin Floor Anti-Cube"), first_person_rule)
-    add_rule(get_location("Tree Sky Floor Anti-Cube"), first_person_rule)
-    add_rule(get_location("Zu Bridge Floor Anti-Cube"), first_person_rule)
+    set_tetromino_rules(world, True)
 
     # Treasure map logic
     def map_rule(map: str) -> CollectionRule:
@@ -136,3 +118,37 @@ def set_knowledge_rules(world: FezWorld) -> None:
             retval &= state.can_reach_region("Zu Throne Ruins", world.player)
             return retval
     add_rule(get_location("Throne Anti-Cube"), throne_cube_rule)
+
+
+def set_tetromino_rules(world: FezWorld, knowledgeLogic: bool) -> None:
+    """Rules for tetromino codes logic"""
+    # Helper functions
+    get_location = lambda name: world.multiworld.get_location(name, world.player)
+    get_entrance = lambda start, end: world.multiworld.get_entrance(f"{start} -> {end}", world.player)
+
+    # Tetromino logic
+    tetromino_rule: CollectionRule = None
+    first_person_rule: CollectionRule = None
+    if knowledgeLogic:
+        tetromino_rule = lambda state: (state.can_reach_region("Code Machine", world.player)
+            and state.can_reach_region("Nu Zu School", world.player)
+            and state.can_reach_region("Oldschool", world.player)) # number_rule
+        first_person_rule = lambda state: (state.has("Sunglasses", world.player) and tetromino_rule(state))
+    else:
+        tetromino_rule = lambda state: state.can_reach_region("Code Machine", world.player)
+        first_person_rule = tetromino_rule
+    
+    add_rule(get_location("Zu Code Loop Anti-Cube"), tetromino_rule)
+    add_rule(get_location("Code Machine Anti-Cube"), tetromino_rule)
+    add_rule(get_location("Boileroom Anti-Cube"), tetromino_rule)
+    add_rule(get_location("Nu Zu School Anti-Cube"), tetromino_rule)
+    add_rule(get_location("Telescope Anti-Cube"), tetromino_rule)
+    add_rule(get_entrance("Waterfall", "CMY"), tetromino_rule)
+    add_rule(get_entrance("Waterfall", "Water Wheel"), tetromino_rule)
+    add_rule(get_entrance("Sewer to Lava", "Lava"), tetromino_rule)
+
+    # First-person logic
+    add_rule(get_location("Lighthouse Floor Anti-Cube"), first_person_rule)
+    add_rule(get_location("Tree Cabin Floor Anti-Cube"), first_person_rule)
+    add_rule(get_location("Tree Sky Floor Anti-Cube"), first_person_rule)
+    add_rule(get_location("Zu Bridge Floor Anti-Cube"), first_person_rule)
