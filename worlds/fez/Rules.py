@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING
+import functools
+from typing import TYPE_CHECKING, Tuple
+
+from BaseClasses import Entrance, Location
 
 from ..generic.Rules import CollectionRule, add_rule
 
@@ -8,11 +11,83 @@ else:
     FezWorld = object
 
 
+########################################
+# General Rules
+########################################
+
+def _get_location(world: FezWorld, name:str) -> Location:
+    return world.multiworld.get_location(name, world.player)
+
+
+def _get_entrance(world: FezWorld, start: str, end: str) -> Entrance:
+    return world.multiworld.get_entrance(f"{start} -> {end}", world.player)
+
+
+def _add_link_door_rule(world: FezWorld, region1: str, region2: str):
+    rule: CollectionRule = lambda state: (state.can_reach_region(region1, world.player) and
+                                          state.can_reach_region(region2, world.player))
+    add_rule(_get_entrance(world, region1, region2), rule)
+    add_rule(_get_entrance(world, region2, region1), rule)
+
+
+def _cube_count_rule(world: FezWorld, count: int) -> CollectionRule:
+    return lambda state: (state.count("Golden Cube", world.player) +
+                          state.count("Anti-Cube", world.player) +
+                          (state.count("Cube Bit", world.player)//8)
+                          >= count)
+
+
+def _number_rule(world: FezWorld) -> CollectionRule:
+    return lambda state: state.can_reach_region("Oldschool", world.player)
+
+
+def _alphabet_rule(world: FezWorld) -> CollectionRule:
+    return lambda state: state.can_reach_region("Fox", world.player)
+
+
+def _tetromino_rule(world: FezWorld, variant: str) -> CollectionRule:
+    if variant == 'knowledge':
+        return lambda state: (state.can_reach_region("Code Machine", world.player) and
+                              state.can_reach_region("Nu Zu School", world.player) and
+                              state.can_reach_region("Oldschool", world.player))
+    if variant == 'scramble':
+        return lambda state: state.can_reach_region("Code Machine", world.player)
+    raise ValueError(f"Invalid variant '{variant}'")
+
+
+def _first_person_rule(world: FezWorld, variant: str) -> CollectionRule:
+    if variant == 'knowledge':
+        return lambda state: (state.has("Sunglasses", world.player) and
+                              _tetromino_rule(world, variant)(state))
+    if variant == 'scramble':
+        return lambda state: _tetromino_rule(world, variant)(state)
+    raise ValueError(f"Invalid variant '{variant}'")
+
+
+def _map_rule(world: FezWorld, map: str) -> CollectionRule:
+    return lambda state: state.has(map, world.player)
+
+
+def _throne_cube_rule(world: FezWorld, state) -> bool:
+    if state.can_reach_region("Sewer QR", world.player):
+        return True
+    else:
+        retval = state.has("Sunglasses", world.player)
+        retval &= state.can_reach_region("Zu House Empty", world.player)
+        retval &= state.can_reach_region("Zu Throne Ruins", world.player)
+        return retval
+
+
+########################################
+# Specific Rules
+########################################
+
 def set_rules(world: FezWorld) -> None:
     """Rules that are always present"""
     # Helper functions
-    get_location = lambda name: world.multiworld.get_location(name, world.player)
-    get_entrance = lambda start, end: world.multiworld.get_entrance(f"{start} -> {end}", world.player)
+    get_entrance = functools.partial(_get_entrance, world)
+    add_link_door_rule = functools.partial(_add_link_door_rule, world)
+    cube_count_rule = functools.partial(_cube_count_rule, world)
 
     # Key doors (requires a specific key to open, unique behaviour to AP)
     add_rule(get_entrance("Villageville 3D", "Boileroom"),              lambda state: state.has("Boileroom Door Unlocked", world.player))
@@ -30,10 +105,6 @@ def set_rules(world: FezWorld) -> None:
     add_rule(get_entrance("Tree Sky", "Throne"),                        lambda state: state.has("Throne Door Unlocked", world.player))
 
     # Link doors (requires having been to both ends before being able to use)
-    def add_link_door_rule(region1: str, region2: str):
-        rule: CollectionRule = lambda state: state.can_reach_region(region1, world.player) and state.can_reach_region(region2, world.player)
-        add_rule(get_entrance(region1, region2), rule)
-        add_rule(get_entrance(region2, region1), rule)
     add_link_door_rule("Bell Tower", "Five Towers")
     add_link_door_rule("Industrial Hub", "Well 2")
     add_link_door_rule("Mausoleum", "Tree Roots")
@@ -46,8 +117,6 @@ def set_rules(world: FezWorld) -> None:
     add_link_door_rule("Zu City Ruins", "Zu Library")
 
     # Cube count doors (requires having a specific number of either golden or anti cubes)
-    def cube_count_rule(count: int) -> CollectionRule:
-        return lambda state: (state.count("Golden Cube", world.player) + state.count("Anti-Cube", world.player) + (state.count("Cube Bit", world.player)//8) >= count)
     add_rule(get_entrance("Villageville 3D",    "Big Tower"),       cube_count_rule(1))
     add_rule(get_entrance("Big Tower",          "Memory Core"),     cube_count_rule(2))
     add_rule(get_entrance("Memory Core",        "Wall Village"),    cube_count_rule(4))
@@ -72,72 +141,45 @@ def set_rules(world: FezWorld) -> None:
 def set_knowledge_rules(world: FezWorld) -> None:
     """Rules for knowledge logic"""
     # Helper functions
-    get_location = lambda name: world.multiworld.get_location(name, world.player)
-    get_entrance = lambda start, end: world.multiworld.get_entrance(f"{start} -> {end}", world.player)
+    get_location = functools.partial(_get_location, world)
+    get_entrance = functools.partial(_get_entrance, world)
+    map_rule = functools.partial(_map_rule, world)
+
+    # Set rules associated with teromino sequences
+    set_tetromino_rules(world, 'knowledge')
 
     # Zu numerals logic
-    number_rule: CollectionRule = lambda state: state.can_reach_region("Oldschool", world.player)
-    add_rule(get_location("Bell Tower Anti-Cube"), number_rule)
+    add_rule(get_location("Bell Tower Anti-Cube"), _number_rule(world))
 
     # Zu alphabet logic
-    alphabet_rule: CollectionRule = lambda state: state.can_reach_region("Fox", world.player)
-    add_rule(get_location("Security Question Heart Cube"), alphabet_rule)
-
-    set_tetromino_rules(world, True)
+    add_rule(get_location("Security Question Heart Cube"), _alphabet_rule(world))
 
     # Treasure map logic
-    def map_rule(map: str) -> CollectionRule:
-        return lambda state: state.has(map, world.player)
     add_rule(get_location("Arch Chest 2"), map_rule("Arch Map"))
     add_rule(get_location("Tree Sky Chest"), map_rule("Tree Sky Map"))
     add_rule(get_location("Pivot Watertower Chest"), map_rule("Pivot Map"))
 
-    # Watertower secret logic
-    add_rule(get_location("Watertower Secret Anti-Cube"), lambda state: (map_rule("QR Code Map")(state) or
-                                                                         tetromino_rule(state)))
-
     # Crypt map logic
-    add_rule(get_entrance("Crypt", "Tree of Death"), lambda state: (map_rule("Crypt Map A")(state) and
-                                                                    map_rule("Crypt Map B")(state) and
-                                                                    map_rule("Crypt Map C")(state) and
-                                                                    map_rule("Crypt Map D")(state) and
-                                                                    number_rule(state)))
-
-    # Black monolith logic
-    add_rule(get_location("Black Monolith Heart Cube"), lambda state: (map_rule("Ritual Map")(state) and
-                                                                       first_person_rule(state) and
-                                                                       state.has("The Skull Artifact", world.player)))
+    add_rule(get_entrance("Crypt", "Tree of Death"),
+             lambda state: (map_rule("Crypt Map A")(state) and
+                            map_rule("Crypt Map B")(state) and
+                            map_rule("Crypt Map C")(state) and
+                            map_rule("Crypt Map D")(state) and
+                            _number_rule(world)(state)))
 
     # Throne anti-cube logic
-    def throne_cube_rule(state) -> bool:
-        if state.can_reach_region("Sewer QR", world.player):
-            return True
-        else:
-            retval = state.has("Sunglasses", world.player)
-            retval &= state.can_reach_region("Zu House Empty", world.player)
-            retval &= state.can_reach_region("Zu Throne Ruins", world.player)
-            return retval
-    add_rule(get_location("Throne Anti-Cube"), throne_cube_rule)
+    add_rule(get_location("Throne Anti-Cube"), functools.partial(_throne_cube_rule, world))
 
 
-def set_tetromino_rules(world: FezWorld, knowledgeLogic: bool) -> None:
+def set_tetromino_rules(world: FezWorld, variant: str):
     """Rules for tetromino codes logic"""
     # Helper functions
-    get_location = lambda name: world.multiworld.get_location(name, world.player)
-    get_entrance = lambda start, end: world.multiworld.get_entrance(f"{start} -> {end}", world.player)
+    get_location = functools.partial(_get_location, world)
+    get_entrance = functools.partial(_get_entrance, world)
+    tetromino_rule = _tetromino_rule(world, variant)
+    first_person_rule = _first_person_rule(world, variant)
 
     # Tetromino logic
-    tetromino_rule: CollectionRule = None
-    first_person_rule: CollectionRule = None
-    if knowledgeLogic:
-        tetromino_rule = lambda state: (state.can_reach_region("Code Machine", world.player)
-            and state.can_reach_region("Nu Zu School", world.player)
-            and state.can_reach_region("Oldschool", world.player)) # number_rule
-        first_person_rule = lambda state: (state.has("Sunglasses", world.player) and tetromino_rule(state))
-    else:
-        tetromino_rule = lambda state: state.can_reach_region("Code Machine", world.player)
-        first_person_rule = tetromino_rule
-    
     add_rule(get_location("Zu Code Loop Anti-Cube"), tetromino_rule)
     add_rule(get_location("Code Machine Anti-Cube"), tetromino_rule)
     add_rule(get_location("Boileroom Anti-Cube"), tetromino_rule)
@@ -152,3 +194,13 @@ def set_tetromino_rules(world: FezWorld, knowledgeLogic: bool) -> None:
     add_rule(get_location("Tree Cabin Floor Anti-Cube"), first_person_rule)
     add_rule(get_location("Tree Sky Floor Anti-Cube"), first_person_rule)
     add_rule(get_location("Zu Bridge Floor Anti-Cube"), first_person_rule)
+
+    # Watertower secret logic
+    add_rule(get_location("Watertower Secret Anti-Cube"),
+             lambda state: (_map_rule(world, "QR Code Map")(state) or tetromino_rule(state)))
+
+    # Black monolith logic
+    add_rule(get_location("Black Monolith Heart Cube"),
+             lambda state: (_map_rule(world, "Ritual Map")(state) and
+                            first_person_rule(state) and
+                            state.has("The Skull Artifact", world.player)))

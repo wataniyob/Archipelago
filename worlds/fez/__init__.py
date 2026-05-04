@@ -116,11 +116,12 @@ class FezWorld(World):
         self.add_filler_items(fill_size)
 
     def set_rules(self) -> None:
-        set_rules(self)
+        set_rules(self)  # Common rules
         if self.options.knowledge_logic:
             set_knowledge_rules(self)
         elif self.options.scramble_tetrominos:
-            set_tetromino_rules(self, False)
+            # If knowledge logic is also set, the knowledge logic already covers scramble logic
+            set_tetromino_rules(self, 'scramble')
 
     def fill_slot_data(self) -> Dict[str, Any]:
         return self.options.as_dict(
