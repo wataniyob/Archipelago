@@ -15,6 +15,7 @@ class FezItemData():
 progression_items: List[FezItemData] = [
     FezItemData("Golden Cube",                  32, ItemClassification.progression),
     FezItemData("Anti-Cube",                    32, ItemClassification.progression),
+    FezItemData("Cube Bit",                     0,  ItemClassification.progression),
     FezItemData("Owl",                          4,  ItemClassification.progression),
     FezItemData("Boileroom Door Unlocked",      1,  ItemClassification.progression),
     FezItemData("Lighthouse Door Unlocked",     1,  ItemClassification.progression),

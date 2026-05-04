@@ -47,7 +47,7 @@ def set_rules(world: FezWorld) -> None:
 
     # Cube count doors (requires having a specific number of either golden or anti cubes)
     def cube_count_rule(count: int) -> CollectionRule:
-        return lambda state: state.has_from_list(["Golden Cube", "Anti-Cube"], world.player, count)
+        return lambda state: (state.count("Golden Cube", world.player) + state.count("Anti-Cube", world.player) + (state.count("Cube Bit", world.player)//8) >= count)
     add_rule(get_entrance("Villageville 3D",    "Big Tower"),       cube_count_rule(1))
     add_rule(get_entrance("Big Tower",          "Memory Core"),     cube_count_rule(2))
     add_rule(get_entrance("Memory Core",        "Wall Village"),    cube_count_rule(4))

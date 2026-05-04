@@ -62,6 +62,13 @@ class FezWorld(World):
                 self.options.exclude_locations.value.add(location.name)
                 all_location_data.remove(location)
 
+        # Replace specified number of golden cubes with cube bits
+        if self.options.num_cubes_replace_bits > 0:
+            bit_idx = [idx for idx, item in enumerate(main_items) if "Cube Bit" in item.name][0]
+            cube_idx = [idx for idx, item in enumerate(main_items) if ("Golden Cube" in item.name and item.classification == ItemClassification.progression)][0]
+            main_items[bit_idx].count = self.options.num_cubes_replace_bits*8
+            main_items[cube_idx].count = 32 - self.options.num_cubes_replace_bits
+
     def create_regions(self) -> None:
         # Add all regions
         for data in all_region_data:
@@ -88,6 +95,21 @@ class FezWorld(World):
             for _ in range(item.count):
                 new_item = self.create_item(item.name)
                 self.multiworld.itempool.append(new_item)
+                
+            # Add extra golden cubes
+            if "Golden Cube" in item.name and self.options.extra_cubes > 0:
+                # Only add up to the location limit
+                if len(self.location_name_to_id) - sum(item.count for item in main_items) < self.options.extra_cubes:
+                    extra_cube_count = len(self.location_name_to_id) - sum(item.count for item in main_items)
+                else:
+                    extra_cube_count = self.options.extra_cubes
+
+                item_id = self.item_name_to_id[item.name]
+
+                for _ in range(extra_cube_count):
+                    new_item = FezItem(item.name, ItemClassification.useful, item_id, self.player)
+                    self.multiworld.itempool.append(new_item)
+                    
 
         # Add filler
         fill_size = len(self.location_name_to_id) - sum(item.count for item in main_items)

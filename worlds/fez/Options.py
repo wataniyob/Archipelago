@@ -17,6 +17,26 @@ class Goal(Choice):
     option_64_cubes = 1
     default = 0
 
+class NumberCubesReplacedByBits(Range):
+    """Replaces a certain number of golden cubes with an equivalent number of bits.
+
+    1 Golden Cube = 8 Cube Bits
+    """
+    display_name = "Cube Bits Replacement"
+    range_start = 0
+    range_end = 15
+    default = 0
+
+class NumberExtraGoldenCubes(Range):
+    """Adds extra golden cubes to allow for easier goal completion.
+
+    Will only place up to the number of available locations.
+    """
+    display_name = "Extra Golden Cubes"
+    range_start = 0
+    range_end = 32
+    default = 0
+
 class DisableVisualPain(Toggle):
     """Disables effects that are make eyes not happy like (quantum room and lightning)
 
@@ -63,6 +83,8 @@ class TrapWeights(OptionCounter):
 @dataclass
 class FezOptions(DeathLinkMixin, PerGameCommonOptions):
     goal: Goal
+    num_cubes_replace_bits: NumberCubesReplacedByBits
+    extra_cubes: NumberExtraGoldenCubes
     disable_visual_pain: DisableVisualPain
     shuffle_clock_antis: ShuffleClockAntis
     scramble_tetrominos: ScrambleTetrominos
@@ -74,6 +96,8 @@ class FezOptions(DeathLinkMixin, PerGameCommonOptions):
 fez_option_groups = [
     OptionGroup("Goal and Logic", [
         Goal,
+        NumberCubesReplacedByBits,
+        NumberExtraGoldenCubes,
         ShuffleClockAntis,
         KnowledgeLogic,
     ]),
