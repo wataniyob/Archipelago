@@ -184,6 +184,7 @@ def set_tetromino_rules(world: FezWorld, variant: str):
     first_person_rule = _first_person_rule(world, variant)
 
     # Tetromino logic
+    add_rule(get_location("Achievement Anti-Cube"), tetromino_rule)
     add_rule(get_location("Zu Code Loop Anti-Cube"), tetromino_rule)
     add_rule(get_location("Code Machine Anti-Cube"), tetromino_rule)
     add_rule(get_location("Boileroom Anti-Cube"), tetromino_rule)
