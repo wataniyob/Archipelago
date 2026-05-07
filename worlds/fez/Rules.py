@@ -1,7 +1,12 @@
 import functools
 from typing import TYPE_CHECKING, Tuple
 
-from BaseClasses import Entrance, Location
+from .Items import FezItem
+from .Locations import FezLocation
+
+from BaseClasses import Entrance, ItemClassification, Location, Region
+
+from rule_builder.rules import CanReachRegion
 
 from ..generic.Rules import CollectionRule, add_rule
 
@@ -126,13 +131,12 @@ def set_rules(world: FezWorld) -> None:
     add_rule(get_entrance("Water Pyramid",      "Temple of Love"),  cube_count_rule(64))
 
     # Water level logic (requires lowering the water level)
-    water_level_rule: CollectionRule = lambda state: state.can_reach_region("Water Wheel", world.player)
-    add_rule(get_entrance("Nature Hub", "Ritual"), water_level_rule)
-    add_rule(get_entrance("Waterfall", "Zu Zuish"), water_level_rule)
-    add_rule(get_entrance("_LighthouseLower", "Zu Fork"), water_level_rule)
-    add_rule(get_entrance("Water Tower", "Watertower Secret"), water_level_rule)
-    add_rule(get_entrance("Bell Tower", "Quantum"), water_level_rule)
-    add_rule(get_entrance("Water Wheel", "Water Wheel B"), water_level_rule)
+    # Use RuleBuilder to fix issues with indirect connections
+    world.set_rule(get_entrance("Nature Hub", "Ritual"), CanReachRegion("Water Wheel"))
+    world.set_rule(get_entrance("Waterfall", "Zu Zuish"), CanReachRegion("Water Wheel"))
+    world.set_rule(get_entrance("_LighthouseLower", "Zu Fork"), CanReachRegion("Water Wheel"))
+    world.set_rule(get_entrance("Water Tower", "Watertower Secret"), CanReachRegion("Water Wheel"))
+    world.set_rule(get_entrance("Bell Tower", "Quantum"), CanReachRegion("Water Wheel"))
 
     # Owl logic
     add_rule(get_entrance("Owl", "Big Owl"), lambda state: state.has("Owl", world.player, 4))
