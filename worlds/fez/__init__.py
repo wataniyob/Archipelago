@@ -90,6 +90,8 @@ class FezWorld(World):
         self.create_completion_events()
 
     def create_items(self) -> None:
+        extra_cube_count = 0
+
         for item in main_items:
             # If knowledge logic is enabled, maps, sunglasses and skull artifact are all progression
             if self.options.knowledge_logic:
@@ -116,7 +118,7 @@ class FezWorld(World):
                     
 
         # Add filler
-        fill_size = len(self.location_name_to_id) - sum(item.count for item in main_items)
+        fill_size = len(self.location_name_to_id) - sum(item.count for item in main_items) - extra_cube_count
         self.add_filler_items(fill_size)
 
     def set_rules(self) -> None:
