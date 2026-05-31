@@ -1,0 +1,91 @@
+{
+	"$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.events.schema.json",
+    "data": [
+        {
+            "name": "Spaceship Unlocked",
+            "copy_location": "Power Station Puzzle"
+        },
+        {
+            "name": "Mechanical Unlocked",
+            "copy_location": "Clock Tower Puzzle"
+        },
+        {
+            "name": "Selenitic Unlocked",
+            "copy_location": "Spaceship Piano Puzzle"
+        },
+        {
+            "name": "Channelwood Unlocked",
+            "copy_location": "Tree Puzzle"
+        },
+        {
+            "name": "Stoneship Unlocked",
+            "copy_location": "Ship Puzzle"
+        },
+        {
+            "name": "Channelwood 2nd Level Unlocked",
+            "copy_location": "Channelwood 2nd Level"
+        },
+        {
+            "name": "Spring Microphone On",
+            "category": ["Microphone On"],
+            "copy_location": "Selenitic Spring Microphone"
+        },
+        {
+            "name": "Fissure Microphone On",
+            "category": ["Microphone On"],
+            "copy_location": "Selenitic Fissure Microphone"
+        },
+        {
+            "name": "Crystals Microphone On",
+            "category": ["Microphone On"],
+            "copy_location": "Selenitic Crystals Microphone"
+        },
+        {
+            "name": "Clock Microphone On",
+            "category": ["Microphone On"],
+            "copy_location": "Selenitic Clock Microphone"
+        },
+        {
+            "name": "Wind Microphone On",
+            "category": ["Microphone On"],
+            "copy_location": "Selenitic Wind Microphone"
+        },
+        {
+            "name": "Selenitic Train Door Opened",
+            "copy_location": "Selenitic Radio Puzzle"
+        },
+        {
+            "name": "Stoneship Lighthouse Top Unlocked",
+            "copy_location": "Stoneship Lighthouse Top"
+        },
+        {
+            "name": "Mechanical Code Half 1 Visited",
+            "copy_location": "Mechanical Book Lock Code Half 1"
+        },
+        {
+            "name": "Mechanical Code Half 2 Visited",
+            "copy_location": "Mechanical Book Lock Code Half 2"
+        },
+        {
+            "name": "Mechanical Myst Book",
+            "category": ["AgeCompletion"],
+            "copy_location": "Mechanical Book Lock Puzzle"
+        },
+        {
+            "name": "Selenitic Myst Book",
+            "category": ["AgeCompletion"],
+            "copy_location": "Mechanical Book Lock Puzzle"
+        },
+        {
+            "name": "Channelwood Myst Book",
+            "category": ["AgeCompletion"],
+            "copy_location": "Mechanical Book Lock Puzzle"
+        },
+        {
+            "name": "Stoneship Myst Book",
+            "category": ["AgeCompletion"],
+            "copy_location": "Stoneship Compass Puzzle"
+        }
+    ]
+}
+

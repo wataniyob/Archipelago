@@ -1,0 +1,10 @@
+{
+    "game": "Myst",
+    "creator": "wataniyob",
+    "filler_item_name": "Quiet Solitude",
+    "starting_items": [
+        {
+            "items": ["Myst Red Page","Myst Blue Page"]
+        }
+    ]
+}

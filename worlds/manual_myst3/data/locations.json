@@ -1,0 +1,316 @@
+{
+    "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.locations.schema.json",
+    "data": [
+        {
+            "name": "Saavedro's Journal",
+            "category": ["J'nanin"],
+            "region": "J'nanin"
+        },
+        {
+            "name": "Central Tusk Elevator Fixed",
+            "category": ["J'nanin"],
+            "region": "J'nanin"
+        },
+        {
+            "name": "Amateria Tusk Code Telescope Aligned",
+            "category": ["J'nanin"],
+            "region": "J'nanin"
+        },
+        {
+            "name": "Voltaic Tusk Code Telescope Aligned",
+            "category": ["J'nanin"],
+            "region": "J'nanin"
+        },
+        {
+            "name": "Edanna Tusk Code Telescope Aligned",
+            "category": ["J'nanin"],
+            "region": "J'nanin"
+        },
+        {
+            "name": "Light Source Activated",
+            "category": ["J'nanin"],
+            "region": "J'nanin",
+            "requires": "|Light Reflectors|"
+        },
+        {
+            "name": "Light Reflector 1 Aligned",
+            "category": ["J'nanin"],
+            "region": "J'nanin",
+            "requires": "|Light Reflectors|"
+        },
+        {
+            "name": "Light Reflector 2 Aligned",
+            "category":["J'nanin"],
+            "region": "J'nanin",
+            "requires": "|Light Reflectors|"
+        },
+        {
+            "name": "Light Reflector 3 Aligned",
+            "category": ["J'nanin"],
+            "region": "J'nanin",
+            "requires": "|Light Reflectors|"
+        },
+        {
+            "name": "Light Reflector 4 Aligned",
+            "category": ["J'nanin"],
+            "region": "J'nanin",
+            "requires": "|Light Reflectors|"
+        },
+        {
+            "name": "Light Reflector 5 Aligned",
+            "category": ["J'nanin"],
+            "region": "J'nanin",
+            "requires": "|Light Reflectors|"
+        },
+        {
+            "name": "Light Reflector 6 Aligned",
+            "category": ["J'nanin"],
+            "region": "J'nanin",
+            "requires": "|Light Reflectors|"
+        },
+        {
+            "name": "Light Reflector 7 Aligned",
+            "category": ["J'nanin"],
+            "region": "J'nanin",
+            "requires": "|Light Reflectors|"
+        },
+        {
+            "name": "Edanna Tusk Bridge Expanded",
+            "category": ["J'nanin"],
+            "region": "J'nanin",
+            "requires": "|J'nanin Squee|"
+        },
+        {
+            "name": "Amateria Tusk Barrel Puzzle Solved",
+            "category": ["J'nanin"],
+            "region": "J'nanin",
+            "requires": "|Barrel|"
+        },
+        {
+            "name": "Amateria Unlocked",
+            "category": ["J'nanin"],
+            "region": "J'nanin",
+            "requires": "|Amateria Tusk Code| and |Barrel|"
+        },
+        {
+            "name": "Voltaic Unlocked",
+            "category": ["J'nanin"],
+            "region": "J'nanin",
+            "requires": "|Voltaic Tusk Code| and |Light Reflectors|"
+        },
+        {
+            "name": "Edanna Unlocked",
+            "category": ["J'nanin"],
+            "region": "J'nanin",
+            "requires": "|Edanna Tusk Code| and |J'nanin Squee|"
+        },
+        {
+            "name": "Spiral Elevator Plant Activated",
+            "category": ["Edanna"],
+            "region": "Edanna"
+        },
+        {
+            "name": "Water Pod 1 Activated",
+            "category": ["Edanna"],
+            "region": "Edanna",
+            "requires": "|Water Pod|"
+        },
+        {
+            "name": "Water Pod 2 Activated",
+            "category": ["Edanna"],
+            "region": "Edanna",
+            "requires": "|Edanna Squee| and |Water Pod:2|"
+        },
+        {
+            "name": "Water Pod 3 Activated",
+            "category": ["Edanna"],
+            "region": "Edanna",
+            "requires": "|Edanna Squee| and |Water Pod:3|"
+        },
+        {
+            "name": "Water Pod 3 Burst",
+            "category": ["Edanna"],
+            "region": "Edanna",
+            "requires": "|Edanna Squee| and |Water Pod:3|"
+        },
+        {
+            "name": "Edanna Log Bridge Broken",
+            "category": ["Edanna"],
+            "region": "Edanna",
+            "requires": "|Edanna Squee|"
+        },
+        {
+            "name": "Edanna Viewer Activated",
+            "category": ["Edanna"],
+            "region": "Edanna",
+            "requires": "|Edanna Squee|"
+        },
+        {
+            "name": "Page Bundle After Water Pod 1",
+            "category": ["Edanna"],
+            "region": "Edanna"
+        },
+        {
+            "name": "Page Bundle in Hollow Log",
+            "category": ["Edanna"],
+            "region": "Edanna",
+            "requires": "|Edanna Squee|"
+        },
+        {
+            "name": "Page Bundle in Lotus Root",
+            "category": ["Edanna"],
+            "region": "Edanna",
+            "requires": "|Edanna Squee|"
+        },
+        {
+            "name": "Edanna Projector Code",
+            "category": ["Edanna"],
+            "region": "Edanna",
+            "requires": "|Edanna Squee| and |Water Pod:3|"
+        },
+        {
+            "name": "Balance Puzzle Solved",
+            "category": ["Amateria"],
+            "region": "Amateria"
+        },
+        {
+            "name": "Sonic Gates Puzzle Solved",
+            "category": ["Amateria"],
+            "region": "Amateria"
+        },
+        {
+            "name": "Spinner Puzzle Solved",
+            "category": ["Amateria"],
+            "region": "Amateria"
+        },
+        {
+            "name": "Balance Puzzle Page Bundle",
+            "category": ["Amateria"],
+            "region": "Amateria"
+        },
+        {
+            "name": "Sonic Gates Puzzle Page Bundle",
+            "category": ["Amateria"],
+            "region": "Amateria"
+        },
+        {
+            "name": "Spinner Puzzle Page Bundle",
+            "category": ["Amateria"],
+            "region": "Amateria"
+        },
+        {
+            "name": "Amateria Viewer Activated",
+            "category": ["Amateria"],
+            "region": "Amateria",
+            "requires": "|Hex Code:3|"
+        },
+        {
+            "name": "Hex Bridge Puzzle Solved",
+            "category": ["Amateria"],
+            "region": "Amateria",
+            "requires": "|Hex Code:3|"
+        },
+        {
+            "name": "Amateria Projector Code",
+            "category": ["Amateria"],
+            "region": "Amateria",
+            "requires": "|Hex Code:3|"
+        },
+        {
+            "name": "Waterwheel Power",
+            "category": ["Voltaic"],
+            "region": "Voltaic",
+            "requires": "|Waterwheel Controls|"
+        },
+        {
+            "name": "Generator Power",
+            "category": ["Voltaic"],
+            "region": "Voltaic",
+            "requires": "|Waterwheel Controls|"
+        },
+        {
+            "name": "Lava Room Steam",
+            "category": ["Voltaic"],
+            "region": "Voltaic",
+            "requires": "|Waterwheel Controls| and |Lava Room Platform Controls|"
+        },
+        {
+            "name": "Airship Filled",
+            "category": ["Voltaic"],
+            "region": "Voltaic",
+            "requires": "|Waterwheel Controls| and |Lava Room Platform Controls| and |Steam Pressure Controls|"
+        },
+        {
+            "name": "Island Lifted",
+            "category": ["Voltaic"],
+            "region": "Voltaic",
+            "requires": "|Waterwheel Controls| and |Lava Room Platform Controls| and |Steam Pressure Controls|"
+        },
+        {
+            "name": "Voltaic Projector Code",
+            "category": ["Voltaic"],
+            "region": "Voltaic",
+            "requires": "|Waterwheel Controls| and |Lava Room Platform Controls| and |Steam Pressure Controls|"
+        },
+        {
+            "name": "Page Bundle Above Steam Pressure Puzzle",
+            "category": ["Voltaic"],
+            "region": "Voltaic"
+        },
+        {
+            "name": "Page Bundle in Corridor to Lava Room",
+            "category": ["Voltaic"],
+            "region": "Voltaic"
+        },
+        {
+            "name": "Page Bundle in Generator Room",
+            "category": ["Voltaic"],
+            "region": "Voltaic",
+            "requires": "|Waterwheel Controls|"
+        },
+        {
+            "name": "Voltaic Viewer Activated",
+            "category": ["Voltaic"],
+            "region": "Voltaic",
+            "requires": "|Waterwheel Controls|"
+        },
+        {
+            "name": "Amateria Projector Code Entered",
+            "category": ["J'nanin"],
+            "region": "J'nanin",
+            "requires": "|Amateria Complete|"
+        },
+        {
+            "name": "Edanna Projector Code Entered",
+            "category": ["J'nanin"],
+            "region": "J'nanin",
+            "requires": "|Edanna Complete|"
+        },
+        {
+            "name": "Voltaic Projector Code Entered",
+            "category": ["J'nanin"],
+            "region": "J'nanin",
+            "requires": "|Voltaic Complete|"
+        },
+        {
+            "name": "Inner Shield Lowered",
+            "category": ["Narayan"],
+            "region": "Narayan",
+            "requires": "|Shield Code:3|"
+        },
+        {
+            "name": "Tomahna Book Acquired",
+            "category": ["Narayan"],
+            "region": "Narayan",
+            "requires": "|Shield Code:3|"
+        },
+        {
+            "name": "Releeshahn Returned",
+            "category": ["Narayan"],
+            "region": "Narayan",
+            "requires": "|Shield Code:4|",
+            "victory": true
+        }
+    ]
+}
+

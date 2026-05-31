@@ -1,0 +1,42 @@
+{
+    "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.events.schema.json",
+    "data": [
+        {
+            "name": "Amateria Age",
+            "copy_location": "Amateria Unlocked"
+        },
+        {
+            "name": "Edanna Age",
+            "copy_location": "Edanna Unlocked"
+        },
+        {
+            "name": "Voltaic Age",
+            "copy_location": "Voltaic Unlocked"
+        },
+        {
+            "name": "Amateria Complete",
+            "copy_location": "Amateria Projector Code"
+        },
+        {
+            "name": "Edanna Complete",
+            "copy_location": "Edanna Projector Code"
+        },
+        {
+            "name": "Voltaic Complete",
+            "copy_location": "Voltaic Projector Code"
+        },
+        {
+            "name": "Amateria Projector Code",
+            "copy_location": "Amateria Projector Code Entered"
+        },
+        {
+            "name": "Edanna Projector Code",
+            "copy_location": "Edanna Projector Code Entered"
+        },
+        {
+            "name": "Voltaic Projector Code",
+            "copy_location": "Voltaic Projector Code Entered"
+        }
+    ]
+}
+

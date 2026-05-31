@@ -1,0 +1,83 @@
+{
+    "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.items.schema.json",
+    "data": [
+        {
+            "name": "Temple-Jungle Tram",
+            "category": ["Connection"],
+            "progression": true
+        },
+        {
+            "name": "Jungle-Plateau Tram",
+            "category": ["Connection"],
+            "progression": true
+        },
+        {
+            "name": "Crater-Plateau Tram",
+            "category": ["Connection"],
+            "progression": true
+        },
+        {
+            "name": "Crater-Temple Bridge",
+            "category": ["Connection"],
+            "progression": true
+        },
+        {
+            "name": "Log Cart",
+            "category": ["Connection"],
+            "progression": true
+        },
+        {
+            "name": "D'ni Number System Learned",
+            "category": ["Key"],
+            "progression": true
+        },
+        {
+            "name": "Catherine's Journal",
+            "category": ["Key"],
+            "progression": true
+        },
+        {
+            "name": "Trap Book",
+            "category": ["Key"],
+            "progression": true
+        },
+        {
+            "name": "Prison Code",
+            "category": ["Key"],
+            "progression": true
+        },
+        {
+            "name": "Whark Gate Switch",
+            "category": ["Key"],
+            "progression": true
+        },
+        {
+            "name": "Animal Symbol",
+            "category": ["Key"],
+            "count": 5,
+            "progression": true
+        },
+        {
+            "name": "Animal Number",
+            "category": ["Key"],
+            "count": 5,
+            "progression": true
+        },
+        {
+            "name": "Color Symbols",
+            "category": ["Key"],
+            "progression": true
+        },
+        {
+            "name": "Dome Locations",
+            "category": ["Key"],
+            "progression": true
+        },
+        {
+            "name": "Dome Symbol",
+            "category": ["Key"],
+            "count": 5,
+            "progression": true
+        }
+    ]
+}

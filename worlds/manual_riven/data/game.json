@@ -1,0 +1,9 @@
+{
+  "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.game.schema.json",
+  "game": "Riven (1997)",
+  "creator": "wataniyob",
+  "filler_item_name": "Gehn's Gaze",
+  "starting_items": [],
+  "death_link": false,
+  "starting_index": 1
+}

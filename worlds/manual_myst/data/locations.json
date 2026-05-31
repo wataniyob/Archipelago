@@ -1,0 +1,271 @@
+[
+    {
+        "name":"Dock Marker",
+        "region":"Myst",
+        "category": ["Myst","Marker"]
+    },
+
+    {
+        "name":"Gear Marker",
+        "region":"Myst",
+        "category": ["Myst","Marker"]
+    },
+
+    {
+        "name":"Observatory Marker",
+        "region":"Myst",
+        "category": ["Myst","Marker"]
+    },
+
+    {
+        "name":"Rocket Marker",
+        "region":"Myst",
+        "category": ["Myst","Marker"]
+    },
+
+    {
+        "name":"Fountain Marker",
+        "region":"Myst",
+        "category": ["Myst","Marker"]
+    },
+
+    {
+        "name":"Power Station Marker",
+        "region":"Myst",
+        "category": ["Myst","Marker"]
+    },
+
+    {
+        "name":"Clock Tower Marker",
+        "region":"Myst",
+        "category": ["Myst","Marker"],
+        "requires":"|Clock Tower Bridge|"
+    },
+
+    {
+        "name":"Shed Marker",
+        "region":"Myst",
+        "category": ["Myst","Marker"]
+    },
+
+    {
+        "name":"Clock Tower Bridge Puzzle",
+        "region":"Myst",
+        "category": ["Myst","Puzzle"],
+        "requires":"|Library Elevator| AND |Clock Tower Bridge|"
+    },
+
+    {
+        "name":"Clock Tower Puzzle",
+        "region":"Myst",
+        "category": ["Myst","Puzzle"],
+        "requires":"|Clock Tower Bridge| AND |Library Elevator|"
+    },
+
+    {
+        "name":"Myst Red Page",
+        "region":"Myst",
+        "category": ["Myst","Page"]
+    },
+
+    {
+        "name":"Myst Blue Page",
+        "region":"Myst",
+        "category": ["Myst","Page"]
+    },
+
+    {
+        "name":"White Page",
+        "region":"Myst",
+        "category": ["Myst","Page"],
+        "requires":"|Clock Tower Bridge|"
+    },
+
+    {
+        "name":"Ship Puzzle",
+        "region":"Myst",
+        "category": ["Myst","Puzzle"],
+        "requires":"|Library Elevator| AND |Observatory Door|"
+    },
+
+    {
+        "name":"Observatory Puzzle",
+        "region":"Myst",
+        "category": ["Myst","Puzzle"],
+        "requires":"|Library Elevator| AND |Observatory Door|"
+    },
+
+    {
+        "name":"Spaceship Piano Puzzle",
+        "region":"Myst",
+        "category": ["Myst","Puzzle"],
+        "requires":"|Spaceship Unlocked|"
+    },
+
+    {
+        "name":"Power Station Puzzle",
+        "region":"Myst",
+        "category":["Myst","Puzzle"],
+        "requires":"|Power Station Door| AND |Library Elevator|"
+    },
+    
+    {
+        "name":"Tree Puzzle",
+        "region":"Myst",
+        "category":["Myst","Puzzle"],
+        "requires":"|Shed Door| AND |Library Elevator|"
+    },
+
+    {
+        "name":"Channelwood Red Page",
+        "region":"Channelwood Age",
+        "category": ["Channelwood","Page"]
+    },
+
+    {
+        "name":"Channelwood Blue Page",
+        "region":"Channelwood Age",
+        "category": ["Channelwood","Page"]
+    },
+    
+    {
+        "name":"Channelwood 2nd Level",
+        "region":"Channelwood Age",
+        "category": ["Channelwood","Puzzle"]
+    },
+    
+    {
+        "name":"Channelwood 3rd Level",
+        "region":"Channelwood Age",
+        "category": ["Channelwood","Puzzle"],
+        "requires": "|Channelwood 2nd Level Unlocked|"
+    },
+    
+    {
+        "name":"Channelwood Exit",
+        "region":"Channelwood Age",
+        "category": ["Channelwood","Puzzle"],
+        "requires": "|Channelwood 2nd Level Unlocked|"
+    },
+
+    {
+        "name":"Selenitic Red Page",
+        "region":"Selenitic Age",
+        "category": ["Selenitic","Page"]
+    },
+
+    {
+        "name":"Selenitic Blue Page",
+        "region":"Selenitic Age",
+        "category": ["Selenitic","Page"]
+    },
+    
+    {
+        "name":"Selenitic Spring Microphone",
+        "region":"Selenitic Age",
+        "category": ["Selenitic","Microphone"]
+    },
+    
+    {
+        "name":"Selenitic Fissure Microphone",
+        "region":"Selenitic Age",
+        "category": ["Selenitic","Microphone"]
+    },
+    
+    {
+        "name":"Selenitic Crystals Microphone",
+        "region":"Selenitic Age",
+        "category": ["Selenitic","Microphone"]
+    },
+    
+    {
+        "name":"Selenitic Clock Microphone",
+        "region":"Selenitic Age",
+        "category": ["Selenitic","Microphone"]
+    },
+    
+    {
+        "name":"Selenitic Wind Microphone",
+        "region":"Selenitic Age",
+        "category": ["Selenitic","Microphone"]
+    },
+
+    {
+        "name":"Selenitic Radio Puzzle",
+        "region":"Selenitic Age",
+        "category": ["Selenitic","Puzzle"],
+        "requires": "|@Microphone On:100%|"
+    },
+    
+    {
+        "name":"Selenitic Maze Puzzle",
+        "region":"Selenitic Age",
+        "category": ["Selenitic","Puzzle"],
+        "requires": "|Selenitic Train Door Opened|"
+    },
+
+    {
+        "name":"Mechanical Red Page",
+        "region":"Mechanical Age",
+        "category": ["Mechanical","Page"]
+    },
+
+    {
+        "name":"Mechanical Blue Page",
+        "region":"Mechanical Age",
+        "category": ["Mechanical","Page"]
+    },
+    
+    {
+        "name":"Mechanical Book Lock Code Half 1",
+        "region":"Mechanical Age",
+        "category": ["Mechanical","Puzzle"]
+    },
+    
+    {
+        "name":"Mechanical Book Lock Code Half 2",
+        "region":"Mechanical Age",
+        "category": ["Mechanical","Puzzle"]
+    },
+
+    {
+        "name":"Mechanical Book Lock Puzzle",
+        "region":"Mechanical Age",
+        "category": ["Mechanical","Puzzle"],
+        "requires": "|Mechanical Code Half 1 Visited| and |Mechanical Code Half 1 Visited|"
+    },
+    
+    {
+        "name":"Stoneship Lighthouse Top",
+        "region":"Stoneship Age",
+        "category": ["Stoneship","Puzzle"]
+    },
+
+    {
+        "name":"Stoneship Red Page",
+        "region":"Stoneship Age",
+        "category": ["Stoneship","Page"],
+        "requires": "|Stoneship Lighthouse Top Unlocked|"
+    },
+
+    {
+        "name":"Stoneship Blue Page",
+        "region":"Stoneship Age",
+        "category": ["Stoneship","Page"],
+        "requires": "|Stoneship Lighthouse Top Unlocked|"
+    },
+
+    {
+        "name":"Stoneship Compass Puzzle",
+        "region":"Stoneship Age",
+        "category": ["Stoneship","Puzzle"],
+        "requires": "|Stoneship Lighthouse Top Unlocked|"
+    },
+    
+    {
+        "name": "Atrus Rescued",
+        "region": "D'ni Age",
+        "category": ["D'ni"],
+        "victory": true
+    }
+]

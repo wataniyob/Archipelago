@@ -1,0 +1,23 @@
+{
+    "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.regions.schema.json",
+    "J'nanin":{
+        "connects_to": ["Amateria", "Edanna", "Voltaic", "Narayan"],
+        "starting": true
+    },
+    "Amateria":{
+        "connects_to": ["J'nanin"],
+        "requires": "|Amateria Age|"
+    },
+    "Edanna":{
+        "connects_to": ["J'nanin"],
+        "requires": "|Edanna Age|"
+    },
+    "Voltaic":{
+        "connects_to": ["J'nanin"],
+        "requires": "|Voltaic Age|"
+    },
+    "Narayan":{
+        "connects_to": [],
+        "requires": "|Amateria Projector Code| and |Voltaic Projector Code| and |Edanna Projector Code|"
+    }
+}

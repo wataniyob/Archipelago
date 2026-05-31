@@ -1,0 +1,164 @@
+[ 
+    { 
+        "name": "Myst Red Page", 
+        "category": [
+            "Page",
+            "Red Page",
+            "Myst"
+        ],
+        "progression": true 
+    },
+
+    { 
+        "name": "Myst Blue Page", 
+        "category": [
+            "Page",
+            "Blue Page",
+            "Myst"
+        ],
+        "progression": true 
+    },
+
+    { 
+        "name": "White Page", 
+        "category": [
+            "Page",
+            "Myst"
+        ],
+        "progression": true 
+    },
+    
+    { 
+        "name": "Marker", 
+        "category": [
+            "Filler",
+            "Myst"
+        ],
+        "filler": true 
+    },
+
+    { 
+        "name": "Clock Tower Bridge", 
+        "category": [
+            "Door",
+            "Myst"
+        ],
+        "progression": true 
+    },
+
+    { 
+        "name": "Observatory Door", 
+        "category": [
+            "Door",
+            "Myst"
+        ],
+        "progression": true 
+    },
+
+    {
+        "name":"Power Station Door",
+        "category":[
+            "Door",
+            "Myst"
+        ],
+        "progression": true
+    },
+    
+    {
+        "name":"Shed Door",
+        "category":[
+            "Door",
+            "Myst"
+        ],
+        "progression": true
+    },
+
+    { 
+        "name": "Library Elevator", 
+        "category": [
+            "Door",
+            "Myst"
+        ],
+        "progression": true 
+    },
+
+    { 
+        "name": "Channelwood Red Page", 
+        "category": [
+            "Page",
+            "Red Page",
+            "Channelwood"
+        ],
+        "progression": true 
+    },
+
+    { 
+        "name": "Channelwood Blue Page", 
+        "category": [
+            "Page",
+            "Blue Page",
+            "Channelwood"
+        ],
+        "progression": true 
+    },
+
+    { 
+        "name": "Selenitic Red Page", 
+        "category": [
+            "Page",
+            "Red Page",
+            "Selenitic"
+        ],
+        "progression": true 
+    },
+
+    { 
+        "name": "Selenitic Blue Page", 
+        "category": [
+            "Page",
+            "Blue Page",
+            "Selenitic"
+        ],
+        "progression": true 
+    },
+
+    { 
+        "name": "Mechanical Red Page", 
+        "category": [
+            "Page",
+            "Red Page",
+            "Mechanical"
+        ],
+        "progression": true 
+    },
+
+    { 
+        "name": "Mechanical Blue Page", 
+        "category": [
+            "Page",
+            "Blue Page",
+            "Mechanical"
+        ],
+        "progression": true 
+    },
+
+    { 
+        "name": "Stoneship Red Page", 
+        "category": [
+            "Page",
+            "Red Page",
+            "Stoneship"
+        ],
+        "progression": true 
+    },
+
+    { 
+        "name": "Stoneship Blue Page", 
+        "category": [
+            "Page",
+            "Blue Page",
+            "Stoneship"
+        ],
+        "progression": true 
+    }
+]

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.game.schema.json",
+  "game": "Myst III - Exile",
+  "creator": "wataniyob",
+  "filler_item_name": "Saavedro's Art",
+  "starting_items": [],
+  "death_link": false,
+  "starting_index": 1
+}

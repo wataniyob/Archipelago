@@ -1,0 +1,31 @@
+{
+    "Myst": {
+        "connects_to": ["Mechanical Age", "Channelwood Age", "Selenitic Age", "Stoneship Age", "D'ni Age"],
+        "starting": true
+    },
+
+    "Mechanical Age": {
+        "connects_to": ["Myst"],
+        "requires": "|Mechanical Unlocked|"
+    },
+
+    "Channelwood Age": {
+        "connects_to": ["Myst"],
+        "requires": "|Channelwood Unlocked|"
+    },
+
+    "Selenitic Age": {
+        "connects_to": ["Myst"],
+        "requires": "|Selenitic Unlocked|"
+    },
+
+    "Stoneship Age": {
+        "connects_to": ["Myst"],
+        "requires": "|Stoneship Unlocked|"
+    },
+    
+    "D'ni Age": {
+        "connects_to": [],
+        "requires": "(|@Red Page:100%| OR |@Blue Page:100%|) AND |@AgeCompletion:100%| AND |White Page| AND |Clock Tower Bridge|"
+    }
+}

@@ -1,0 +1,236 @@
+{
+    "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.locations.schema.json",
+    "data": [
+        {
+            "name": "Temple Island Art Panel 1",
+            "category": ["Temple","Observation"],
+            "region": "Temple Island"
+        },
+        {
+            "name": "Temple Island Art Panel 2",
+            "category": ["Temple","Observation"],
+            "region": "Temple Island"
+        },
+        {
+            "name": "Temple Island Art Panel 3",
+            "category": ["Temple","Observation"],
+            "region": "Temple Island"
+        },
+        {
+            "name": "Temple Island Art Panel 4",
+            "category": ["Temple","Observation"],
+            "region": "Temple Island"
+        },
+        {
+            "name": "Temple Island Art Panel 5",
+            "category": ["Temple","Observation"],
+            "region": "Temple Island"
+        },
+        {
+            "name": "Temple Gate Opened",
+            "category": ["Temple","Action"],
+            "region": "Temple Island"
+        },
+        {
+            "name": "Temple Island Dome Stopped",
+            "category": ["Temple","Action"],
+            "region": "Temple Island",
+            "requires": "|Crater-Temple Bridge Crossable|"
+        },
+        {
+            "name": "Starry Expanse Telescope Powered",
+            "category": ["Temple","Action"],
+            "region": "Temple Island"
+        },
+        {
+            "name": "Crater-Temple Bridge Powered",
+            "category": ["Temple","Action"],
+            "region": "Temple Island"
+        },
+        {
+            "name": "Golden Dome Raisable Bridge Powered",
+            "category": ["Temple","Action"],
+            "region": "Temple Island"
+        },
+        {
+            "name": "Frog Eye Found",
+            "category": ["Jungle","Observation"],
+            "region": "Jungle Island"
+        },
+        {
+            "name": "Whark Eye Found",
+            "category": ["Jungle","Observation"],
+            "region": "Jungle Island"
+        },
+        {
+            "name": "Beetle Eye Found",
+            "category": ["Jungle","Observation"],
+            "region": "Jungle Island"
+        },
+        {
+            "name": "Sunner Eye Found",
+            "category": ["Jungle","Observation"],
+            "region": "Jungle Island"
+        },
+        {
+            "name": "Beetle Found",
+            "category": ["Jungle","Observation"],
+            "region": "Jungle Island"
+        },
+        {
+            "name": "Sunner Found",
+            "category": ["Jungle","Observation"],
+            "region": "Jungle Island"
+        },
+        {
+            "name": "Submarine Lowered",
+            "category": ["Jungle","Action"],
+            "region": "Jungle Island"
+        },
+        {
+            "name": "Jungle Island Dome Stopped",
+            "category": ["Jungle","Action"],
+            "region": "Jungle Island",
+            "requires": "|Whark Gate Switch|"
+        },
+        {
+            "name": "Whark Platform Closed",
+            "category": ["Jungle","Action"],
+            "region": "Jungle Island",
+            "requires": "|Whark Gate Switch|"
+        },
+        {
+            "name": "Submarine Gangways Extended",
+            "category": ["Jungle","Action"],
+            "region": "Jungle Island",
+            "requires": "|Submarine|"
+        },
+        {
+            "name": "Schoolhouse Visited",
+            "category": ["Jungle","Observation"],
+            "region": "Jungle Island",
+            "requires": "|Submarine| and |Submarine Gangways|"
+        },
+        {
+            "name": "Open Jungle Island Prison Cell",
+            "category": ["Jungle","Action"],
+            "region": "Jungle Island",
+            "requires": "|Jungle Island Prison Accessible|"
+        },
+        {
+            "name": "Prison Secret Passage Lit Up",
+            "category": ["Jungle","Action"],
+            "region": "Jungle Island",
+            "requires": "|Jungle Island Prison Accessible|"
+        },
+        {
+            "name": "Boiler Drained",
+            "category": ["Crater","Action"],
+            "region": "Crater Island"
+        },
+        {
+            "name": "Crater Island Dome Stopped",
+            "category": ["Crater","Action"],
+            "region": "Crater Island"
+        },
+        {
+            "name": "Frog Found",
+            "category": ["Crater","Observation"],
+            "region": "Crater Island"
+        },
+        {
+            "name": "Crater-Temple Bridge Lowered",
+            "category": ["Crater","Action"],
+            "region": "Crater Island",
+            "requires": "|Crater-Temple Bridge| and |Crater-Temple Bridge Active|"
+        },
+        {
+            "name": "Read Gehn's Journal",
+            "category": ["Crater","Action"],
+            "region": "Crater Island"
+        },
+        {
+            "name": "Fish Eye Found",
+            "category": ["Crater","Observation"],
+            "region": "Crater Island"
+        },
+        {
+            "name": "Fish Shape Found",
+            "category": ["Plateau","Observation"],
+            "region": "Plateau Island"
+        },
+        {
+            "name": "Color Symbols Learned",
+            "category": ["Plateau","Observation"],
+            "region": "Plateau Island"
+        },
+        {
+            "name": "Whark Found",
+            "category": ["Plateau","Observation"],
+            "region": "Plateau Island"
+        },
+        {
+            "name": "Dome Locations Identified",
+            "category": ["Plateau","Observation"],
+            "region": "Plateau Island"
+        },
+        {
+            "name": "Plateau Island Dome Stopped",
+            "category": ["Plateau","Action"],
+            "region": "Plateau Island"
+        },
+        {
+            "name": "Prison Island Dome Stopped",
+            "category": ["Prison","Action"],
+            "region": "Prison Island",
+            "requires": "|Catherine Freed|"
+        },
+        {
+            "name": "Fire Marble Puzzle Solved",
+            "category": ["Temple","Action"],
+            "region": "Temple Island",
+            "requires": "|Dome Symbol:5| and |Color Symbols| and |Dome Locations| and |Crater-Temple Bridge Crossable| and |Golden Dome Raisable Bridge Active|"
+        },
+        {
+            "name": "233rd Age Unlocked",
+            "category": ["Age Unlock"],
+            "requires": "|D'ni Number System Learned| and |Spinning Domes Code| and |Spinning Domes Powered|"
+        },
+        {
+            "name": "Moiety Age Unlocked",
+            "category": ["Jungle","Age Unlock"],
+            "requires": "|Animal Symbol:5| and |Animal Number:5|"
+        },
+        {
+            "name": "Moiety Items",
+            "region": "Moiety Age",
+            "category": ["Moiety","Item"]
+        },
+        {
+            "name": "Gehn Captured",
+            "category": ["233rd Age","Action"],
+            "region": "233rd Age",
+            "requires": "|Moiety Items Retrieved| and |Trap Book|"
+        },
+        {
+            "name": "Prison Code Heard",
+            "category": ["233rd Age","Key"],
+            "region": "233rd Age",
+            "requires": "|233rd Age Outside Cage|"
+        },
+        {
+            "name": "Unlocked Catherine's Prison Room",
+            "category": ["Prison","Action"],
+            "region": "Prison Island",
+            "requires": "|233rd Age Outside Cage| and |Prison Code|"
+        },
+        {
+            "name": "Fall into the Starry Expanse",
+            "category": ["Temple","Action"],
+            "region": "Temple Island",
+            "requires": "|Catherine's Journal| and |Catherine Freed| and |Starry Expanse Telescope|",
+            "victory": true
+        }
+    ]
+}
+

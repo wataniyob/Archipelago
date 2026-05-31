@@ -1,0 +1,58 @@
+{
+    "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.events.schema.json",
+    "data": [
+        {
+            "name": "Submarine",
+            "copy_location": "Submarine Lowered"
+        },
+        {
+            "name": "Submarine Gangways",
+            "copy_location": "Submarine Gangways Extended"
+        },
+        {
+            "name": "Jungle Island Prison Accessible",
+            "requires": "|Submarine| and |Submarine Gangways| and |Whark Gate Switch|"
+        },
+        {
+            "name": "Spinning Domes Code",
+            "copy_location": "Read Gehn's Journal"
+        },
+        {
+            "name": "Spinning Domes Powered",
+            "copy_location": "Fire Marble Puzzle Solved"
+        },
+        {
+            "name": "Moiety Items Retrieved",
+            "copy_location": "Moiety Items"
+        },
+        {
+            "name": "233rd Age Visited",
+            "copy_location": "233rd Age Unlocked"
+        },
+        {
+            "name": "233rd Age Outside Cage",
+            "copy_location": "Gehn Captured"
+        },
+        {
+            "name": "Crater-Temple Bridge Active",
+            "copy_location": "Crater-Temple Bridge Powered"
+        },
+        {
+            "name": "Golden Dome Raisable Bridge Active",
+            "copy_location": "Golden Dome Raisable Bridge Powered"
+        },
+        {
+            "name": "Crater-Temple Bridge Crossable",
+            "copy_location": "Crater-Temple Bridge Lowered"
+        },
+        {
+            "name": "Catherine Freed",
+            "copy_location": "Unlocked Catherine's Prison Room"
+        },
+        {
+            "name": "Starry Expanse Telescope",
+            "copy_location": "Starry Expanse Telescope Powered"
+        }
+    ]
+}
+

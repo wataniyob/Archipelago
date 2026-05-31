@@ -1,0 +1,42 @@
+{
+    "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.regions.schema.json",
+    "Temple Island":{
+        "connects_to": ["Jungle Island", "233rd Age"],
+        "exit_requires": {
+            "Jungle Island": "|Temple-Jungle Tram|"
+        },
+        "starting": true
+    },
+    "Jungle Island":{
+        "connects_to": ["Crater Island", "Plateau Island", "233rd Age", "Moiety Age"],
+        "exit_requires": {
+            "Crater Island": "|Log Cart|",
+            "Plateau Island": "|Whark Gate Switch| and |Jungle-Plateau Tram|"
+        }
+    },
+    "Crater Island":{
+        "connects_to": ["Jungle Island", "Plateau Island", "233rd Age"],
+        "exit_requires": {
+            "Plateau Island": "|Crater-Plateau Tram|",
+            "Jungle Island": "|Log Cart|"
+        }
+    },
+    "Plateau Island":{
+        "connects_to": ["Jungle Island", "Crater Island", "233rd Age"],
+        "exit_requires": {
+            "Crater Island": "|Crater-Plateau Tram|",
+            "Jungle Island": "|Jungle-Plateau Tram| and |Whark Gate Switch|"
+        }
+    },
+    "Moiety Age":{
+        "connects_to": [],
+        "requires": "|Animal Symbol:5| and |Animal Number:5|"
+    },
+    "233rd Age":{
+        "connects_to": ["Jungle Island", "Crater Island", "Plateau Island", "Prison Island"],
+        "requires": "|D'ni Number System Learned| and |Spinning Domes Code| and |Spinning Domes Powered|"
+    },
+    "Prison Island":{
+        "connects_to": []
+    }
+}

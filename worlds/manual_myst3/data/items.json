@@ -1,0 +1,81 @@
+{
+    "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.items.schema.json",
+    "data": [
+        {
+            "name": "Amateria Tusk Code",
+            "category": ["J'nanin"],
+            "progression": true
+        },
+        {
+            "name": "Edanna Tusk Code",
+            "category": ["J'nanin"],
+            "progression": true
+        },
+        {
+            "name": "Voltaic Tusk Code",
+            "category": ["J'nanin"],
+            "progression": true
+        },
+        {
+            "name": "Barrel",
+            "category": ["J'nanin"],
+            "progression": true
+        },
+        {
+            "name": "J'nanin Squee",
+            "category": ["J'nanin"],
+            "progression": true
+        },
+        {
+            "name": "Light Reflectors",
+            "category": ["J'nanin"],
+            "progression": true
+        },
+        {
+            "name": "Page Bundle",
+            "classification_count": {"filler": 9}
+        },
+        {
+            "name": "Viewer Message",
+            "classification_count": {"filler": 3}
+        },
+        {
+            "name": "Edanna Squee",
+            "category": ["Edanna"],
+            "progression": true
+        },
+        {
+            "name": "Water Pod",
+            "category": ["Edanna"],
+            "count": 3,
+            "progression": true
+        },
+        {
+            "name": "Hex Code",
+            "category": ["Amateria"],
+            "count": 3,
+            "progression": true
+        },
+        {
+            "name": "Waterwheel Controls",
+            "category": ["Voltaic"],
+            "progression": true
+        },
+        {
+            "name": "Lava Room Platform Controls",
+            "category": ["Voltaic"],
+            "progression": true
+        },
+        {
+            "name": "Steam Pressure Controls",
+            "category": ["Voltaic"],
+            "progression": true
+        },
+        {
+            "name": "Shield Code",
+            "category": ["Narayan"],
+            "count": 4,
+            "progression": true
+        }
+    ]
+}
