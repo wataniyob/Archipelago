@@ -9,7 +9,7 @@ from .Locations import FezLocation
 from BaseClasses import Entrance, ItemClassification, Location, Region, CollectionState
 from NetUtils import JSONMessagePart
 
-from rule_builder.rules import CanReachRegion, Has, HasAll, Rule
+from rule_builder.rules import CanReachRegion, Has, Rule
 from rule_builder.field_resolvers import FieldResolver, resolve_field
 
 if TYPE_CHECKING:
@@ -178,7 +178,7 @@ def set_rules(world: FezWorld) -> None:
     world.set_rule(get_entrance("Bell Tower", "Quantum"),             CanReachRegion("Water Wheel"))
 
     # Owl logic
-    world.set_rule(get_entrance("Owl", "Big Owl"), HasAll("Owl"))
+    world.set_rule(get_entrance("Owl", "Big Owl"), Has("Owl", count = 4))
 
 
 def set_knowledge_rules(world: FezWorld) -> None:
