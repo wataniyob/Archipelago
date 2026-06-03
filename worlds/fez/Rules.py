@@ -49,6 +49,13 @@ class HasMinCubeCount(Rule["FezWorld"], game="Fez"):
             caching_enabled=getattr(world, "rule_caching_enabled", False),
         )
 
+    @override
+    def __str__(self) -> str:
+        str_item = "Cubes"
+        count = f", count={self.count}" if isinstance(self.count, FieldResolver) or self.count > 1 else ""
+        options = f", options={self.options}" if self.options else ""
+        return f"{self.__class__.__name__}({str_item}{count}{options})"
+
     class Resolved(Rule.Resolved):
         count: int
 
@@ -61,7 +68,8 @@ class HasMinCubeCount(Rule["FezWorld"], game="Fez"):
 
         @override
         def item_dependencies(self) -> [str, set[int]]:
-            return {"Golden Cube": set(), "Anti-Cube": set(), "Cube Bit": set()}
+            cube_types = ("Golden Cube", "Anti-Cube", "Cube Bit")
+            return {item: {id(self)} for item in cube_types}
 
         @override
         def explain_json(self, state: CollectionState | None = None) -> list[JSONMessagePart]:
