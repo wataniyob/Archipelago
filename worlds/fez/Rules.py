@@ -109,7 +109,7 @@ alphabet_rule = CanReachRegion("Fox")
 
 def _tetromino_rule(variant: str) -> Rule:
     if variant == 'knowledge':
-        return (CanReachRegion("Code Machine") & CanReachRegion("Nu Zu School") & CanReachRegion("Oldschool"))
+        return (CanReachRegion("Code Machine") & CanReachRegion("Nu Zu School"))
     if variant == 'scramble':
         return CanReachRegion("Code Machine")
     raise ValueError(f"Invalid variant '{variant}'")
@@ -187,7 +187,7 @@ def set_knowledge_rules(world: FezWorld) -> None:
     get_location = functools.partial(_get_location, world)
     get_entrance = functools.partial(_get_entrance, world)
 
-    # Set rules associated with teromino sequences
+    # Set rules associated with tetromino sequences
     set_tetromino_rules(world, 'knowledge')
 
     # Zu numerals logic
@@ -209,12 +209,6 @@ def set_knowledge_rules(world: FezWorld) -> None:
                             Has("Crypt Map D") &
                             number_rule))
 
-    # Throne anti-cube logic
-    world.set_rule(get_location("Throne Anti-Cube"), (CanReachRegion("Sewer QR") |
-                                                      (Has("Sunglasses") &
-                                                       CanReachRegion("Zu House Empty") &
-                                                       CanReachRegion("Zu Throne Ruins"))))
-
 
 def set_tetromino_rules(world: FezWorld, variant: str):
     """Rules for tetromino codes logic"""
@@ -228,9 +222,16 @@ def set_tetromino_rules(world: FezWorld, variant: str):
     world.set_rule(get_location("Achievement Anti-Cube"), tetromino_rule)
     world.set_rule(get_location("Zu Code Loop Anti-Cube"), tetromino_rule)
     world.set_rule(get_location("Code Machine Anti-Cube"), tetromino_rule)
-    world.set_rule(get_location("Boileroom Anti-Cube"), tetromino_rule)
+    if variant == 'knowledge':
+        world.set_rule(get_location("Boileroom Anti-Cube"), (tetromino_rule & number_rule))
+    else:
+        world.set_rule(get_location("Boileroom Anti-Cube"), tetromino_rule)
     world.set_rule(get_location("Nu Zu School Anti-Cube"), tetromino_rule)
     world.set_rule(get_location("Telescope Anti-Cube"), tetromino_rule)
+    world.set_rule(get_location("CMY Tune Fork Anti-Cube"), tetromino_rule)
+    world.set_rule(get_location("Lava Tune Fork Anti-Cube"), tetromino_rule)
+    world.set_rule(get_location("Sewer Tune Fork Anti-Cube"), tetromino_rule)
+    world.set_rule(get_location("Zu Tune Fork Anti-Cube"), tetromino_rule)
     world.set_rule(get_entrance("Waterfall", "CMY"), tetromino_rule)
     world.set_rule(get_entrance("Waterfall", "Water Wheel"), tetromino_rule)
     world.set_rule(get_entrance("Sewer to Lava", "Lava"), tetromino_rule)
@@ -242,9 +243,20 @@ def set_tetromino_rules(world: FezWorld, variant: str):
     world.set_rule(get_location("Zu Bridge Floor Anti-Cube"), first_person_rule)
 
     # Watertower secret logic
-    world.set_rule(get_location("Watertower Secret Anti-Cube"), (Has("QR Code Map") | tetromino_rule))
+    world.set_rule(get_location("Watertower Secret Anti-Cube"), (Has("QR Code Map") | first_person_rule))
 
     # Black monolith logic
-    world.set_rule(get_location("Black Monolith Heart Cube"), (Has("Ritual Map") &
-                                                               first_person_rule &
+    world.set_rule(get_location("Black Monolith Heart Cube"), (first_person_rule &
+                                                               Has("Ritual Map") &
                                                                Has("The Skull Artifact")))
+
+    # Throne anti-cube logic
+    if variant == 'knowledge':
+        world.set_rule(get_location("Throne Anti-Cube"), (tetromino_rule &
+                                                          (CanReachRegion("Sewer QR") |
+                                                           (Has("Sunglasses") &
+                                                            CanReachRegion("Zu House Empty") &
+                                                            CanReachRegion("Zu Throne Ruins")))))
+    else:
+        world.set_rule(get_location("Throne Anti-Cube"), tetromino_rule)
+    
