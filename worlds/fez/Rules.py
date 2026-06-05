@@ -197,10 +197,8 @@ def set_knowledge_rules(world: FezWorld) -> None:
 
     # Crypt map logic
     world.set_rule(get_entrance("Crypt", "Tree of Death"),
-                           (Has("Crypt Map A") &
-                            Has("Crypt Map B") &
-                            Has("Crypt Map C") &
-                            Has("Crypt Map D") &
+                           (HasAll("Crypt Map A", "Crypt Map B",
+                                   "Crypt Map C", "Crypt Map D") &
                             number_rule))
 
 
