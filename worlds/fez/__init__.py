@@ -126,7 +126,7 @@ class FezWorld(World):
             set_knowledge_rules(self)
         elif self.options.scramble_tetrominos:
             # If knowledge logic is also set, the knowledge logic already covers scramble logic
-            set_tetromino_rules(self, 'scramble')
+            set_tetromino_rules(self)
 
     def fill_slot_data(self) -> Dict[str, Any]:
         return self.options.as_dict(
