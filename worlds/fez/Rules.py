@@ -39,9 +39,9 @@ def _add_link_door_rule(world: FezWorld, region1: str, region2: str):
 
 
 @dataclasses.dataclass()
-class HasMinCubeCount(Rule["FezWorld"], game="Fez"):
+class HasCubes(Rule["FezWorld"], game="Fez"):
     count: int | FieldResolver
-    """The minimum cube count the player is required to have"""
+    """The number of cubes the player is required to have"""
     
     @override
     def _instantiate(self, world: "FezWorld") -> Rule.Resolved:
@@ -117,6 +117,9 @@ first_person_rule = (Has("Sunglasses", options=[OptionFilter(KnowledgeLogic, Tru
                      tetromino_rule)
 
 
+water_level_rule = CanReachRegion("Water Wheel")
+
+
 ########################################
 # Specific Rules
 ########################################
@@ -155,21 +158,20 @@ def set_rules(world: FezWorld) -> None:
     add_link_door_rule("Zu City Ruins", "Zu Library")
 
     # Cube count doors (requires having a specific number of either golden or anti cubes)
-    world.set_rule(get_entrance("Villageville 3D",    "Big Tower"),       HasMinCubeCount(1))
-    world.set_rule(get_entrance("Big Tower",          "Memory Core"),     HasMinCubeCount(2))
-    world.set_rule(get_entrance("Memory Core",        "Wall Village"),    HasMinCubeCount(4))
-    world.set_rule(get_entrance("Memory Core",        "Industrial City"), HasMinCubeCount(8))
-    world.set_rule(get_entrance("Memory Core",        "Zu City"),         HasMinCubeCount(16))
-    world.set_rule(get_entrance("Zu City",            "Stargate"),        HasMinCubeCount(32))
-    world.set_rule(get_entrance("Water Pyramid",      "Temple of Love"),  HasMinCubeCount(64))
+    world.set_rule(get_entrance("Villageville 3D",    "Big Tower"),       HasCubes(1))
+    world.set_rule(get_entrance("Big Tower",          "Memory Core"),     HasCubes(2))
+    world.set_rule(get_entrance("Memory Core",        "Wall Village"),    HasCubes(4))
+    world.set_rule(get_entrance("Memory Core",        "Industrial City"), HasCubes(8))
+    world.set_rule(get_entrance("Memory Core",        "Zu City"),         HasCubes(16))
+    world.set_rule(get_entrance("Zu City",            "Stargate"),        HasCubes(32))
+    world.set_rule(get_entrance("Water Pyramid",      "Temple of Love"),  HasCubes(64))
 
     # Water level logic (requires lowering the water level)
-    # Use RuleBuilder to fix issues with indirect connections
-    world.set_rule(get_entrance("Nature Hub", "Ritual"),              CanReachRegion("Water Wheel"))
-    world.set_rule(get_entrance("Waterfall", "Zu Zuish"),             CanReachRegion("Water Wheel"))
-    world.set_rule(get_entrance("_LighthouseLower", "Zu Fork"),       CanReachRegion("Water Wheel"))
-    world.set_rule(get_entrance("Water Tower", "Watertower Secret"),  CanReachRegion("Water Wheel"))
-    world.set_rule(get_entrance("Bell Tower", "Quantum"),             CanReachRegion("Water Wheel"))
+    world.set_rule(get_entrance("Nature Hub", "Ritual"),              water_level_rule)
+    world.set_rule(get_entrance("Waterfall", "Zu Zuish"),             water_level_rule)
+    world.set_rule(get_entrance("_LighthouseLower", "Zu Fork"),       water_level_rule)
+    world.set_rule(get_entrance("Water Tower", "Watertower Secret"),  water_level_rule)
+    world.set_rule(get_entrance("Bell Tower", "Quantum"),             water_level_rule)
 
     # Owl logic
     world.set_rule(get_entrance("Owl", "Big Owl"), Has("Owl", count = 4))
