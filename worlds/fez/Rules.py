@@ -224,6 +224,7 @@ def set_tetromino_rules(world: FezWorld):
                                               filtered_resolution=True)))
     world.set_rule(get_location("Nu Zu School Anti-Cube"), tetromino_rule)
     world.set_rule(get_location("Telescope Anti-Cube"), tetromino_rule)
+    world.set_rule(get_location("Telescope Heart Cube"), scramble_rule)
     world.set_rule(get_entrance("Waterfall", "CMY"), tetromino_rule)
     world.set_rule(get_entrance("Waterfall", "Water Wheel"), tetromino_rule)
     world.set_rule(get_entrance("Sewer to Lava", "Lava"), tetromino_rule)
