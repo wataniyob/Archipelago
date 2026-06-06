@@ -183,13 +183,14 @@ anti_cube_locations: List[FezLocationData] = [
     FezLocationData("Big Owl Anti-Cube", "Big Owl"),
     FezLocationData("Skull B Anti-Cube", "Skull B"),
     FezLocationData("Telescope Anti-Cube", "Telescope"),
-    FezLocationData("Zu House QR Anti-Cube", "Zu House QR"),
     FezLocationData("Zu Unfold Anti-Cube", "Zu Unfold"),
     FezLocationData("Code Machine Anti-Cube", "Code Machine"),
-    FezLocationData("Parlor Anti-Cube", "Parlor"),
     FezLocationData("Boileroom Anti-Cube", "Boileroom"),
     FezLocationData("Nu Zu School Anti-Cube", "Nu Zu School"),
     FezLocationData("Zu Heads Anti-Cube", "Zu Heads"),
+
+    # Available in 2 locations, so one-way connection to mock region
+    FezLocationData("Parlor Anti-Cube", "_ParlorAntiCube"),
 
     # Available in 3 locations, so one-way connection to mock region
     FezLocationData("Throne Anti-Cube", "_ThroneAntiCube"),
