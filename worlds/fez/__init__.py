@@ -3,10 +3,9 @@ from .Options import FezOptions, fez_option_groups, fez_option_presets
 from .Items import FezItem, all_item_data, item_name_groups, filler_items, main_items
 from .Locations import FezLocation, all_location_data, location_name_groups
 from .Regions import all_region_data, region_name_to_location_name
-from .Rules import set_rules, set_knowledge_rules, set_tetromino_rules, _cube_count_rule
+from .Rules import set_rules, set_knowledge_rules, set_tetromino_rules, HasCubes
 from worlds.AutoWorld import WebWorld, World
 from BaseClasses import Item, ItemClassification, Region, Tutorial
-from ..generic.Rules import add_rule
 
 
 class FezWeb(WebWorld):
@@ -127,7 +126,7 @@ class FezWorld(World):
             set_knowledge_rules(self)
         elif self.options.scramble_tetrominos:
             # If knowledge logic is also set, the knowledge logic already covers scramble logic
-            set_tetromino_rules(self, 'scramble')
+            set_tetromino_rules(self)
 
     def fill_slot_data(self) -> Dict[str, Any]:
         return self.options.as_dict(
@@ -169,12 +168,12 @@ class FezWorld(World):
             victory_32_loc = FezLocation(self.player, "Hex Rebuild with 32 Cubes", None, victory_32_region)
             victory_32_loc.place_locked_item(FezItem("Victory", ItemClassification.progression, None, self.player))
             self.multiworld.completion_condition[self.player] = lambda state: state.has("Victory", self.player)
-            add_rule(victory_32_loc, _cube_count_rule(self, 32))
+            self.set_rule(victory_32_loc, HasCubes(32))
             victory_32_region.locations.append(victory_32_loc)
         elif self.options.goal == 1:
             victory_64_region = self.multiworld.get_region("Gomez House End 64", self.player)
             victory_64_loc = FezLocation(self.player, "Hex Rebuild with 64 Cubes", None, victory_64_region)
             victory_64_loc.place_locked_item(FezItem("Victory", ItemClassification.progression, None, self.player))
             self.multiworld.completion_condition[self.player] = lambda state: state.has("Victory", self.player)
-            add_rule(victory_64_loc, _cube_count_rule(self, 64))
+            self.set_rule(victory_64_loc, HasCubes(64))
             victory_64_region.locations.append(victory_64_loc)

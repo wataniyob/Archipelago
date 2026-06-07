@@ -79,7 +79,7 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Orrery", {"Visitor", "Orrery B"}),
     FezRegionData("Owl", {"Graveyard Gate", "Big Owl"}),
     FezRegionData("Parlor 2D", {"Villageville 2D"}),
-    FezRegionData("Parlor", {"Villageville 3D"}),
+    FezRegionData("Parlor", {"Villageville 3D", "_ParlorAntiCube"}),
     FezRegionData("Pivot 1", {"Windmill Interior", "Industrial Hub", "Pivot 2"}),
     FezRegionData("Pivot 2", {"Pivot 3", "Extractor A", "Pivot 1"}),
     FezRegionData("Pivot 3", {"Pivot 1", "Pivot 3 Cave"}),
@@ -152,7 +152,7 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Zu Heads", {"Zu 4 Side"}),
     FezRegionData("Zu House Empty B", {"Zu City"}),
     FezRegionData("Zu House Empty", {"Zu City", "_ThroneAntiCube"}),
-    FezRegionData("Zu House QR", {"Zu City Ruins"}),
+    FezRegionData("Zu House QR", {"Zu City Ruins", "_ParlorAntiCube"}),
     FezRegionData("Zu House Ruin Visitors", {"Zu City Ruins"}),
     FezRegionData("Zu House Scaffolding", {"Zu City"}),
     FezRegionData("Zu Library", {"Library Interior", "Clock", "Zu City Ruins"}),
@@ -163,6 +163,9 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Zu Unfold", {"Throne"}),
     FezRegionData("Zu Zuish", {"Waterfall"}),
     # DRUM, OCTOHEDRON, WATERFALL_ALT and ZU_HOUSE_RUIN_GATE are all not playable and are excluded despite having fezlvl data
+
+    # Mock region to store "Parlor Anti-Cube" connected to starting region to avoid dead end
+    FezRegionData("_ParlorAntiCube", {"Gomez House"}),
 
     # Mock region to store "Throne Anti-Cube" connected to starting region to avoid dead end
     FezRegionData("_ThroneAntiCube", {"Gomez House"})
