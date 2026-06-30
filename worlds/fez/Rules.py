@@ -182,7 +182,7 @@ def set_rules(world: FezWorld) -> None:
                    (CanReachRegion("Watertower Secret") | Has("QR Code Map")) &
                    ([OptionFilter(KnowledgeLogic, False),
                      OptionFilter(ScrambleTetrominos, False)] | 
-                   (tetromino_rule & Has("Sunglasses",
+                   (tetromino_rule & HasAny("QR Code Map", "Sunglasses",
                                          options=[OptionFilter(KnowledgeLogic, True)],
                                          filtered_resolution=True))))
 
