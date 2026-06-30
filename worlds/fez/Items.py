@@ -29,6 +29,7 @@ progression_items: List[FezItemData] = [
     FezItemData("Bell Tower Door Unlocked",     1,  ItemClassification.progression),
     FezItemData("Cabin Door Unlocked",          1,  ItemClassification.progression),
     FezItemData("Throne Door Unlocked",         1,  ItemClassification.progression),
+    FezItemData("QR Code Map",                  1,  ItemClassification.progression),
 ]
 
 skippable_items: List[FezItemData] = [
@@ -37,7 +38,6 @@ skippable_items: List[FezItemData] = [
     FezItemData("Crypt Map B",          1,  ItemClassification.deprioritized),
     FezItemData("Crypt Map C",          1,  ItemClassification.deprioritized),
     FezItemData("Crypt Map D",          1,  ItemClassification.deprioritized),
-    FezItemData("QR Code Map",          1,  ItemClassification.deprioritized),
     FezItemData("Pivot Map",            1,  ItemClassification.deprioritized),
     FezItemData("Ritual Map",           1,  ItemClassification.deprioritized),
     FezItemData("Tree Sky Map",         1,  ItemClassification.deprioritized),

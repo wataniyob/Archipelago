@@ -128,6 +128,7 @@ def set_rules(world: FezWorld) -> None:
     """Rules that are always present"""
     # Helper functions
     get_entrance = functools.partial(_get_entrance, world)
+    get_location = functools.partial(_get_location, world)
     add_link_door_rule = functools.partial(_add_link_door_rule, world)
 
     # Key doors (requires a specific key to open, unique behaviour to AP)
@@ -175,6 +176,15 @@ def set_rules(world: FezWorld) -> None:
 
     # Owl logic
     world.set_rule(get_entrance("Owl", "Big Owl"), Has("Owl", count = 4))
+
+    # Watertower secret logic
+    world.set_rule(get_location("Watertower Secret Anti-Cube"),
+                   (CanReachRegion("Watertower Secret") | Has("QR Code Map")) &
+                   ([OptionFilter(KnowledgeLogic, False),
+                     OptionFilter(ScrambleTetrominos, False)] | 
+                   (tetromino_rule & Has("Sunglasses",
+                                         options=[OptionFilter(KnowledgeLogic, True)],
+                                         filtered_resolution=True))))
 
 
 def set_knowledge_rules(world: FezWorld) -> None:
@@ -240,12 +250,6 @@ def set_tetromino_rules(world: FezWorld):
     world.set_rule(get_location("Tree Cabin Floor Anti-Cube"), first_person_rule)
     world.set_rule(get_location("Tree Sky Floor Anti-Cube"), first_person_rule)
     world.set_rule(get_location("Zu Bridge Floor Anti-Cube"), first_person_rule)
-
-    # Watertower secret logic
-    world.set_rule(get_location("Watertower Secret Anti-Cube"),
-                   (tetromino_rule & HasAny("QR Code Map", "Sunglasses",
-                                            options=[OptionFilter(KnowledgeLogic, True)],
-                                            filtered_resolution=True)))
 
     # Black monolith logic
     world.set_rule(get_location("Black Monolith Heart Cube"),
