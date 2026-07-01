@@ -135,7 +135,6 @@ def set_rules(world: FezWorld) -> None:
     """Rules that are always present"""
     # Helper functions
     get_entrance = functools.partial(_get_entrance, world)
-    get_location = functools.partial(_get_location, world)
     add_link_door_rule = functools.partial(_add_link_door_rule, world)
 
     # Key doors (requires a specific key to open, unique behaviour to AP)
