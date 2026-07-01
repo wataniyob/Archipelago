@@ -110,10 +110,17 @@ alphabet_rule = CanReachRegion("Fox")
 
 
 tetromino_rule = (CanReachRegion("Code Machine") &
-                  CanReachRegion("Nu Zu School", options=[OptionFilter(KnowledgeLogic, True)], filtered_resolution=True))
+                  CanReachRegion("Nu Zu School", options=[OptionFilter(KnowledgeLogic, True)],
+                                 filtered_resolution=True))
 
 
-first_person_rule = (Has("Sunglasses", options=[OptionFilter(KnowledgeLogic, True)], filtered_resolution=True) &
+scramble_rotate_rule = Filtered(CanReachRegion("Code Machine"),
+                                options=[OptionFilter(ScrambleTetrominos, True)],
+                                filtered_resolution=True)
+
+
+first_person_rule = (Has("Sunglasses", options=[OptionFilter(KnowledgeLogic, True)],
+                         filtered_resolution=True) &
                      tetromino_rule)
 
 
@@ -176,6 +183,10 @@ def set_rules(world: FezWorld) -> None:
     # Owl logic
     world.set_rule(get_entrance("Owl", "Big Owl"), Has("Owl", count = 4))
 
+    # Watertower secret anti-cube logic for QR Code Map
+    world.set_rule(get_entrance("Gomez House", "_WatertowerSecretAntiCube"),
+                   (scramble_rotate_rule & Has("QR Code Map")))
+
 
 def set_knowledge_rules(world: FezWorld) -> None:
     """Rules for knowledge logic"""
@@ -209,13 +220,10 @@ def set_tetromino_rules(world: FezWorld):
     # Helper functions
     get_location = functools.partial(_get_location, world)
     get_entrance = functools.partial(_get_entrance, world)
-    scramble_rule = Filtered(tetromino_rule,
-                             options=[OptionFilter(ScrambleTetrominos, True)],
-                             filtered_resolution=True)
 
     # Tetromino logic
-    world.set_rule(get_location("Achievement Anti-Cube"), scramble_rule)
-    world.set_rule(get_location("Parlor Anti-Cube"), scramble_rule)
+    world.set_rule(get_location("Achievement Anti-Cube"), scramble_rotate_rule)
+    world.set_rule(get_location("Parlor Anti-Cube"), scramble_rotate_rule)
     world.set_rule(get_location("Zu Code Loop Anti-Cube"), tetromino_rule)
     world.set_rule(get_location("Code Machine Anti-Cube"), tetromino_rule)
     world.set_rule(get_location("Boileroom Anti-Cube"),
@@ -224,28 +232,22 @@ def set_tetromino_rules(world: FezWorld):
                                               filtered_resolution=True)))
     world.set_rule(get_location("Nu Zu School Anti-Cube"), tetromino_rule)
     world.set_rule(get_location("Telescope Anti-Cube"), tetromino_rule)
-    world.set_rule(get_location("Telescope Heart Cube"), scramble_rule)
+    world.set_rule(get_location("Telescope Heart Cube"), scramble_rotate_rule)
     world.set_rule(get_entrance("Waterfall", "CMY"), tetromino_rule)
     world.set_rule(get_entrance("Waterfall", "Water Wheel"), tetromino_rule)
     world.set_rule(get_entrance("Sewer to Lava", "Lava"), tetromino_rule)
 
     # Fork tetromino logic
-    world.set_rule(get_location("CMY Tune Fork Anti-Cube"), scramble_rule)
-    world.set_rule(get_location("Lava Tune Fork Anti-Cube"), scramble_rule)
-    world.set_rule(get_location("Sewer Tune Fork Anti-Cube"), scramble_rule)
-    world.set_rule(get_location("Zu Tune Fork Anti-Cube"), scramble_rule)
+    world.set_rule(get_location("CMY Tune Fork Anti-Cube"), scramble_rotate_rule)
+    world.set_rule(get_location("Lava Tune Fork Anti-Cube"), scramble_rotate_rule)
+    world.set_rule(get_location("Sewer Tune Fork Anti-Cube"), scramble_rotate_rule)
+    world.set_rule(get_location("Zu Tune Fork Anti-Cube"), scramble_rotate_rule)
 
     # First-person logic
     world.set_rule(get_location("Lighthouse Floor Anti-Cube"), first_person_rule)
     world.set_rule(get_location("Tree Cabin Floor Anti-Cube"), first_person_rule)
     world.set_rule(get_location("Tree Sky Floor Anti-Cube"), first_person_rule)
     world.set_rule(get_location("Zu Bridge Floor Anti-Cube"), first_person_rule)
-
-    # Watertower secret logic
-    world.set_rule(get_location("Watertower Secret Anti-Cube"),
-                   (tetromino_rule & HasAny("QR Code Map", "Sunglasses",
-                                            options=[OptionFilter(KnowledgeLogic, True)],
-                                            filtered_resolution=True)))
 
     # Black monolith logic
     world.set_rule(get_location("Black Monolith Heart Cube"),
@@ -255,9 +257,18 @@ def set_tetromino_rules(world: FezWorld):
 
     # Throne anti-cube logic
     world.set_rule(get_location("Throne Anti-Cube"),
-                   (tetromino_rule & Or(CanReachRegion("Sewer QR"),
-                                        And(Has("Sunglasses"), CanReachRegion("Zu House Empty"),
-                                            CanReachRegion("Zu Throne Ruins")),
-                                        options=[OptionFilter(KnowledgeLogic, True)],
-                                        filtered_resolution=True)))
+                   (scramble_rotate_rule &
+                    Or(CanReachRegion("Sewer QR"),
+                       And(Has("Sunglasses"),
+                           CanReachRegion("Code Machine"),
+                           CanReachRegion("Zu House Empty"),
+                           CanReachRegion("Zu Throne Ruins")),
+                       options=[OptionFilter(KnowledgeLogic, True)],
+                       filtered_resolution=True)))
+
+    # Watertower Secret Anti-Cube logic for Watertower Secret location
+    world.set_rule(get_entrance("Watertower Secret", "_WatertowerSecretAntiCube"),
+                   (CanReachRegion("Code Machine") &
+                    Has("Sunglasses", options=[OptionFilter(KnowledgeLogic, True)],
+                        filtered_resolution=True)))
     
