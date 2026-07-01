@@ -38,7 +38,7 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Gomez House 2D", {"Villageville 2D"}),
     FezRegionData("Gomez House End 32", {"Villageville 3D End 32"}),
     FezRegionData("Gomez House End 64", {"Villageville 3D End 64"}),
-    FezRegionData("Gomez House", {"Villageville 3D"}),
+    FezRegionData("Gomez House", {"Villageville 3D", "_WatertowerSecretAntiCube"}),
     FezRegionData("Graveyard Cabin", {"Cabin Interior A", "Graveyard Gate"}),
     FezRegionData("Graveyard Ghost", {"Mausoleum"}),
     FezRegionData("Graveyard Lesser Gate", {"Graveyard A"}),
@@ -138,7 +138,7 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Water Wheel B", {"Water Wheel"}),
     FezRegionData("Water Wheel", {"Water Wheel B", "Waterfall"}),
     FezRegionData("Waterfall", {"Fox", "Nature Hub", "Water Wheel", "Mine A", "CMY", "Zu Code Loop", "Zu Zuish"}),
-    FezRegionData("Watertower Secret", {"Water Tower"}),
+    FezRegionData("Watertower Secret", {"Water Tower", "_WatertowerSecretAntiCube"}),
     FezRegionData("Weightswitch Temple", {"Zu Switch", "Arch"}),
     FezRegionData("Well 2", {"Sewer Start", "Rails", "Industrial Hub"}),
     FezRegionData("Windmill Cave", {"Windmill Interior"}),
@@ -164,11 +164,10 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Zu Zuish", {"Waterfall"}),
     # DRUM, OCTOHEDRON, WATERFALL_ALT and ZU_HOUSE_RUIN_GATE are all not playable and are excluded despite having fezlvl data
 
-    # Mock region to store "Parlor Anti-Cube" connected to starting region to avoid dead end
+    # Mock regions to store special anti-cubes connected to starting region to avoid dead ends
     FezRegionData("_ParlorAntiCube", {"Gomez House"}),
-
-    # Mock region to store "Throne Anti-Cube" connected to starting region to avoid dead end
-    FezRegionData("_ThroneAntiCube", {"Gomez House"})
+    FezRegionData("_ThroneAntiCube", {"Gomez House"}),
+    FezRegionData("_WatertowerSecretAntiCube", {"Gomez House"})
 }
 
 region_name_to_location_name: Dict[str, Set[str]] = {data.name: set() for data in all_region_data}

@@ -175,7 +175,6 @@ anti_cube_locations: List[FezLocationData] = [
     FezLocationData("Zu Bridge Floor Anti-Cube", "Zu Bridge"),
     FezLocationData("Bell Tower Anti-Cube", "Bell Tower"),
     FezLocationData("Quantum Anti-Cube", "Quantum"),
-    FezLocationData("Watertower Secret Anti-Cube", "Gomez House"),
     FezLocationData("Zu Code Loop Anti-Cube", "Zu Code Loop"),
     FezLocationData("CMY B Anti-Cube", "CMY B"),
     FezLocationData("Zu Tetris Anti-Cube", "Zu Tetris"),
@@ -189,11 +188,10 @@ anti_cube_locations: List[FezLocationData] = [
     FezLocationData("Nu Zu School Anti-Cube", "Nu Zu School"),
     FezLocationData("Zu Heads Anti-Cube", "Zu Heads"),
 
-    # Available in 2 locations, so one-way connection to mock region
+    # Available in multiple locations, so one-way connection to mock region
     FezLocationData("Parlor Anti-Cube", "_ParlorAntiCube"),
-
-    # Available in 3 locations, so one-way connection to mock region
     FezLocationData("Throne Anti-Cube", "_ThroneAntiCube"),
+    FezLocationData("Watertower Secret Anti-Cube", "_WatertowerSecretAntiCube")
 ]
 
 heart_cube_locations: List[FezLocationData] = [
