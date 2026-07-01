@@ -259,12 +259,13 @@ def set_tetromino_rules(world: FezWorld):
     # Throne anti-cube logic
     world.set_rule(get_location("Throne Anti-Cube"),
                    (scramble_rotate_rule &
-                    And(Has("Sunglasses"),
-                        CanReachRegion("Code Machine"),
-                        CanReachRegion("Zu House Empty"),
-                        CanReachRegion("Zu Throne Ruins"),
-                        options=[OptionFilter(KnowledgeLogic, True)],
-                        filtered_resolution=True)))
+                    Or(CanReachRegion("Sewer QR"),
+                       And(Has("Sunglasses"),
+                           CanReachRegion("Code Machine"),
+                           CanReachRegion("Zu House Empty"),
+                           CanReachRegion("Zu Throne Ruins")),
+                       options=[OptionFilter(KnowledgeLogic, True)],
+                       filtered_resolution=True)))
 
     # Watertower Secret Anti-Cube logic for Watertower Secret location
     world.set_rule(get_entrance("Watertower Secret", "_WatertowerSecretAntiCube"),
