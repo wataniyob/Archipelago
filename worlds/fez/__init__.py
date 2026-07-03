@@ -55,13 +55,6 @@ class FezWorld(World):
 # start of ordered Main.py calls
 
     def generate_early(self) -> None:
-        # Remove clock antis if not shuffling
-        if not self.options.shuffle_clock_antis:
-            clockLocationData = [location for location in all_location_data if "Clock Tower" in location.name]
-            for location in clockLocationData:
-                self.options.exclude_locations.value.add(location.name)
-                all_location_data.remove(location)
-
         # Replace specified number of golden cubes with cube bits
         if self.options.num_cubes_replace_bits > 0:
             bit_idx = [idx for idx, item in enumerate(main_items) if "Cube Bit" in item.name][0]
@@ -82,6 +75,11 @@ class FezWorld(World):
             locations_in_region = {name: self.location_name_to_id.get(name)
                                    for name in location_names
                                    if name in location_names}
+            # Remove clock antis if not shuffling
+            if data.name == "Clock" and not self.options.shuffle_clock_antis:
+                locations_in_region = {name: id
+                                       for name, id in locations_in_region.items()
+                                       if "Clock Tower" not in name}
             region.add_locations(locations_in_region, FezLocation)
             region.add_exits(data.exits)
 
@@ -100,7 +98,7 @@ class FezWorld(World):
             for _ in range(item.count):
                 new_item = self.create_item(item.name)
                 self.multiworld.itempool.append(new_item)
-                
+
             # Add extra golden cubes
             if "Golden Cube" in item.name and self.options.extra_cubes > 0:
                 # Only add up to the location limit
@@ -114,10 +112,12 @@ class FezWorld(World):
                 for _ in range(extra_cube_count):
                     new_item = FezItem(item.name, ItemClassification.useful, item_id, self.player)
                     self.multiworld.itempool.append(new_item)
-                    
+
 
         # Add filler
         fill_size = len(self.location_name_to_id) - sum(item.count for item in main_items) - extra_cube_count
+        if not self.options.shuffle_clock_antis:
+            fill_size -= 4
         self.add_filler_items(fill_size)
 
     def set_rules(self) -> None:
@@ -132,6 +132,7 @@ class FezWorld(World):
         return self.options.as_dict(
             "death_link",
             "goal",
+            "shuffle_clock_antis",
             "scramble_tetrominos",
             "disable_visual_pain"
         )
