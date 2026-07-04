@@ -6,6 +6,7 @@ from .Regions import all_region_data, region_name_to_location_name
 from .Rules import set_rules, set_knowledge_rules, set_tetromino_rules, HasCubes
 from worlds.AutoWorld import WebWorld, World
 from BaseClasses import Item, ItemClassification, Region, Tutorial
+import logging, random
 
 
 class FezWeb(WebWorld):
@@ -89,32 +90,61 @@ class FezWorld(World):
         self.create_completion_events()
 
     def create_items(self) -> None:
+        # If knowledge logic is enabled, maps, sunglasses and skull artifact are all progression
+        if self.options.knowledge_logic:
+            for idx in range(len(main_items)):
+                if main_items[idx].classification == ItemClassification.deprioritized:
+                    main_items[idx].classification = ItemClassification.progression
+
+        spare_cnt = len(self.location_name_to_id) - sum(item.count for item in main_items)
+        skippable_cnt = len(self.location_name_to_id) - sum(item.count for item in main_items if (item.classification == ItemClassification.filler || item.classification == ItemClassification.deprioritized))
+
+        if spare_cnt < 0:
+            # If there are more items than locations, first add base game filler items to starting inventory
+            skippable_cnt = min(skippable_cnt, abs(spare_cnt))
+
+            logging.info("More items than locations, placing " + str(skippable_cnt) + " filler items in starting inventory")
+            skippable_idx = [idx for idx, item in enumerate(main_items) if (item.classification == ItemClassification.filler || item.classification == ItemClassification.deprioritized)]
+            for _ in range(skippable_cnt):
+                item_idx = random.randomint(0, len(skippable_idx)-1)
+                new_item = self.create_item(main_items[skippable_idx[item_idx]].name)
+                self.push_precollected(new_item)
+                main_items[skippable_idx[item_idx]].count -= 1
+                spare_cnt += 1
+                if main_items[skippable_idx[item_idx]].count <= 0:
+                    skippable_idx.pop(item_idx)
+
+            # If there are still more items than locations after adding all base game filler items to starting inventory, use Anti-Cubes to fill the remaining difference
+            if spare_cnt < 0:
+                logging.info("Still more items than locations after all base game filler items given, placing " + str(abs(spare_cnt)) + " Anti-Cubes in starting inventory")
+                anticube_idx = [idx for idx, item in enumerate(main_items) if "Anti-Cube" in item.name][0]
+                for _ in range(abs(spare_cnt)):
+                    new_item = self.create_item("Anti-Cube")
+                    self.push_precollected(new_item)
+                    main_items[anticube_idx].count -= 1
+
         extra_cube_count = 0
 
+        # Only add up to the location limit for extra golden cubes
+        if spare_cnt < self.options.extra_cubes:
+            logging.info("Not enough remaining locations to place specified extra Golden Cubes, can only add " + str(spare_cnt) + " cubes")
+            extra_cube_count = spare_cnt
+        else:
+            extra_cube_count = self.options.extra_cubes
+
         for item in main_items:
-            # If knowledge logic is enabled, maps, sunglasses and skull artifact are all progression
-            if self.options.knowledge_logic:
-                if item.classification == ItemClassification.deprioritized:
-                    item.classification = ItemClassification.progression
             # Add count of item to pool
             for _ in range(item.count):
                 new_item = self.create_item(item.name)
                 self.multiworld.itempool.append(new_item)
-                
-            # Add extra golden cubes
-            if "Golden Cube" in item.name and self.options.extra_cubes > 0:
-                # Only add up to the location limit
-                if len(self.location_name_to_id) - sum(item.count for item in main_items) < self.options.extra_cubes:
-                    extra_cube_count = len(self.location_name_to_id) - sum(item.count for item in main_items)
-                else:
-                    extra_cube_count = self.options.extra_cubes
 
+            # Add extra golden cubes
+            if "Golden Cube" in item.name and extra_cube_count > 0:
                 item_id = self.item_name_to_id[item.name]
 
                 for _ in range(extra_cube_count):
                     new_item = FezItem(item.name, ItemClassification.useful, item_id, self.player)
                     self.multiworld.itempool.append(new_item)
-                    
 
         # Add filler
         fill_size = len(self.location_name_to_id) - sum(item.count for item in main_items) - extra_cube_count
