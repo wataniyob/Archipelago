@@ -98,7 +98,7 @@ class FezWorld(World):
                 if main_items[idx].name in knowledge_names:
                     main_items[idx].classification = ItemClassification.progression
 
-        spare_cnt = len(self.location_name_to_id) - sum(item.count for item in main_items) - len(self.options.exclude_locations.value)
+        spare_cnt = len(self.location_name_to_id) - sum(item.count for item in main_items)
         skippable_cnt = sum(item.count for item in main_items if item.classification == ItemClassification.filler)
 
         if spare_cnt < 0:
@@ -127,16 +127,31 @@ class FezWorld(World):
                     main_items[progression_idx[item_idx]].count -= 1
                     if main_items[progression_idx[item_idx]].count <= 0:
                         progression_idx.pop(item_idx)
-                spare_cnt = 0
 
         extra_cube_count = 0
 
-        # Only add up to the location limit for extra golden cubes
-        if spare_cnt < self.options.extra_cubes:
-            logging.info("Not enough remaining locations to place specified extra Golden Cubes, can only add " + str(spare_cnt) + " cubes")
-            extra_cube_count = spare_cnt
+        # Ensure there are enough items moved to the starting inventory such that there are enough filler items (base game or generated) to match excluded locations
+        skippable_cnt = sum(item.count for item in main_items if item.classification == ItemClassification.filler)
+        num_exclude_unaccounted = len(self.options.exclude_locations.value) - skippable_cnt
+        if (num_exclude_unaccounted > 0):
+            logging.info("Placing an additional " + str(num_exclude_unaccounted) + " progression items in starting inventory to ensure enough filler items exist for excluded locations")
+            progression_idx = [idx for idx, item in enumerate(main_items) if item.classification == ItemClassification.progression]
+            for _ in range(num_exclude_unaccounted):
+                item_idx = random.randint(0, len(progression_idx)-1)
+                new_item = self.create_item(main_items[progression_idx[item_idx]].name)
+                self.push_precollected(new_item)
+                main_items[progression_idx[item_idx]].count -= 1
+                if main_items[progression_idx[item_idx]].count <= 0:
+                    progression_idx.pop(item_idx)
+
         else:
-            extra_cube_count = self.options.extra_cubes
+            # If there are enough filler items to match excluded locations, add up to the location limit for extra golden cubes
+            remaining_empty_loc = len(self.location_name_to_id) - sum(item.count for item in main_items)
+            if remaining_empty_loc < self.options.extra_cubes:
+                logging.info("Not enough remaining locations to place specified extra Golden Cubes, can only add " + str(remaining_empty_loc) + " extra cubes")
+                extra_cube_count = remaining_empty_loc
+            elif remaining_empty_loc > 0:
+                extra_cube_count = self.options.extra_cubes
 
         for item in main_items:
             # Add count of item to pool
