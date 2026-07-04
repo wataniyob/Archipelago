@@ -1,6 +1,6 @@
 from typing import Any, Dict
 from .Options import FezOptions, fez_option_groups, fez_option_presets
-from .Items import FezItem, all_item_data, item_name_groups, filler_items, main_items
+from .Items import FezItem, all_item_data, item_name_groups, filler_items, main_items, knowledge_items
 from .Locations import FezLocation, all_location_data, location_name_groups
 from .Regions import all_region_data, region_name_to_location_name
 from .Rules import set_rules, set_knowledge_rules, set_tetromino_rules, HasCubes
@@ -92,19 +92,21 @@ class FezWorld(World):
     def create_items(self) -> None:
         # If knowledge logic is enabled, maps, sunglasses and skull artifact are all progression
         if self.options.knowledge_logic:
+            knowledge_names = [knowledge_item.name
+                               for knowledge_item in knowledge_items]
             for idx in range(len(main_items)):
-                if main_items[idx].classification == ItemClassification.deprioritized:
+                if main_items[idx].name in knowledge_names:
                     main_items[idx].classification = ItemClassification.progression
 
         spare_cnt = len(self.location_name_to_id) - sum(item.count for item in main_items)
-        skippable_cnt = len(self.location_name_to_id) - sum(item.count for item in main_items if (item.classification == ItemClassification.filler || item.classification == ItemClassification.deprioritized))
+        skippable_cnt = sum(item.count for item in main_items if item.classification == ItemClassification.filler)
 
         if spare_cnt < 0:
             # If there are more items than locations, first add base game filler items to starting inventory
             skippable_cnt = min(skippable_cnt, abs(spare_cnt))
 
             logging.info("More items than locations, placing " + str(skippable_cnt) + " filler items in starting inventory")
-            skippable_idx = [idx for idx, item in enumerate(main_items) if (item.classification == ItemClassification.filler || item.classification == ItemClassification.deprioritized)]
+            skippable_idx = [idx for idx, item in enumerate(main_items) if item.classification == ItemClassification.filler]
             for _ in range(skippable_cnt):
                 item_idx = random.randomint(0, len(skippable_idx)-1)
                 new_item = self.create_item(main_items[skippable_idx[item_idx]].name)
