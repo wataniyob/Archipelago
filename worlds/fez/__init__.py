@@ -100,7 +100,7 @@ class FezWorld(World):
             for _ in range(item.count):
                 new_item = self.create_item(item.name)
                 self.multiworld.itempool.append(new_item)
-                
+
             # Add extra golden cubes
             if "Golden Cube" in item.name and self.options.extra_cubes > 0:
                 # Only add up to the location limit
@@ -114,7 +114,7 @@ class FezWorld(World):
                 for _ in range(extra_cube_count):
                     new_item = FezItem(item.name, ItemClassification.useful, item_id, self.player)
                     self.multiworld.itempool.append(new_item)
-                    
+
 
         # Add filler
         fill_size = len(self.location_name_to_id) - sum(item.count for item in main_items) - extra_cube_count
@@ -163,17 +163,9 @@ class FezWorld(World):
 
     def create_completion_events(self) -> None:
         """Set completion condition based on goal option"""
-        if self.options.goal == 0:
-            victory_32_region = self.multiworld.get_region("Hex Rebuild", self.player)
-            victory_32_loc = FezLocation(self.player, "Hex Rebuild with 32 Cubes", None, victory_32_region)
-            victory_32_loc.place_locked_item(FezItem("Victory", ItemClassification.progression, None, self.player))
-            self.multiworld.completion_condition[self.player] = lambda state: state.has("Victory", self.player)
-            self.set_rule(victory_32_loc, HasCubes(32))
-            victory_32_region.locations.append(victory_32_loc)
-        elif self.options.goal == 1:
-            victory_64_region = self.multiworld.get_region("Gomez House End 64", self.player)
-            victory_64_loc = FezLocation(self.player, "Hex Rebuild with 64 Cubes", None, victory_64_region)
-            victory_64_loc.place_locked_item(FezItem("Victory", ItemClassification.progression, None, self.player))
-            self.multiworld.completion_condition[self.player] = lambda state: state.has("Victory", self.player)
-            self.set_rule(victory_64_loc, HasCubes(64))
-            victory_64_region.locations.append(victory_64_loc)
+        victory_region = self.multiworld.get_region("Hex Rebuild", self.player)
+        victory_loc = FezLocation(self.player, "Hex Rebuild", None, victory_region)
+        victory_loc.place_locked_item(FezItem("Victory", ItemClassification.progression, None, self.player))
+        self.multiworld.completion_condition[self.player] = lambda state: state.has("Victory", self.player)
+        self.set_rule(victory_loc, HasCubes(self.options.goal.value))
+        victory_region.locations.append(victory_loc)

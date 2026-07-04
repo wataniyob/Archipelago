@@ -5,17 +5,15 @@ from Options import Choice, DeathLinkMixin, OptionCounter, OptionGroup, PerGameC
 from .Items import trap_items
 
 
-class Goal(Choice):
+class Goal(Range):
     """Defines the goal to accomplish in order to complete the randomizer.
 
-    - 32 Cubes: Complete 32 cube ending
-
-    - 64 Cubes: Complete 64 cube ending
+    How many cubes are required to beat the randomizer. You must reach the end of the game with at least this many cubes collected.
     """
     display_name = "Goal"
-    option_32_cubes = 0
-    option_64_cubes = 1
-    default = 0
+    range_start = 32
+    range_end = 64
+    default = 32
 
 class NumberCubesReplacedByBits(Range):
     """Replaces a certain number of golden cubes with an equivalent number of bits.
@@ -114,15 +112,15 @@ fez_option_groups = [
 
 fez_option_presets: Dict[str, Dict[str, Any]] = {
     "Sync": {
-        "goal": Goal.option_32_cubes,
+        "goal": 32,
         "shuffle_clock_antis": False,
     },
     "Async": {
-        "goal": Goal.option_64_cubes,
+        "goal": 64,
         "shuffle_clock_antis": False,
     },
     "Awful": {
-        "goal": Goal.option_64_cubes,
+        "goal": 64,
         "shuffle_clock_antis": True,
         "scramble_tetrominos": True,
         "trap_percentage": 100,
