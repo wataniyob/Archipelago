@@ -32,17 +32,20 @@ progression_items: List[FezItemData] = [
     FezItemData("QR Code Map",                  1,  ItemClassification.progression),
 ]
 
+knowledge_items: List[FezItemData] = [
+    FezItemData("Arch Map",             1,  ItemClassification.filler),
+    FezItemData("Crypt Map A",          1,  ItemClassification.filler),
+    FezItemData("Crypt Map B",          1,  ItemClassification.filler),
+    FezItemData("Crypt Map C",          1,  ItemClassification.filler),
+    FezItemData("Crypt Map D",          1,  ItemClassification.filler),
+    FezItemData("Pivot Map",            1,  ItemClassification.filler),
+    FezItemData("Ritual Map",           1,  ItemClassification.filler),
+    FezItemData("Tree Sky Map",         1,  ItemClassification.filler),
+    FezItemData("Sunglasses",           1,  ItemClassification.filler),
+    FezItemData("The Skull Artifact",   1,  ItemClassification.filler),  # Contains code for black monolith
+]
+
 skippable_items: List[FezItemData] = [
-    FezItemData("Arch Map",             1,  ItemClassification.deprioritized),
-    FezItemData("Crypt Map A",          1,  ItemClassification.deprioritized),
-    FezItemData("Crypt Map B",          1,  ItemClassification.deprioritized),
-    FezItemData("Crypt Map C",          1,  ItemClassification.deprioritized),
-    FezItemData("Crypt Map D",          1,  ItemClassification.deprioritized),
-    FezItemData("Pivot Map",            1,  ItemClassification.deprioritized),
-    FezItemData("Ritual Map",           1,  ItemClassification.deprioritized),
-    FezItemData("Tree Sky Map",         1,  ItemClassification.deprioritized),
-    FezItemData("Sunglasses",           1,  ItemClassification.deprioritized),
-    FezItemData("The Skull Artifact",   1,  ItemClassification.deprioritized),  # Contains code for black monolith
     FezItemData("The Writing Cube",     1,  ItemClassification.filler),
     FezItemData("The Counting Cube",    1,  ItemClassification.filler),
     FezItemData("The Tome Artifact",    1,  ItemClassification.filler),
@@ -60,11 +63,12 @@ filler_items: List[FezItemData] = [
     FezItemData("Emotional Support",    1,  ItemClassification.filler),
 ]
 
-main_items = progression_items + skippable_items
+main_items = progression_items + knowledge_items + skippable_items
 all_item_data = main_items + trap_items + filler_items
 
 item_name_groups = {
     "Progression":  {item.name for item in progression_items},
+    "Knowledge":    {item.name for item in knowledge_items},
     "Skippable":    {item.name for item in skippable_items},
     "Trap":         {item.name for item in trap_items},
     "Filler":       {item.name for item in filler_items},
