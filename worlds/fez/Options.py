@@ -22,7 +22,7 @@ class NumberCubesReplacedByBits(Range):
 
     1 Golden Cube = 8 Cube Bits
 
-    NOTE: Near the upper limit of this option, filler items and anti-cubes will be automatically placed in the starting inventory to account for fewer locations than items.
+    NOTE: Near the upper limit of this option, items (filler, then progression) will be automatically placed in the starting inventory to account for fewer locations than items.
     """
     display_name = "Cube Bits Replacement"
     range_start = 0

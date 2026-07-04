@@ -98,7 +98,7 @@ class FezWorld(World):
                 if main_items[idx].name in knowledge_names:
                     main_items[idx].classification = ItemClassification.progression
 
-        spare_cnt = len(self.location_name_to_id) - sum(item.count for item in main_items)
+        spare_cnt = len(self.location_name_to_id) - sum(item.count for item in main_items) - len(self.options.exclude_locations.value)
         skippable_cnt = sum(item.count for item in main_items if item.classification == ItemClassification.filler)
 
         if spare_cnt < 0:
@@ -108,7 +108,7 @@ class FezWorld(World):
             logging.info("More items than locations, placing " + str(skippable_cnt) + " filler items in starting inventory")
             skippable_idx = [idx for idx, item in enumerate(main_items) if item.classification == ItemClassification.filler]
             for _ in range(skippable_cnt):
-                item_idx = random.randomint(0, len(skippable_idx)-1)
+                item_idx = random.randint(0, len(skippable_idx)-1)
                 new_item = self.create_item(main_items[skippable_idx[item_idx]].name)
                 self.push_precollected(new_item)
                 main_items[skippable_idx[item_idx]].count -= 1
@@ -116,14 +116,18 @@ class FezWorld(World):
                 if main_items[skippable_idx[item_idx]].count <= 0:
                     skippable_idx.pop(item_idx)
 
-            # If there are still more items than locations after adding all base game filler items to starting inventory, use Anti-Cubes to fill the remaining difference
+            # If there are still more items than locations after adding all base game filler items to starting inventory, use progression items to fill the remaining difference
             if spare_cnt < 0:
-                logging.info("Still more items than locations after all base game filler items given, placing " + str(abs(spare_cnt)) + " Anti-Cubes in starting inventory")
-                anticube_idx = [idx for idx, item in enumerate(main_items) if "Anti-Cube" in item.name][0]
+                logging.info("Still more items than locations after all base game filler items given, placing " + str(abs(spare_cnt)) + " progression items in starting inventory")
+                progression_idx = [idx for idx, item in enumerate(main_items) if item.classification == ItemClassification.progression]
                 for _ in range(abs(spare_cnt)):
-                    new_item = self.create_item("Anti-Cube")
+                    item_idx = random.randint(0, len(progression_idx)-1)
+                    new_item = self.create_item(main_items[progression_idx[item_idx]].name)
                     self.push_precollected(new_item)
-                    main_items[anticube_idx].count -= 1
+                    main_items[progression_idx[item_idx]].count -= 1
+                    if main_items[progression_idx[item_idx]].count <= 0:
+                        progression_idx.pop(item_idx)
+                spare_cnt = 0
 
         extra_cube_count = 0
 
