@@ -21,10 +21,12 @@ class NumberCubesReplacedByBits(Range):
     """Replaces a certain number of golden cubes with an equivalent number of bits.
 
     1 Golden Cube = 8 Cube Bits
+
+    NOTE: Near the upper limit of this option, filler items and anti-cubes will be automatically placed in the starting inventory to account for fewer locations than items.
     """
     display_name = "Cube Bits Replacement"
     range_start = 0
-    range_end = 15
+    range_end = 16
     default = 0
 
 class NumberExtraGoldenCubes(Range):
