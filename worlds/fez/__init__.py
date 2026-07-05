@@ -6,7 +6,8 @@ from .Regions import all_region_data, region_name_to_location_name
 from .Rules import set_rules, set_knowledge_rules, set_tetromino_rules, HasCubes
 from worlds.AutoWorld import WebWorld, World
 from BaseClasses import Item, ItemClassification, Region, Tutorial
-import logging, random
+import random
+import logging
 
 
 class FezWeb(WebWorld):
@@ -105,7 +106,7 @@ class FezWorld(World):
             # If there are more items than locations, first add base game filler items to starting inventory
             skippable_cnt = min(skippable_cnt, abs(spare_cnt))
 
-            logging.info("More items than locations, placing " + str(skippable_cnt) + " filler items in starting inventory")
+            logging.info(self.multiworld.player_name[self.player] + " | More items than locations, placing " + str(skippable_cnt) + " filler items in starting inventory")
             skippable_idx = [idx for idx, item in enumerate(main_items) if item.classification == ItemClassification.filler]
             for _ in range(skippable_cnt):
                 item_idx = random.randint(0, len(skippable_idx)-1)
@@ -118,7 +119,7 @@ class FezWorld(World):
 
             # If there are still more items than locations after adding all base game filler items to starting inventory, use progression items to fill the remaining difference
             if spare_cnt < 0:
-                logging.info("Still more items than locations after all base game filler items given, placing " + str(abs(spare_cnt)) + " progression items in starting inventory")
+                logging.info(self.multiworld.player_name[self.player] + " | Still more items than locations after all base game filler items given, placing " + str(abs(spare_cnt)) + " progression items in starting inventory")
                 progression_idx = [idx for idx, item in enumerate(main_items) if item.classification == ItemClassification.progression]
                 for _ in range(abs(spare_cnt)):
                     item_idx = random.randint(0, len(progression_idx)-1)
@@ -134,7 +135,7 @@ class FezWorld(World):
         skippable_cnt = sum(item.count for item in main_items if item.classification == ItemClassification.filler)
         num_exclude_unaccounted = len(self.options.exclude_locations.value) - skippable_cnt
         if (num_exclude_unaccounted > 0):
-            logging.info("Placing an additional " + str(num_exclude_unaccounted) + " progression items in starting inventory to ensure enough filler items exist for excluded locations")
+            logging.info(self.multiworld.player_name[self.player] + " | Placing an additional " + str(num_exclude_unaccounted) + " progression items in starting inventory to ensure enough filler items exist for excluded locations")
             progression_idx = [idx for idx, item in enumerate(main_items) if item.classification == ItemClassification.progression]
             for _ in range(num_exclude_unaccounted):
                 item_idx = random.randint(0, len(progression_idx)-1)
@@ -148,7 +149,7 @@ class FezWorld(World):
             # If there are enough filler items to match excluded locations, add up to the location limit for extra golden cubes
             remaining_empty_loc = len(self.location_name_to_id) - sum(item.count for item in main_items)
             if remaining_empty_loc < self.options.extra_cubes:
-                logging.info("Not enough remaining locations to place specified extra Golden Cubes, can only add " + str(remaining_empty_loc) + " extra cubes")
+                logging.info(self.multiworld.player_name[self.player] + " | Not enough remaining locations to place specified extra Golden Cubes, can only add " + str(remaining_empty_loc) + " extra cubes")
                 extra_cube_count = remaining_empty_loc
             elif remaining_empty_loc > 0:
                 extra_cube_count = self.options.extra_cubes
