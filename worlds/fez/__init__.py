@@ -55,6 +55,13 @@ class FezWorld(World):
 # start of ordered Main.py calls
 
     def generate_early(self) -> None:
+        # Remove clock antis if not shuffling
+        if not self.options.shuffle_clock_antis:
+            self.location_name_to_id = {name: id for name, id in self.location_name_to_id.items() if "Clock Tower" not in name}
+            self.location_names = set(self.location_name_to_id)
+            self.location_name_groups["Anti-Cube"] = {name for name in self.location_name_groups["Anti-Cube"] if "Clock Tower" not in name}
+            region_name_to_location_name["Clock"] = set([name for name in region_name_to_location_name["Clock"] if "Clock Tower" not in name])
+
         # Replace specified number of golden cubes with cube bits
         if self.options.num_cubes_replace_bits > 0:
             bit_idx = [idx for idx, item in enumerate(main_items) if "Cube Bit" in item.name][0]
@@ -75,11 +82,6 @@ class FezWorld(World):
             locations_in_region = {name: self.location_name_to_id.get(name)
                                    for name in location_names
                                    if name in location_names}
-            # Remove clock antis if not shuffling
-            if data.name == "Clock" and not self.options.shuffle_clock_antis:
-                locations_in_region = {name: id
-                                       for name, id in locations_in_region.items()
-                                       if "Clock Tower" not in name}
             region.add_locations(locations_in_region, FezLocation)
             region.add_exits(data.exits)
 
@@ -116,8 +118,6 @@ class FezWorld(World):
 
         # Add filler
         fill_size = len(self.location_name_to_id) - sum(item.count for item in main_items) - extra_cube_count
-        if not self.options.shuffle_clock_antis:
-            fill_size -= 4
         self.add_filler_items(fill_size)
 
     def set_rules(self) -> None:
