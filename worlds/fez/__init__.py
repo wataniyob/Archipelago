@@ -108,7 +108,7 @@ class FezWorld(World):
             skippable_cnt = min(skippable_cnt, abs(spare_cnt))
 
             #logging.info(self.multiworld.player_name[self.player] + " | More items than locations, placing " + str(skippable_cnt) + " filler items in starting inventory")
-            skippable_idx = [idx for idx, item in enumerate(main_items) if item.classification == ItemClassification.filler]
+            skippable_idx = [idx for idx, item in enumerate(main_items) if (item.classification == ItemClassification.filler and item.count > 0)]
             for _ in range(skippable_cnt):
                 item_idx = random.randint(0, len(skippable_idx)-1)
                 new_item = self.create_item(main_items[skippable_idx[item_idx]].name)
@@ -121,7 +121,7 @@ class FezWorld(World):
             # If there are still more items than locations after adding all base game filler items to starting inventory, use progression items to fill the remaining difference
             if spare_cnt < 0:
                 #logging.info(self.multiworld.player_name[self.player] + " | Still more items than locations after all base game filler items given, placing " + str(abs(spare_cnt)) + " progression items in starting inventory")
-                progression_idx = [idx for idx, item in enumerate(main_items) if item.classification == ItemClassification.progression]
+                progression_idx = [idx for idx, item in enumerate(main_items) if (item.classification == ItemClassification.progression and item.count > 0)]
                 for _ in range(abs(spare_cnt)):
                     item_idx = random.randint(0, len(progression_idx)-1)
                     new_item = self.create_item(main_items[progression_idx[item_idx]].name)
@@ -137,7 +137,7 @@ class FezWorld(World):
         num_exclude_unaccounted = len(self.options.exclude_locations.value) - skippable_cnt
         if (num_exclude_unaccounted > 0):
             #logging.info(self.multiworld.player_name[self.player] + " | Placing an additional " + str(num_exclude_unaccounted) + " progression items in starting inventory to ensure enough filler items exist for excluded locations")
-            progression_idx = [idx for idx, item in enumerate(main_items) if item.classification == ItemClassification.progression]
+            progression_idx = [idx for idx, item in enumerate(main_items) if (item.classification == ItemClassification.progression and item.count > 0)]
             for _ in range(num_exclude_unaccounted):
                 item_idx = random.randint(0, len(progression_idx)-1)
                 new_item = self.create_item(main_items[progression_idx[item_idx]].name)
