@@ -98,7 +98,7 @@ class FezWorld(World):
             clockLocationData = [location for location in all_location_data if "Clock Tower" in location.name]
             clock_tower_filler_cnt = len(clockLocationData)
             for location in clockLocationData:
-                self.multiworld.get_location(location.name, self.player).place_locked_item(FezItem("Clock Tower Filler", ItemClassification.filler, None, self.player))
+                self.multiworld.get_location(location.name, self.player).place_locked_item(self.create_item(self.get_filler_item_name()))
 
         spare_cnt = len(self.location_name_to_id) - sum(item.count for item in main_items) - clock_tower_filler_cnt
         skippable_cnt = sum(item.count for item in main_items if item.classification == ItemClassification.filler)
