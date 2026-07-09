@@ -1,11 +1,13 @@
 from typing import Any, Dict
 from .Options import FezOptions, fez_option_groups, fez_option_presets
-from .Items import FezItem, all_item_data, item_name_groups, filler_items, main_items
+from .Items import FezItem, all_item_data, item_name_groups, filler_items, main_items, knowledge_items
 from .Locations import FezLocation, all_location_data, location_name_groups
 from .Regions import all_region_data, region_name_to_location_name
 from .Rules import set_rules, set_knowledge_rules, set_tetromino_rules, HasCubes
 from worlds.AutoWorld import WebWorld, World
 from BaseClasses import Item, ItemClassification, Region, Tutorial
+import random
+#import logging
 
 
 class FezWeb(WebWorld):
@@ -57,10 +59,10 @@ class FezWorld(World):
     def generate_early(self) -> None:
         # Remove clock antis if not shuffling
         if not self.options.shuffle_clock_antis:
-            clockLocationData = [location for location in all_location_data if "Clock Tower" in location.name]
-            for location in clockLocationData:
-                self.options.exclude_locations.value.add(location.name)
-                all_location_data.remove(location)
+            self.location_name_to_id = {name: id for name, id in self.location_name_to_id.items() if "Clock Tower" not in name}
+            self.location_names = set(self.location_name_to_id)
+            self.location_name_groups["Anti-Cube"] = {name for name in self.location_name_groups["Anti-Cube"] if "Clock Tower" not in name}
+            region_name_to_location_name["Clock"] = set([name for name in region_name_to_location_name["Clock"] if "Clock Tower" not in name])
 
         # Replace specified number of golden cubes with cube bits
         if self.options.num_cubes_replace_bits > 0:
@@ -89,32 +91,82 @@ class FezWorld(World):
         self.create_completion_events()
 
     def create_items(self) -> None:
+        # If knowledge logic is enabled, maps, sunglasses and skull artifact are all progression
+        if self.options.knowledge_logic:
+            knowledge_names = [knowledge_item.name
+                               for knowledge_item in knowledge_items]
+            for idx in range(len(main_items)):
+                if main_items[idx].name in knowledge_names:
+                    main_items[idx].classification = ItemClassification.progression
+
+        spare_cnt = len(self.location_name_to_id) - sum(item.count for item in main_items)
+        skippable_cnt = sum(item.count for item in main_items if item.classification == ItemClassification.filler)
+
+        if spare_cnt < 0:
+            # If there are more items than locations, first add base game filler items to starting inventory
+            skippable_cnt = min(skippable_cnt, abs(spare_cnt))
+
+            #logging.info(self.multiworld.player_name[self.player] + " | More items than locations, placing " + str(skippable_cnt) + " filler items in starting inventory")
+            skippable_idx = [idx for idx, item in enumerate(main_items) if item.classification == ItemClassification.filler]
+            for _ in range(skippable_cnt):
+                item_idx = random.randint(0, len(skippable_idx)-1)
+                new_item = self.create_item(main_items[skippable_idx[item_idx]].name)
+                self.push_precollected(new_item)
+                main_items[skippable_idx[item_idx]].count -= 1
+                spare_cnt += 1
+                if main_items[skippable_idx[item_idx]].count <= 0:
+                    skippable_idx.pop(item_idx)
+
+            # If there are still more items than locations after adding all base game filler items to starting inventory, use progression items to fill the remaining difference
+            if spare_cnt < 0:
+                #logging.info(self.multiworld.player_name[self.player] + " | Still more items than locations after all base game filler items given, placing " + str(abs(spare_cnt)) + " progression items in starting inventory")
+                progression_idx = [idx for idx, item in enumerate(main_items) if item.classification == ItemClassification.progression]
+                for _ in range(abs(spare_cnt)):
+                    item_idx = random.randint(0, len(progression_idx)-1)
+                    new_item = self.create_item(main_items[progression_idx[item_idx]].name)
+                    self.push_precollected(new_item)
+                    main_items[progression_idx[item_idx]].count -= 1
+                    if main_items[progression_idx[item_idx]].count <= 0:
+                        progression_idx.pop(item_idx)
+
         extra_cube_count = 0
 
+        # Ensure there are enough items moved to the starting inventory such that there are enough filler items (base game or generated) to match excluded locations
+        skippable_cnt = sum(item.count for item in main_items if item.classification == ItemClassification.filler)
+        num_exclude_unaccounted = len(self.options.exclude_locations.value) - skippable_cnt
+        if (num_exclude_unaccounted > 0):
+            #logging.info(self.multiworld.player_name[self.player] + " | Placing an additional " + str(num_exclude_unaccounted) + " progression items in starting inventory to ensure enough filler items exist for excluded locations")
+            progression_idx = [idx for idx, item in enumerate(main_items) if item.classification == ItemClassification.progression]
+            for _ in range(num_exclude_unaccounted):
+                item_idx = random.randint(0, len(progression_idx)-1)
+                new_item = self.create_item(main_items[progression_idx[item_idx]].name)
+                self.push_precollected(new_item)
+                main_items[progression_idx[item_idx]].count -= 1
+                if main_items[progression_idx[item_idx]].count <= 0:
+                    progression_idx.pop(item_idx)
+
+        else:
+            # If there are enough filler items to match excluded locations, add up to the location limit for extra golden cubes
+            remaining_empty_loc = len(self.location_name_to_id) - sum(item.count for item in main_items)
+            if remaining_empty_loc < self.options.extra_cubes:
+                #logging.info(self.multiworld.player_name[self.player] + " | Not enough remaining locations to place specified extra Golden Cubes, can only add " + str(remaining_empty_loc) + " extra cubes")
+                extra_cube_count = remaining_empty_loc
+            elif remaining_empty_loc > 0:
+                extra_cube_count = self.options.extra_cubes
+
         for item in main_items:
-            # If knowledge logic is enabled, maps, sunglasses and skull artifact are all progression
-            if self.options.knowledge_logic:
-                if item.classification == ItemClassification.deprioritized:
-                    item.classification = ItemClassification.progression
             # Add count of item to pool
             for _ in range(item.count):
                 new_item = self.create_item(item.name)
                 self.multiworld.itempool.append(new_item)
 
             # Add extra golden cubes
-            if "Golden Cube" in item.name and self.options.extra_cubes > 0:
-                # Only add up to the location limit
-                if len(self.location_name_to_id) - sum(item.count for item in main_items) < self.options.extra_cubes:
-                    extra_cube_count = len(self.location_name_to_id) - sum(item.count for item in main_items)
-                else:
-                    extra_cube_count = self.options.extra_cubes
-
+            if "Golden Cube" in item.name and extra_cube_count > 0:
                 item_id = self.item_name_to_id[item.name]
 
                 for _ in range(extra_cube_count):
                     new_item = FezItem(item.name, ItemClassification.useful, item_id, self.player)
                     self.multiworld.itempool.append(new_item)
-
 
         # Add filler
         fill_size = len(self.location_name_to_id) - sum(item.count for item in main_items) - extra_cube_count
@@ -132,6 +184,7 @@ class FezWorld(World):
         return self.options.as_dict(
             "death_link",
             "goal",
+            "shuffle_clock_antis",
             "scramble_tetrominos",
             "disable_visual_pain"
         )
