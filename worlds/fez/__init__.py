@@ -57,13 +57,6 @@ class FezWorld(World):
 # start of ordered Main.py calls
 
     def generate_early(self) -> None:
-        # Remove clock antis if not shuffling
-        if not self.options.shuffle_clock_antis:
-            self.location_name_to_id = {name: id for name, id in self.location_name_to_id.items() if "Clock Tower" not in name}
-            self.location_names = set(self.location_name_to_id)
-            self.location_name_groups["Anti-Cube"] = {name for name in self.location_name_groups["Anti-Cube"] if "Clock Tower" not in name}
-            region_name_to_location_name["Clock"] = set([name for name in region_name_to_location_name["Clock"] if "Clock Tower" not in name])
-
         # Replace specified number of golden cubes with cube bits
         if self.options.num_cubes_replace_bits > 0:
             bit_idx = [idx for idx, item in enumerate(main_items) if "Cube Bit" in item.name][0]
@@ -99,7 +92,15 @@ class FezWorld(World):
                 if main_items[idx].name in knowledge_names:
                     main_items[idx].classification = ItemClassification.progression
 
-        spare_cnt = len(self.location_name_to_id) - sum(item.count for item in main_items)
+        # Remove clock antis if not shuffling
+        clock_tower_filler_cnt = 0
+        if not self.options.shuffle_clock_antis:
+            clockLocationData = [location for location in all_location_data if "Clock Tower" in location.name]
+            clock_tower_filler_cnt = len(clockLocationData)
+            for location in clockLocationData:
+                self.multiworld.get_location(location.name, self.player).place_locked_item(FezItem("Clock Tower Filler", ItemClassification.filler, None, self.player))
+
+        spare_cnt = len(self.location_name_to_id) - sum(item.count for item in main_items) - clock_tower_filler_cnt
         skippable_cnt = sum(item.count for item in main_items if item.classification == ItemClassification.filler)
 
         if spare_cnt < 0:
@@ -147,7 +148,7 @@ class FezWorld(World):
 
         else:
             # If there are enough filler items to match excluded locations, add up to the location limit for extra golden cubes
-            remaining_empty_loc = len(self.location_name_to_id) - sum(item.count for item in main_items)
+            remaining_empty_loc = len(self.location_name_to_id) - sum(item.count for item in main_items) - clock_tower_filler_cnt
             if remaining_empty_loc < self.options.extra_cubes:
                 #logging.info(self.multiworld.player_name[self.player] + " | Not enough remaining locations to place specified extra Golden Cubes, can only add " + str(remaining_empty_loc) + " extra cubes")
                 extra_cube_count = remaining_empty_loc
@@ -169,7 +170,7 @@ class FezWorld(World):
                     self.multiworld.itempool.append(new_item)
 
         # Add filler
-        fill_size = len(self.location_name_to_id) - sum(item.count for item in main_items) - extra_cube_count
+        fill_size = len(self.location_name_to_id) - sum(item.count for item in main_items) - extra_cube_count - clock_tower_filler_cnt
         self.add_filler_items(fill_size)
 
     def set_rules(self) -> None:
