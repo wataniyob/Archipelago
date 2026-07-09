@@ -59,10 +59,10 @@ class FezWorld(World):
     def generate_early(self) -> None:
         # Remove clock antis if not shuffling
         if not self.options.shuffle_clock_antis:
-            clockLocationData = [location for location in all_location_data if "Clock Tower" in location.name]
-            for location in clockLocationData:
-                self.options.exclude_locations.value.add(location.name)
-                all_location_data.remove(location)
+            self.location_name_to_id = {name: id for name, id in self.location_name_to_id.items() if "Clock Tower" not in name}
+            self.location_names = set(self.location_name_to_id)
+            self.location_name_groups["Anti-Cube"] = {name for name in self.location_name_groups["Anti-Cube"] if "Clock Tower" not in name}
+            region_name_to_location_name["Clock"] = set([name for name in region_name_to_location_name["Clock"] if "Clock Tower" not in name])
 
         # Replace specified number of golden cubes with cube bits
         if self.options.num_cubes_replace_bits > 0:
@@ -184,6 +184,7 @@ class FezWorld(World):
         return self.options.as_dict(
             "death_link",
             "goal",
+            "shuffle_clock_antis",
             "scramble_tetrominos",
             "disable_visual_pain"
         )
