@@ -76,7 +76,9 @@ class FezWorld(World):
             location_names = region_name_to_location_name[data.name]
             locations_in_region = {name: self.location_name_to_id.get(name)
                                    for name in location_names
-                                   if name in location_names}
+                                   if (name in location_names and
+                                       # If clock anti-cube locations aren't shuffled, remove them
+                                       (self.options.shuffle_clock_antis or "Clock Tower" not in name))}
             region.add_locations(locations_in_region, FezLocation)
             region.add_exits(data.exits)
 
@@ -92,13 +94,11 @@ class FezWorld(World):
                 if main_items[idx].name in knowledge_names:
                     main_items[idx].classification = ItemClassification.progression
 
-        # Remove clock antis if not shuffling
+        # Account for removed clock anti locations if not shuffling
         clock_tower_filler_cnt = 0
         if not self.options.shuffle_clock_antis:
             clockLocationData = [location for location in all_location_data if "Clock Tower" in location.name]
             clock_tower_filler_cnt = len(clockLocationData)
-            for location in clockLocationData:
-                self.multiworld.get_location(location.name, self.player).place_locked_item(self.create_item(self.get_filler_item_name()))
 
         spare_cnt = len(self.location_name_to_id) - sum(item.count for item in main_items) - clock_tower_filler_cnt
         skippable_cnt = sum(item.count for item in main_items if item.classification == ItemClassification.filler)
