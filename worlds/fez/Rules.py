@@ -10,7 +10,7 @@ from .Options import KnowledgeLogic, ScrambleTetrominos
 from BaseClasses import Entrance, ItemClassification, Location, Region, CollectionState
 from NetUtils import JSONMessagePart
 
-from rule_builder.rules import CanReachRegion, Has, HasAny, HasAll, Rule, Or, And, Filtered
+from rule_builder.rules import CanReachRegion, CanReachEntrance, Has, HasAny, HasAll, Rule, Or, And, Filtered
 from rule_builder.field_resolvers import FieldResolver, resolve_field
 from rule_builder.options import OptionFilter
 
