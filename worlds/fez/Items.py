@@ -30,6 +30,8 @@ progression_items: List[FezItemData] = [
     FezItemData("Cabin Door Unlocked",          1,  ItemClassification.progression),
     FezItemData("Throne Door Unlocked",         1,  ItemClassification.progression),
     FezItemData("QR Code Map",                  1,  ItemClassification.progression),
+    FezItemData("Carry",                        1,  ItemClassification.progression),
+    FezItemData("Push-Turn Objects",            1,  ItemClassification.progression),
 ]
 
 knowledge_items: List[FezItemData] = [
@@ -75,4 +77,5 @@ item_name_groups = {
     "Cubes":        {"Golden Cube", "Anti-Cube"},
     "Doors":        {item.name for item in all_item_data if 'Door Unlocked' in item.name},
     "Maps":         {item.name for item in all_item_data if 'Map' in item.name},
+    "Abilities":    {"Carry", "Push-Turn Objects"},
 }

@@ -124,7 +124,13 @@ first_person_rule = (Has("Sunglasses", options=[OptionFilter(KnowledgeLogic, Tru
                      tetromino_rule)
 
 
-water_level_rule = CanReachRegion("Water Wheel")
+carry_rule = Has("Carry")
+
+
+pivot_rule = Has("Push-Turn Objects")
+
+
+water_level_rule = (CanReachRegion("Water Wheel") & pivot_rule)
 
 
 ########################################
@@ -135,16 +141,22 @@ def set_rules(world: FezWorld) -> None:
     """Rules that are always present"""
     # Helper functions
     get_entrance = functools.partial(_get_entrance, world)
+    get_location = functools.partial(_get_location, world)
     add_link_door_rule = functools.partial(_add_link_door_rule, world)
+
+    # Set ability rules
+    set_ability_rules(world)
 
     # Key doors (requires a specific key to open, unique behaviour to AP)
     world.set_rule(get_entrance("Villageville 3D", "Boileroom"),            Has("Boileroom Door Unlocked"))
     world.set_rule(get_entrance("_LighthouseLower", "Lighthouse House A"),  Has("Lighthouse Door Unlocked"))
     world.set_rule(get_entrance("Tree", "Tree Crumble"),                    Has("Tree Door Unlocked"))
     world.set_rule(get_entrance("Rails", "Well 2"),                         Has("Well Door Unlocked"))
-    world.set_rule(get_entrance("Pivot 1", "Windmill Interior"),            Has("Windmill Door Unlocked"))
+    world.set_rule(get_entrance("Pivot 1", "Windmill Interior"),            (Has("Windmill Door Unlocked") &
+                                                                             pivot_rule))
     world.set_rule(get_entrance("Mausoleum", "Crypt"),                      Has("Mausoleum Door Unlocked"))
-    world.set_rule(get_entrance("Sewer Hub", "Sewer QR"),                   Has("Sewer Hub Door Unlocked"))
+    world.set_rule(get_entrance("Sewer Hub", "Sewer QR"),                   (Has("Sewer Hub Door Unlocked") &
+                                                                             pivot_rule))
     world.set_rule(get_entrance("Sewer Pillars", "Sewer Fork"),             Has("Sewer Pillars Door Unlocked"))
     # Custom locked doors to balance sphere sizes
     world.set_rule(get_entrance("Nature Hub", "Arch"),                      Has("Arch Door Unlocked"))
@@ -186,6 +198,9 @@ def set_rules(world: FezWorld) -> None:
     # Watertower secret anti-cube logic for QR Code Map
     world.set_rule(get_entrance("Gomez House", "_WatertowerSecretAntiCube"),
                    (scramble_rotate_rule & Has("QR Code Map")))
+
+    # Exit specific logic
+    world.set_rule(get_location("Pivot 3 Cube"), CanReachEntrance("Pivot 3 Cave -> Pivot 3"))
 
 
 def set_knowledge_rules(world: FezWorld) -> None:
@@ -231,11 +246,8 @@ def set_tetromino_rules(world: FezWorld):
                                               options=[OptionFilter(KnowledgeLogic, True)],
                                               filtered_resolution=True)))
     world.set_rule(get_location("Nu Zu School Anti-Cube"), tetromino_rule)
-    world.set_rule(get_location("Telescope Anti-Cube"), tetromino_rule)
-    world.set_rule(get_location("Telescope Heart Cube"), scramble_rotate_rule)
     world.set_rule(get_entrance("Waterfall", "CMY"), tetromino_rule)
     world.set_rule(get_entrance("Waterfall", "Water Wheel"), tetromino_rule)
-    world.set_rule(get_entrance("Sewer to Lava", "Lava"), tetromino_rule)
 
     # Fork tetromino logic
     world.set_rule(get_location("CMY Tune Fork Anti-Cube"), scramble_rotate_rule)
@@ -272,3 +284,104 @@ def set_tetromino_rules(world: FezWorld):
                     Has("Sunglasses", options=[OptionFilter(KnowledgeLogic, True)],
                         filtered_resolution=True)))
     
+def set_ability_rules(world: FezWorld):
+    """Rules for ability logic"""
+    # Helper functions
+    get_location = functools.partial(_get_location, world)
+    get_entrance = functools.partial(_get_entrance, world)
+
+    # Entrances which require carry
+    world.set_rule(get_entrance("Mine A", "Mine Wrap"), carry_rule)
+    world.set_rule(get_entrance("Mine Wrap", "Mine Bomb Pillar"), carry_rule)
+    world.set_rule(get_entrance("Ancient Walls", "Wall Hole"), carry_rule)
+    world.set_rule(get_entrance("Zu 4 Side", "Zu Heads"), carry_rule)
+    world.set_rule(get_entrance("Arch", "Weightswitch Temple"), carry_rule)
+    world.set_rule(get_entrance("Weightswitch Temple", "Zu Switch"), carry_rule)
+    world.set_rule(get_entrance("Zu Switch", "Zu Switch B"), carry_rule)
+    world.set_rule(get_entrance("Graveyard A", "Graveyard Lesser Gate"), carry_rule)
+
+    # Locations which require carry
+    world.set_rule(get_location("Mine A Cube Bit"), carry_rule)
+    world.set_rule(get_location("Mine Wrap Cube Bit 1"), carry_rule)
+    world.set_rule(get_location("Mine Wrap Cube Bit 2"), carry_rule)
+    world.set_rule(get_location("Mine Wrap Cube"), carry_rule)
+    world.set_rule(get_location("Mine Bomb Pillar Cube Bit"), carry_rule)
+    world.set_rule(get_location("Mine Bomb Pillar Chest"), carry_rule)
+    world.set_rule(get_location("Security Question Heart Cube"), carry_rule)
+    world.set_rule(get_location("Zu Tetris Anti-Cube"), carry_rule)
+    world.set_rule(get_location("Ancient Walls Cube Bit 1"), carry_rule)
+    world.set_rule(get_location("Ancient Walls Cube Bit 3"), carry_rule)
+    world.set_rule(get_location("Weightswitch Temple Cube Bit 2"), carry_rule)
+    world.set_rule(get_location("Graveyard A Cube Bit 3"), carry_rule)
+
+    # Entrances which require pivot turning
+    world.set_rule(get_entrance("Fractal", "Zu 4 Side"), pivot_rule)
+    world.set_rule(get_entrance("Water Tower", "Pivot Watertower"), pivot_rule)
+    world.set_rule(get_entrance("Pivot Watertower", "Industrial Hub"),
+                   (pivot_rule | CanReachEntrance("Memory Core -> Pivot Watertower")))
+    world.set_rule(get_entrance("Pivot 1", "Pivot 2"), pivot_rule)
+    world.set_rule(get_entrance("Pivot 2", "Pivot 3"), pivot_rule)
+    world.set_rule(get_entrance("Pivot 2", "Extractor A"), pivot_rule)
+    world.set_rule(get_entrance("Pivot 3", "Pivot 3 Cave"), pivot_rule)
+    world.set_rule(get_entrance("Industrial Superspin", "Superspin Cave"), pivot_rule)
+    world.set_rule(get_entrance("Triple Pivot Cave", "Spinning Plates"), pivot_rule)
+    world.set_rule(get_entrance("Sewer Start", "Sewer Hub"), pivot_rule)
+    world.set_rule(get_entrance("Sewer Hub", "Sewer Treasure 1"), pivot_rule)
+    world.set_rule(get_entrance("Sewer Hub", "Sewer to Lava"), pivot_rule)
+    world.set_rule(get_entrance("Sewer to Lava", "Lava"),
+                   ((pivot_rule | CanReachEntrance("Nu Zu Abandoned B -> Sewer to Lava"))
+                    & tetromino_rule))
+    world.set_rule(get_entrance("Lava", "Lava Skull"), pivot_rule)
+    world.set_rule(get_entrance("Sewer Pillars", "Sewer Treasure 2"), pivot_rule)
+    world.set_rule(get_entrance("Sewer Pillars", "Sewer Lesser Gate B"), pivot_rule)
+    world.set_rule(get_entrance("Skull", "Skull B"), pivot_rule)
+    world.set_rule(get_entrance("Observatory", "Visitor"), pivot_rule)
+    world.set_rule(get_entrance("Visitor", "Orrery"),
+                   (pivot_rule | CanReachEntrance("Purple Lodge Ruin -> Visitor")))
+    world.set_rule(get_entrance("Visitor", "Code Machine"),
+                   (pivot_rule | CanReachEntrance("Purple Lodge Ruin -> Visitor")))
+    world.set_rule(get_entrance("Library Interior", "Globe"), pivot_rule)
+    world.set_rule(get_entrance("Globe", "Globe Interior"), pivot_rule)
+
+    # Locations which require pivot turning
+    world.set_rule(get_location("Fractal Cube Bit 1"), pivot_rule)
+    world.set_rule(get_location("Fractal Cube Bit 3"), pivot_rule)
+    world.set_rule(get_location("Bell Tower Anti-Cube"), pivot_rule)
+    world.set_rule(get_location("Pivot Watertower Cube Bit"),
+                   (pivot_rule | CanReachEntrance("Memory Core -> Pivot Watertower")))
+    world.set_rule(get_location("Pivot Watertower Chest"),
+                   (pivot_rule | CanReachEntrance("Memory Core -> Pivot Watertower")))
+    world.set_rule(get_location("Pivot 1 Cube Bit 1"), pivot_rule)
+    world.set_rule(get_location("Pivot 1 Cube Bit 3"), pivot_rule)
+    world.set_rule(get_location("Pivot 1 Owl"), pivot_rule)
+    world.set_rule(get_location("Pivot 2 Cube Bit 1"), pivot_rule)
+    world.set_rule(get_location("Pivot 2 Cube Bit 2"), pivot_rule)
+    world.set_rule(get_location("Pivot 2 Cube Bit 3"), pivot_rule)
+    world.set_rule(get_location("Extractor A Cube Bit"), pivot_rule)
+    world.set_rule(get_location("Industrial Superspin Cube Bit 3"), pivot_rule)
+    world.set_rule(get_location("Industrial Superspin Chest"), pivot_rule)
+    world.set_rule(get_location("Triple Pivot Cave Cube Bit 1"), pivot_rule)
+    world.set_rule(get_location("Triple Pivot Cave Cube Bit 2"), pivot_rule)
+    world.set_rule(get_location("Spinning Plates Cube Bit"), pivot_rule)
+    world.set_rule(get_location("Spinning Plates Cube"), pivot_rule)
+    world.set_rule(get_location("Sewer Start Cube Bit"), pivot_rule)
+    world.set_rule(get_location("Sewer Hub Cube Bit 1"), pivot_rule)
+    world.set_rule(get_location("Sewer Pivot Chest"), pivot_rule)
+    world.set_rule(get_location("Sewer Pillars Cube Bit 1"), pivot_rule)
+    world.set_rule(get_location("Sewer Pillars Cube Bit 2"), pivot_rule)
+    world.set_rule(get_location("Zu Unfold Anti-Cube"), pivot_rule)
+    world.set_rule(get_location("Observatory Cube"), pivot_rule)
+    world.set_rule(get_location("Telescope Anti-Cube"),
+                   (tetromino_rule & Has("Push-Turn Objects",
+                                         options=[OptionFilter(KnowledgeLogic, True)],
+                                         filtered_resolution=True)))
+    world.set_rule(get_location("Telescope Heart Cube"),
+                   (scramble_rotate_rule & Has("Push-Turn Objects",
+                                               options=[OptionFilter(KnowledgeLogic, True)],
+                                               filtered_resolution=True)))
+    world.set_rule(get_location("Visitor Cube"),
+                   (pivot_rule | CanReachEntrance("Purple Lodge Ruin -> Visitor")))
+    world.set_rule(get_location("Visitor Owl"),
+                   (pivot_rule | CanReachEntrance("Purple Lodge Ruin -> Visitor")))
+    world.set_rule(get_location("Clock Cube"), pivot_rule)
+    world.set_rule(get_location("Globe Cube Bit"), pivot_rule)

@@ -94,6 +94,14 @@ class FezWorld(World):
                 if main_items[idx].name in knowledge_names:
                     main_items[idx].classification = ItemClassification.progression
 
+        # If abilities not randomized, add abilities to starting inventory
+        if not self.options.randomize_abilities:
+            ability_idx = [idx for idx, item in enumerate(main_items) if (item.name == "Carry" or item.name == "Push-Turn Objects")]
+            for idx in ability_idx:
+                ability_item = self.create_item(main_items[idx].name)
+                self.push_precollected(ability_item)
+                main_items[idx].count -= 1
+
         # Account for removed clock anti locations if not shuffling
         clock_tower_filler_cnt = 0
         if not self.options.shuffle_clock_antis:
