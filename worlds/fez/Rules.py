@@ -191,6 +191,7 @@ def set_rules(world: FezWorld) -> None:
     world.set_rule(get_entrance("_LighthouseLower", "Zu Fork"),       water_level_rule)
     world.set_rule(get_entrance("Water Tower", "Watertower Secret"),  water_level_rule)
     world.set_rule(get_entrance("Bell Tower", "Quantum"),             water_level_rule)
+    world.set_rule(get_entrance("Water Wheel", "Water Wheel B"),      water_level_rule)
 
     # Owl logic
     world.set_rule(get_entrance("Owl", "Big Owl"), Has("Owl", count = 4))
@@ -385,3 +386,10 @@ def set_ability_rules(world: FezWorld):
                    (pivot_rule | CanReachEntrance("Purple Lodge Ruin -> Visitor")))
     world.set_rule(get_location("Clock Cube"), pivot_rule)
     world.set_rule(get_location("Globe Cube Bit"), pivot_rule)
+
+    # Only set pivot rules for clock tower anti-cubes if they are shuffled
+    if world.options.shuffle_clock_antis:
+            world.set_rule(get_location("Clock Tower Minute Anti-Cube"), pivot_rule)
+            world.set_rule(get_location("Clock Tower Hour Anti-Cube"), pivot_rule)
+            world.set_rule(get_location("Clock Tower Day Anti-Cube"), pivot_rule)
+            world.set_rule(get_location("Clock Tower Week Anti-Cube"), pivot_rule)
