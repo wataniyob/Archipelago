@@ -292,6 +292,8 @@ def set_ability_rules(world: FezWorld):
     get_entrance = functools.partial(_get_entrance, world)
 
     # Entrances which require carry
+    world.set_rule(get_entrance("Waterfall", "Mine A"), carry_rule)
+    world.set_rule(get_entrance("Waterfall", "Zu Code Loop"), carry_rule)
     world.set_rule(get_entrance("Mine A", "Mine Wrap"), carry_rule)
     world.set_rule(get_entrance("Mine Wrap", "Mine Bomb Pillar"), carry_rule)
     world.set_rule(get_entrance("Ancient Walls", "Wall Hole"), carry_rule)
@@ -347,7 +349,7 @@ def set_ability_rules(world: FezWorld):
     # Locations which require pivot turning
     world.set_rule(get_location("Fractal Cube Bit 1"), pivot_rule)
     world.set_rule(get_location("Fractal Cube Bit 3"), pivot_rule)
-    world.set_rule(get_location("Bell Tower Anti-Cube"), pivot_rule)
+    #world.set_rule(get_location("Bell Tower Anti-Cube"), pivot_rule)
     world.set_rule(get_location("Pivot Watertower Cube Bit"),
                    (pivot_rule | CanReachEntrance("Memory Core -> Pivot Watertower")))
     world.set_rule(get_location("Pivot Watertower Chest"),
