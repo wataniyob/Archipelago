@@ -31,7 +31,7 @@ progression_items: List[FezItemData] = [
     FezItemData("Throne Door Unlocked",         1,  ItemClassification.progression),
     FezItemData("QR Code Map",                  1,  ItemClassification.progression),
     FezItemData("Carry",                        1,  ItemClassification.progression),
-    FezItemData("Push-Turn Objects",            1,  ItemClassification.progression),
+    FezItemData("Turn Objects",                 1,  ItemClassification.progression),
 ]
 
 knowledge_items: List[FezItemData] = [

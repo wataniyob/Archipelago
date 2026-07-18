@@ -127,7 +127,7 @@ first_person_rule = (Has("Sunglasses", options=[OptionFilter(KnowledgeLogic, Tru
 carry_rule = Has("Carry")
 
 
-pivot_rule = Has("Push-Turn Objects")
+pivot_rule = Has("Turn Objects")
 
 
 water_level_rule = (CanReachRegion("Water Wheel") & pivot_rule)
@@ -375,11 +375,11 @@ def set_ability_rules(world: FezWorld):
     world.set_rule(get_location("Zu Unfold Anti-Cube"), pivot_rule)
     world.set_rule(get_location("Observatory Cube"), pivot_rule)
     world.set_rule(get_location("Telescope Anti-Cube"),
-                   (tetromino_rule & Has("Push-Turn Objects",
+                   (tetromino_rule & Has("Turn Objects",
                                          options=[OptionFilter(KnowledgeLogic, True)],
                                          filtered_resolution=True)))
     world.set_rule(get_location("Telescope Heart Cube"),
-                   (scramble_rotate_rule & Has("Push-Turn Objects",
+                   (scramble_rotate_rule & Has("Turn Objects",
                                                options=[OptionFilter(KnowledgeLogic, True)],
                                                filtered_resolution=True)))
     world.set_rule(get_location("Visitor Cube"),
