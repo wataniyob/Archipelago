@@ -317,6 +317,7 @@ def set_ability_rules(world: FezWorld):
     world.set_rule(get_location("Ancient Walls Cube Bit 3"), carry_rule)
     world.set_rule(get_location("Weightswitch Temple Cube Bit 2"), carry_rule)
     world.set_rule(get_location("Graveyard A Cube Bit 3"), carry_rule)
+    world.set_rule(get_location("Zu Unfold Anti-Cube"), carry_rule)
 
     # Entrances which require pivot turning
     world.set_rule(get_entrance("Fractal", "Zu 4 Side"), pivot_rule)
@@ -373,7 +374,6 @@ def set_ability_rules(world: FezWorld):
     world.set_rule(get_location("Sewer Pivot Chest"), pivot_rule)
     world.set_rule(get_location("Sewer Pillars Cube Bit 1"), pivot_rule)
     world.set_rule(get_location("Sewer Pillars Cube Bit 2"), pivot_rule)
-    world.set_rule(get_location("Zu Unfold Anti-Cube"), pivot_rule)
     world.set_rule(get_location("Observatory Cube"), pivot_rule)
     world.set_rule(get_location("Telescope Anti-Cube"),
                    (tetromino_rule & Has("Turn Objects",
