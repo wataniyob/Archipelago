@@ -183,7 +183,8 @@ def set_rules(world: FezWorld) -> None:
     world.set_rule(get_entrance("Memory Core",        "Industrial City"), HasCubes(8))
     world.set_rule(get_entrance("Memory Core",        "Zu City"),         HasCubes(16))
     world.set_rule(get_entrance("Zu City",            "Stargate"),        HasCubes(32))
-    world.set_rule(get_entrance("Water Pyramid",      "Temple of Love"),  HasCubes(64))
+    world.set_rule(get_entrance("Water Pyramid",      "Temple of Love"),  (water_level_rule &
+                                                                           HasCubes(64)))
 
     # Water level logic (requires lowering the water level)
     world.set_rule(get_entrance("Nature Hub", "Ritual"),              water_level_rule)
