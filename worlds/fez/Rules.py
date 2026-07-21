@@ -334,7 +334,7 @@ def set_ability_rules(world: FezWorld):
     world.set_rule(get_entrance("Sewer Hub", "Sewer Treasure 1"), pivot_rule)
     world.set_rule(get_entrance("Sewer Hub", "Sewer to Lava"), pivot_rule)
     world.set_rule(get_entrance("Sewer to Lava", "Lava"),
-                   ((pivot_rule | CanReachEntrance("Nu Zu Abandoned B -> Sewer to Lava"))&
+                   ((pivot_rule | CanReachEntrance("Nu Zu Abandoned B -> Sewer to Lava")) &
                     Filtered(tetromino_rule,
                              options=[OptionFilter(KnowledgeLogic, True)],
                              filtered_resolution=True) &
