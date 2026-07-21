@@ -96,7 +96,7 @@ class FezWorld(World):
 
         # If abilities not randomized, add abilities to starting inventory
         if not self.options.randomize_abilities:
-            ability_idx = [idx for idx, item in enumerate(main_items) if (item.name == "Carry" or item.name == "Push-Turn Objects")]
+            ability_idx = [idx for idx, item in enumerate(main_items) if (item.name == "Carry" or item.name == "Turn Objects")]
             for idx in ability_idx:
                 ability_item = self.create_item(main_items[idx].name)
                 self.push_precollected(ability_item)
