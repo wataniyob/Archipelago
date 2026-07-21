@@ -77,5 +77,5 @@ item_name_groups = {
     "Cubes":        {"Golden Cube", "Anti-Cube"},
     "Doors":        {item.name for item in all_item_data if 'Door Unlocked' in item.name},
     "Maps":         {item.name for item in all_item_data if 'Map' in item.name},
-    "Abilities":    {"Carry", "Push-Turn Objects"},
+    "Abilities":    {"Carry", "Turn Objects"},
 }
