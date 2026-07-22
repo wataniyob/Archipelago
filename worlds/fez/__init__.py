@@ -194,8 +194,12 @@ class FezWorld(World):
             "death_link",
             "goal",
             "shuffle_clock_antis",
+            "knowledge_logic",
             "scramble_tetrominos",
-            "disable_visual_pain"
+            "disable_visual_pain",
+            "num_cubes_replace_bits",
+            "extra_cubes",
+            "randomize_abilities"
         )
 
 # end of ordered Main.py calls
