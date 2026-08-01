@@ -50,9 +50,9 @@ class ShuffleClockAntis(Toggle):
     display_name = "Shuffle Clock Antis"
 
 class RandomizeAbilities(Toggle):
-    """Whether to randomize the ability to carry objects and the ability to push and turn objects.
+    """Whether to randomize the ability to carry objects and the ability to turn objects.
 
-    NOTE: The ability to push and turn objects does not apply to objects that can be carried, but does apply to certain interactions not involving pivots (i.e., skulls in Cemetary, bookshelf door in Library, and bell in Bell Tower)."""
+    NOTE: The ability to turn objects also applies to certain interactions not involving grabbable handles (i.e., the skulls in Cemetary and the bookshelf door in Library)."""
     display_name = "Randomize Abilities"
 
 class ScrambleTetrominos(Toggle):
