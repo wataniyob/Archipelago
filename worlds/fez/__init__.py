@@ -94,13 +94,12 @@ class FezWorld(World):
                 if main_items[idx].name in knowledge_names:
                     main_items[idx].classification = ItemClassification.progression
 
-        # If abilities not randomized, add abilities to starting inventory
+        # If abilities not randomized, make abilities count zero
         if not self.options.randomize_abilities:
-            ability_idx = [idx for idx, item in enumerate(main_items) if (item.name == "Carry" or item.name == "Turn Objects")]
+            ability_idx = [idx for idx, item in enumerate(main_items)
+                           if (item.name == "Carry" or item.name == "Turn Objects")]
             for idx in ability_idx:
-                ability_item = self.create_item(main_items[idx].name)
-                self.push_precollected(ability_item)
-                main_items[idx].count -= 1
+                main_items[idx].count = 0
 
         # Account for removed clock anti locations if not shuffling
         clock_tower_filler_cnt = 0
@@ -168,6 +167,11 @@ class FezWorld(World):
             for _ in range(item.count):
                 new_item = self.create_item(item.name)
                 self.multiworld.itempool.append(new_item)
+
+            # If abilities not randomized, add abilities to starting inventory
+            if not self.options.randomize_abilities and (item.name == "Carry" or item.name == "Turn Objects"):
+                ability_item = self.create_item(item.name)
+                self.push_precollected(ability_item)
 
             # Add extra golden cubes
             if "Golden Cube" in item.name and extra_cube_count > 0:
