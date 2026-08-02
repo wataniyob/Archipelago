@@ -1,6 +1,6 @@
 from typing import Any, Dict
 from .Options import FezOptions, fez_option_groups, fez_option_presets
-from .Items import FezItem, all_item_data, item_name_groups, filler_items, main_items, knowledge_items
+from .Items import FezItem, all_item_data, item_name_groups, filler_items, main_items, knowledge_items, trap_items
 from .Locations import FezLocation, all_location_data, location_name_groups
 from .Regions import all_region_data, region_name_to_location_name
 from .Rules import set_rules, set_knowledge_rules, set_tetromino_rules, HasCubes
@@ -100,6 +100,7 @@ class FezWorld(World):
                            if (item.name == "Carry" or item.name == "Turn Objects")]
             for idx in ability_idx:
                 main_items[idx].count = 0
+
 
         # Account for removed clock anti locations if not shuffling
         clock_tower_filler_cnt = 0
@@ -217,6 +218,8 @@ class FezWorld(World):
         return self.random.choice(filler_items).name
 
     def get_trap_item_name(self) -> str:
+        if (len(list(self.options.trap_weights.keys())) == 0):
+            return (self.random.choices(trap_items)[0]).name
         return self.random.choices(list(self.options.trap_weights.keys()), list(self.options.trap_weights.values()))[0]
 
     def add_filler_items(self, fill_size: int) -> None:
