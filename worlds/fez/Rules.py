@@ -356,7 +356,6 @@ def set_ability_rules(world: FezWorld):
     # Locations which require pivot turning
     world.set_rule(get_location("Fractal Cube Bit 1"), pivot_rule)
     world.set_rule(get_location("Fractal Cube Bit 3"), pivot_rule)
-    #world.set_rule(get_location("Bell Tower Anti-Cube"), pivot_rule)
     world.set_rule(get_location("Pivot Watertower Cube Bit"),
                    (pivot_rule | CanReachEntrance("Memory Core -> Pivot Watertower")))
     world.set_rule(get_location("Pivot Watertower Chest"),
