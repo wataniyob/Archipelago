@@ -5,8 +5,7 @@ from .Locations import FezLocation, all_location_data, location_name_groups
 from .Regions import all_region_data, region_name_to_location_name
 from .Rules import set_rules, set_knowledge_rules, set_tetromino_rules, HasCubes
 from worlds.AutoWorld import WebWorld, World
-from BaseClasses import Item, ItemClassification, Region, Tutorial
-import random
+from BaseClasses import Item, ItemClassification, Region, Tutorial, MultiWorld, Location
 import copy
 #import logging
 
@@ -120,7 +119,7 @@ class FezWorld(World):
             #logging.info(self.multiworld.player_name[self.player] + " | More items than locations, placing " + str(skippable_cnt) + " filler items in starting inventory")
             skippable_idx = [idx for idx, item in enumerate(main_items_player) if (item.classification == ItemClassification.filler and item.count > 0)]
             for _ in range(skippable_cnt):
-                item_idx = random.randint(0, len(skippable_idx)-1)
+                item_idx = self.random.randint(0, len(skippable_idx)-1)
                 new_item = self.create_item(main_items_player[skippable_idx[item_idx]].name)
                 self.push_precollected(new_item)
                 main_items_player[skippable_idx[item_idx]].count -= 1
@@ -133,7 +132,7 @@ class FezWorld(World):
                 #logging.info(self.multiworld.player_name[self.player] + " | Still more items than locations after all base game filler items given, placing " + str(abs(spare_cnt)) + " progression items in starting inventory")
                 progression_idx = [idx for idx, item in enumerate(main_items_player) if (item.classification == ItemClassification.progression and item.count > 0)]
                 for _ in range(abs(spare_cnt)):
-                    item_idx = random.randint(0, len(progression_idx)-1)
+                    item_idx = self.random.randint(0, len(progression_idx)-1)
                     new_item = self.create_item(main_items_player[progression_idx[item_idx]].name)
                     self.push_precollected(new_item)
                     main_items_player[progression_idx[item_idx]].count -= 1
@@ -149,7 +148,7 @@ class FezWorld(World):
             #logging.info(self.multiworld.player_name[self.player] + " | Placing an additional " + str(num_exclude_unaccounted) + " progression items in starting inventory to ensure enough filler items exist for excluded locations")
             progression_idx = [idx for idx, item in enumerate(main_items_player) if (item.classification == ItemClassification.progression and item.count > 0)]
             for _ in range(num_exclude_unaccounted):
-                item_idx = random.randint(0, len(progression_idx)-1)
+                item_idx = self.random.randint(0, len(progression_idx)-1)
                 new_item = self.create_item(main_items_player[progression_idx[item_idx]].name)
                 self.push_precollected(new_item)
                 main_items_player[progression_idx[item_idx]].count -= 1
@@ -216,6 +215,9 @@ class FezWorld(World):
         item_data = all_item_data[item_id - self.base_id]
         if self.options.knowledge_logic and name in self.knowledge_names:
             return FezItem(name, ItemClassification.progression, item_id, self.player)
+        # Cubes should be deprioritized for minimal accessibility only since they are sorted first for placement under that option
+        if self.options.accessibility == "minimal" and (name == "Golden Cube" or name == "Anti-Cube"):
+            return FezItem(name, ItemClassification.progression_deprioritized_skip_balancing, item_id, self.player)
         return FezItem(name, item_data.classification, item_id, self.player)
 
     def get_filler_item_name(self) -> str:
@@ -246,3 +248,28 @@ class FezWorld(World):
         self.multiworld.completion_condition[self.player] = lambda state: state.has("Victory", self.player)
         self.set_rule(victory_loc, HasCubes(self.options.goal.value))
         victory_region.locations.append(victory_loc)
+
+    @classmethod
+    def stage_fill_hook(cls,
+                        multiworld: MultiWorld,
+                        progitempool: list[Item],
+                        usefulitempool: list[Item],
+                        filleritempool: list[Item],
+                        fill_locations: list[Location],
+                        ) -> None:
+        players = multiworld.get_game_players(cls.game)
+        minimal_player_ids = {player for player in players
+                              if multiworld.worlds[player].options.accessibility == "minimal"}
+
+        def sort_func(item: Item):
+            if item.name == "Golden Cube" or item.name == "Anti-Cube":
+                if item.player in minimal_player_ids:
+                    # Place cubes first for minimal accessibility players
+                    # to reduce generation failure
+                    return 1
+                else:
+                    return 0
+            else:
+                return 0
+
+        progitempool.sort(key=sort_func)
