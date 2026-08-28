@@ -49,6 +49,12 @@ class ShuffleClockAntis(Toggle):
     """Whether to add the anti-cubes from the clock tower to the location pool ('true' means you'll likely need to change system time or wait upto a month)."""
     display_name = "Shuffle Clock Antis"
 
+class RandomizeAbilities(Toggle):
+    """Whether to randomize the ability to carry objects and the ability to turn objects.
+
+    NOTE: The ability to turn objects also applies to certain interactions not involving grabbable handles (i.e., the skulls in Cemetary and the bookshelf door in Library)."""
+    display_name = "Randomize Abilities"
+
 class ScrambleTetrominos(Toggle):
     """Whether to randomly scramble the inputs for the Tetromino codes ('true' means for example that the ▀█▄ tetromino will require you to jump instead of LT)."""
     display_name = "Scramble Tetrominos Inputs"
@@ -87,6 +93,7 @@ class FezOptions(DeathLinkMixin, PerGameCommonOptions):
     extra_cubes: NumberExtraGoldenCubes
     disable_visual_pain: DisableVisualPain
     shuffle_clock_antis: ShuffleClockAntis
+    randomize_abilities: RandomizeAbilities
     scramble_tetrominos: ScrambleTetrominos
     knowledge_logic: KnowledgeLogic
     trap_percentage: TrapPercentage
@@ -99,6 +106,7 @@ fez_option_groups = [
         NumberCubesReplacedByBits,
         NumberExtraGoldenCubes,
         ShuffleClockAntis,
+        RandomizeAbilities,
         KnowledgeLogic,
     ]),
     OptionGroup("Filler Items", [

@@ -12,7 +12,7 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("Abandoned B", {"Villageville 3D"}),
     FezRegionData("Abandoned C", {"Villageville 3D"}),
     FezRegionData("Ancient Walls", {"Bell Tower", "Wall Hole", "Zu Tetris"}),
-    FezRegionData("Arch", {"Five Towers", "Nature Hub", "Zu Switch", "Weightswitch Temple"}),
+    FezRegionData("Arch", {"Five Towers", "Nature Hub", "Weightswitch Temple"}),
     FezRegionData("Bell Tower", {"Water Pyramid", "Nature Hub", "Quantum", "Ancient Walls", "Five Towers"}),
     FezRegionData("Big Owl", {"Owl"}),
     FezRegionData("Big Tower", {"Villageville 3D", "Memory Core"}),
