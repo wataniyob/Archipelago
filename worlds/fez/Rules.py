@@ -347,7 +347,6 @@ def set_ability_rules(world: FezWorld):
     world.set_rule(get_entrance("Sewer Pillars", "Sewer Lesser Gate B"), pivot_rule)
     world.set_rule(get_entrance("Skull", "Skull B"), pivot_rule)
     world.set_rule(get_entrance("Observatory", "Visitor"), pivot_rule)
-    world.set_rule(get_entrance("Observatory", "Telescope"), pivot_rule)
     world.set_rule(get_entrance("Visitor", "Orrery"),
                    (pivot_rule | CanReachEntrance("Purple Lodge Ruin -> Visitor")))
     world.set_rule(get_entrance("Visitor", "Code Machine"),
@@ -380,7 +379,6 @@ def set_ability_rules(world: FezWorld):
     world.set_rule(get_location("Sewer Pivot Chest"), pivot_rule)
     world.set_rule(get_location("Sewer Pillars Cube Bit 1"), pivot_rule)
     world.set_rule(get_location("Sewer Pillars Cube Bit 2"), pivot_rule)
-    world.set_rule(get_location("Observatory Cube"), pivot_rule)
     world.set_rule(get_location("Telescope Anti-Cube"),
                    (Filtered(tetromino_rule,
                              options=[OptionFilter(KnowledgeLogic, True)],
