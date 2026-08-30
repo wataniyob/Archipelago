@@ -379,7 +379,6 @@ def set_ability_rules(world: FezWorld):
     world.set_rule(get_location("Sewer Pivot Chest"), pivot_rule)
     world.set_rule(get_location("Sewer Pillars Cube Bit 1"), pivot_rule)
     world.set_rule(get_location("Sewer Pillars Cube Bit 2"), pivot_rule)
-    world.set_rule(get_location("Observatory Cube"), pivot_rule)
     world.set_rule(get_location("Telescope Anti-Cube"),
                    (Filtered(tetromino_rule,
                              options=[OptionFilter(KnowledgeLogic, True)],
