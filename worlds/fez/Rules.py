@@ -69,7 +69,7 @@ class HasCubes(Rule["FezWorld"], game="Fez"):
                     >= self.count)
 
         @override
-        def item_dependencies(self) -> [str, set[int]]:
+        def item_dependencies(self) -> [str, list[int]]:
             cube_types = ("Golden Cube", "Anti-Cube", "Cube Bit")
             return {item: {id(self)} for item in cube_types}
 

@@ -1,13 +1,13 @@
-from typing import Dict, Set
+from typing import Dict, List
 from .Locations import all_location_data
 
 
 class FezRegionData:
-    def __init__(self, name: str, exits: Set[str]):
+    def __init__(self, name: str, exits: List[str]):
         self.name = name
         self.exits = exits
 
-all_region_data: Set[FezRegionData] = {
+all_region_data: List[FezRegionData] = {
     FezRegionData("Abandoned A", {"Villageville 3D"}),
     FezRegionData("Abandoned B", {"Villageville 3D"}),
     FezRegionData("Abandoned C", {"Villageville 3D"}),
@@ -170,6 +170,6 @@ all_region_data: Set[FezRegionData] = {
     FezRegionData("_WatertowerSecretAntiCube", {"Gomez House"})
 }
 
-region_name_to_location_name: Dict[str, Set[str]] = {data.name: set() for data in all_region_data}
+region_name_to_location_name: Dict[str, List[str]] = {data.name: list() for data in all_region_data}
 for data in all_location_data:
-    region_name_to_location_name[data.region_name].add(data.name)
+    region_name_to_location_name[data.region_name].append(data.name)

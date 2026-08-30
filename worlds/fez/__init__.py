@@ -47,13 +47,13 @@ class FezWorld(World):
     base_id = 0xFE500
 
     item_name_to_id = {item.name: id for id, item in enumerate(all_item_data, base_id)}
-    item_names = set(item_name_to_id)
+    item_names = list(item_name_to_id)
     item_name_groups = item_name_groups
 
     knowledge_names = [knowledge_item.name for knowledge_item in knowledge_items]
 
     location_name_to_id = {data.name: id for id, data in enumerate(all_location_data, base_id)}
-    location_names = set(location_name_to_id)
+    location_names = list(location_name_to_id)
     location_name_groups = location_name_groups
 
 # start of ordered Main.py calls
