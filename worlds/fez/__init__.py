@@ -60,12 +60,12 @@ class FezWorld(World):
 
     def create_regions(self) -> None:
         # Add all regions
-        for data in all_region_data:
+        for data in sorted(all_region_data, key=lambda d: d.name):
             region = Region(data.name, self.player, self.multiworld)
             self.multiworld.regions.append(region)
 
         # Configure all regions
-        for data in all_region_data:
+        for data in sorted(all_region_data, key=lambda d: d.name):
             region = self.multiworld.get_region(data.name, self.player)
             location_names = region_name_to_location_name[data.name]
             locations_in_region = {name: self.location_name_to_id.get(name)
