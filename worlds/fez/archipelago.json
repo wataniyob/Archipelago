@@ -2,5 +2,5 @@
     "game": "Fez",
     "authors": [ "Nolih" ],
     "minimum_ap_version": "0.6.3",
-    "world_version": "0.6.0"
+    "world_version": "0.6.1"
 }
