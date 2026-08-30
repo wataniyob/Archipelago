@@ -347,7 +347,6 @@ def set_ability_rules(world: FezWorld):
     world.set_rule(get_entrance("Sewer Pillars", "Sewer Lesser Gate B"), pivot_rule)
     world.set_rule(get_entrance("Skull", "Skull B"), pivot_rule)
     world.set_rule(get_entrance("Observatory", "Visitor"), pivot_rule)
-    world.set_rule(get_entrance("Observatory", "Telescope"), pivot_rule)
     world.set_rule(get_entrance("Visitor", "Orrery"),
                    (pivot_rule | CanReachEntrance("Purple Lodge Ruin -> Visitor")))
     world.set_rule(get_entrance("Visitor", "Code Machine"),
